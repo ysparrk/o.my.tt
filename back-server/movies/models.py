@@ -1,4 +1,5 @@
 from django.db import models
+from ott.models import Netflix
 
 # Create your models here.
 class Movie(models.Model):
