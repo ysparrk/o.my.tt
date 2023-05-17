@@ -1,0 +1,18 @@
+[
+  {
+    "model": "ott.watcha",
+    "pk": 1,
+    "fields": {
+      "tmdb_id": 238,
+      "ott": "watcha"
+    }
+  },
+  {
+    "model": "ott.watcha",
+    "pk": 2,
+    "fields": {
+      "tmdb_id": 635302,
+      "ott": "watcha"
+    }
+  }
+]

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'community',
 
     'rest_framework',
+    # 'api'
 
     # django
     'django.contrib.admin',
