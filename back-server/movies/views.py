@@ -1,5 +1,10 @@
 from django.shortcuts import render
 import requests
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
+from .serializers import MovieListSerializers
+
 from .models import Movie
 from ott.models import Netflix
 
@@ -9,40 +14,29 @@ def index(request):
     context = {'movies': movies}
     return render(request, 'movies/index.html', context)
 
-
+@api_view(['GET'])
 def get_movie_details(request):
     netflix_movies = Netflix.objects.all()
 
     for movie in netflix_movies:
-        tmdb_id = movie.tmdb_id
+        tmdb_id = movie.tmdb_id  # tmdb_id 가져오기
         api_key = '5d5ba12807e444883a57039b0e2a1015'
         url = f'https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={api_key}'
         response = requests.get(url)
-        if response.status_code == 200:
+        if response.status_code == 200:  # 요청을 받으면
             movie_details = response.json()
-            # 여기에서 필요한 정보를 추출하여 처리하면 됩니다
-            # 예시로 영화 제목과 개요를 출력해봅니다
-            movie_obj, created = Movie.objects.get_or_create(id=movie.id)
-            movie_obj.title = title
-            # 필요한 정보 추가적으로 저장
-            print(movie_details['title'])
+            title = movie_details.get('title')
+            overview = movie_details.get('overview')
+            poster_path = movie_details.get('poster_path')
+            release_date = movie_details.get('release_date')
+
+            movie_obj, created = Movie.objects.get_or_create(title=title)
+            movie_obj.overview = overview
+            movie_obj.poster_path = poster_path
+            movie_obj.release_date = release_date
             movie_obj.save()
-            print(f"Movie details updated for: {movie_obj.title}")
+    
+    movies = Movie.objects.all()
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
 
-    return render(request, 'movies/detail.html')
-
-# def fetch_movie_details(movie):
-#     netflix_movies = Netflix.objects.all()
-#     tmdb_id = netflix_movies.get.tmdb_id()
-#     api_key = '5d5ba12807e444883a57039b0e2a1015'
-#     url = f'https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={api_key}'
-
-#     response = requests.get(url)
-#     if response.status_code == 200:
-#         movie_data = response.json()
-#         # 필요한 정보를 추출하여 Movie 객체의 필드에 저장
-#         movie.cinema_release_date = movie_data['release_date']
-#         # 필요한 정보 추가적으로 저장
-        
-#         movie.save()
-#         print(f"Movie details updated for: {movie.title}")

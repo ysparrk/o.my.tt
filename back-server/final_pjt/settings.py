@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'accounts',
     'community',
 
+    'rest_framework',
+
     # django
     'django.contrib.admin',
     'django.contrib.auth',

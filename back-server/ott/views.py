@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import json
+# import json
 # from rest_framework import serializers
 # from .models import Netflix
 

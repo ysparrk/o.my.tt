@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>INDEX</h1>
-  <a href="#">작성하기</a>
-  <hr />
-
-  {% comment %} {% for article in articles %}
+  <h1>INDEX</h1>
+  {% for movie in movies %}
+    <p>{{ movie.title }}</p>
+    <p>{{ movie.overview }}</p>
+    <p>{{ movie.release_date }}</p>
     <hr />
-  {% endfor %}  {% endcomment %}
-
+  {% endfor %} 
 {% endblock content %}
