@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # apps
     'ott',
+    'movies',
+    'accounts',
+    'community',
 
     # django
     'django.contrib.admin',
@@ -58,7 +61,7 @@ ROOT_URLCONF = 'final_pjt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
