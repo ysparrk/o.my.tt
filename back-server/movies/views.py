@@ -3,20 +3,20 @@ import requests
 import datetime
 from django.views.decorators.http import require_safe
 from django.shortcuts import get_object_or_404, get_list_or_404
-
+from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import TmdbSerializer
+from .serializers import TmdbSerializer, OttSerializer
 from rest_framework import status
 
 from .models import Movie, Ott, Tmdb
 
 # Create your views here.
-@api_view(['GET', 'POST'])
-def tmdb_list(request):
-    tmdb_data = Tmdb.objects.all()
-    serializer = TmdbSerializer(tmdb_data, many=True)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# def tmdb_list(request):
+#     tmdb_data = Tmdb.objects.all()
+#     serializer = TmdbSerializer(tmdb_data, many=True)
+#     return Response(serializer.data)
 
     # elif request.method == 'POST':
     #     serializer = TmdbSerializer(data=request.data)
@@ -25,9 +25,36 @@ def tmdb_list(request):
     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+# ott 명단 보내기
+@api_view(['GET', 'POST'])
+def ott_list(request, initial):
+    print('============================')
+    print(initial)
+    if initial:
+        print('이니셜 왔다!!!!')
+        tmdb_data = Tmdb.objects.all()
+
+        movie_list = []
+
+        for movie in tmdb_data:
+
+            m = movie.ott_lst.values()
+            for i in m:
+                if i == initial:
+                    movie_list.append(movie)
+
+        serializer = TmdbSerializer(movie_list, many=True)
+        return Response(serializer.data)
+
+    else:
+        ott_data = Ott.objects.all()
+        serializer = OttSerializer(ott_data, many=True)
+        return Response(serializer.data)
 
 
-# 영화 전체 리스트 인기순으로 나열
+
+
+'''
 def index(request):
     movie_list = Tmdb.objects.all()
     
@@ -92,8 +119,6 @@ def index(request):
 
 
 
-
-
 @require_safe
 def ott_filter(request, ott_pk):
     otts = Ott.objects.all()
@@ -154,3 +179,4 @@ def detail(request, movie_pk):
 
 def recommended(request):
     pass
+'''

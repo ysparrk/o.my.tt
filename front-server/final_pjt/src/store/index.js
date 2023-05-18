@@ -15,8 +15,9 @@ export default new Vuex.Store({
     createPersistedState(),
   ],
   state: {
-    articles: [
-    ],
+    articles: [],
+    movies: [],
+    otts: null,
     token: null,
   },
   getters: {
@@ -29,25 +30,44 @@ export default new Vuex.Store({
     //   state.articles = articles
     // },
     // signup & login -> 완료하면 토큰 발급
+    GET_MOVIES(state, movies) {
+      this.movies = movies
+    },
+    GET_OTTS(state, otts) {
+      this.otts = otts
+      console.log(this.otts)
+    },
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
     }
   },
   actions: {
-    // getArticles(context) {
-    //   axios({
-    //     method: 'get',
-    //     url: `${API_URL}/api/v1/articles/`,
-    //   })
-    //     .then((res) => {
-    //     // console.log(res, context)
-    //       context.commit('GET_ARTICLES', res.data)
-    //     })
-    //     .catch((err) => {
-    //     console.log(err)
-    //   })
-    // },
+    getMovies(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/ott/initial/`,
+      })
+        .then((res) => {
+          context.commit('GET_MOVIES', res.data)
+        })
+        .catch((err) => {
+        console.log(err)
+      })
+    },
+    getOtts(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/ott/`,
+      })
+      .then((res) => {
+        // console.log(res)
+        context.commit('GET_OTTS', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     signUp(context, payload) {
       const username = payload.username
       const password1 = payload.password1
