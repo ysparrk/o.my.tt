@@ -11,8 +11,8 @@ class Ott(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
-    overview = models.TextField()
-    poster_path = models.TextField()
+    overview = models.TextField(null=True, blank=True)
+    poster_path = models.TextField(null=True, blank=True)
     release_date = models.DateField(null=True, blank=True)
     otts = models.ManyToManyField(Ott)
 

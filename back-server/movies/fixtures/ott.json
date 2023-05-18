@@ -1,0 +1,37 @@
+[
+  {
+    "model": "movies.ott",
+    "pk": 1,
+    "fields": {
+      "name": "Netflix"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 2,
+    "fields": {
+      "name": "Watcha"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 3,
+    "fields": {
+      "name": "DisneyPlus"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 1,
+    "fields": {
+      "name": "Netflix"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 1,
+    "fields": {
+      "name": "Netflix"
+    }
+  },
+]

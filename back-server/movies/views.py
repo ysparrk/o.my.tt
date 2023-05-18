@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 import datetime
+from django.views.decorators.http import require_safe
 # from rest_framework.response import Response
 # from rest_framework import status
 # from rest_framework.decorators import api_view
@@ -16,6 +17,7 @@ def index(request):
     # Movie 모델에 데이터 넣기
     for movie in movie_list:
         tmdb_id = movie.tmdb_id  # tmdb_id 가져오기
+        print(tmdb_id)
         api_key = '5d5ba12807e444883a57039b0e2a1015'
         url = f'https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={api_key}&language=ko-KR'
         response = requests.get(url)
@@ -48,6 +50,37 @@ def index(request):
 
 
     # sorted(movie_list, key=lambda movie: movie.ott)  # 일단 이름순으로 정렬
+
+# @require_safe
+# def ott(request):
+    
+#     otts = Ott.objects.all()
+#     movies = Movie.objects.all()
+
+#     context = {
+#         'otts' : otts,
+#         'movies' : movies,
+#     }
+#     return render(request, 'movies/index.html', context)
+    
+@require_safe
+def ott_filter(request, ott_pk):
+    otts = Ott.objects.all()
+    movies = Movie.objects.all()
+    movie_list = []
+
+    for movie in movies:
+        
+        m = movie.otts.values()
+        for i in m:
+            if i['id'] == ott_pk:
+                movie_list.append(movie)
+
+    context = {
+        'otts' : otts,
+        'movie_list' : movie_list,
+    }
+    return render(request, 'movies/index.html', context)
 
 
 
