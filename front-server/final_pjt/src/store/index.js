@@ -31,7 +31,7 @@ export default new Vuex.Store({
     // },
     // signup & login -> 완료하면 토큰 발급
     GET_MOVIES(state, movies) {
-      this.movies = movies
+      state.movies = movies
     },
     GET_OTTS(state, otts) {
       this.otts = otts
@@ -39,7 +39,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
+      router.push({name : 'MovieView'}) // store/index.js $router 접근 불가 -> import를 해야함
     }
   },
   actions: {
