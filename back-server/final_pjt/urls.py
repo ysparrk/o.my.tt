@@ -22,8 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('movies/', include('movies.urls')),
     path('ott/', include('ott.urls')),
-    # path('accounts/', include('accounts.urls')),
-    # path('movies/get-movie-details/', get_movie_details, name='get_movie_details'),
-    # path('api-auth/', include('rest_framework.urls')),
-    # path('api/v1/', include('movies.urls')),
+    path('accounts/', include('dj_rest_auth.urls')),
+    path('accounts/signup/', include('dj_rest_auth.registration.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
