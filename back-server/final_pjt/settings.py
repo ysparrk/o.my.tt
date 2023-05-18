@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'movies',
     'accounts',
     'community',
+    'recommend',
 
     # api
     'rest_framework',
