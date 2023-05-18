@@ -1,10 +1,10 @@
 [
   {
-    "model": "movies.ott",
+    "model": "movies.tmdb",
     "pk": 1,
     "fields": {
       "tmdb_id": 238,
-      "ott": [
+      "ott_lst": [
         "nfx",
         "wac",
         "ply"
@@ -12,33 +12,33 @@
     }
   },
   {
-    "model": "movies.ott",
+    "model": "movies.tmdb",
     "pk": 2,
     "fields": {
       "tmdb_id": 635302,
-      "ott": [
+      "ott_lst": [
         "nfx",
         "ply"
       ]
     }
   },
   {
-    "model": "movies.ott",
+    "model": "movies.tmdb",
     "pk": 3,
     "fields": {
       "tmdb_id": 751237,
-      "ott": [
+      "ott_lst": [
         "nfx",
         "wac"
       ]
     }
   },
   {
-    "model": "movies.ott",
+    "model": "movies.tmdb",
     "pk": 4,
     "fields": {
       "tmdb_id": 965150,
-      "ott": [
+      "ott_lst": [
         "wac"
       ]
     }

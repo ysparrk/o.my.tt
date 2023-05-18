@@ -3,9 +3,10 @@
 {% block content %}
   <h1>INDEX</h1>
 
+
   {% for ott in otts  %}
     <button type="button" class="btn btn-warning mt-2">
-    <a href="{% url 'movies:ott_filter' genre.pk %}" class="text-decoration-none text-dark">{{ genre.name }}</a>
+    <a href="{% url 'movies:ott_filter' ott.pk %}" class="text-decoration-none text-dark">{{ ott.name }}</a>
     </button>
   {% endfor %}
 

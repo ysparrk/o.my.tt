@@ -2,17 +2,34 @@ from django.shortcuts import render
 import requests
 import datetime
 from django.views.decorators.http import require_safe
-# from rest_framework.response import Response
-# from rest_framework import status
-# from rest_framework.decorators import api_view
-# from .serializers import MovieListSerializers
+from django.shortcuts import get_object_or_404, get_list_or_404
 
-from .models import Movie, Ott
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .serializers import TmdbSerializer
+from rest_framework import status
+
+from .models import Movie, Ott, Tmdb
 
 # Create your views here.
+@api_view(['GET', 'POST'])
+def tmdb_list(request):
+    tmdb_data = Tmdb.objects.all()
+    serializer = TmdbSerializer(tmdb_data, many=True)
+    return Response(serializer.data)
+
+    # elif request.method == 'POST':
+    #     serializer = TmdbSerializer(data=request.data)
+    #     if serializer.is_valid(raise_exception=True):
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+
+
 # 영화 전체 리스트 인기순으로 나열
 def index(request):
-    movie_list = Ott.objects.all()
+    movie_list = Tmdb.objects.all()
     
     # Movie 모델에 데이터 넣기
     for movie in movie_list:
@@ -42,47 +59,62 @@ def index(request):
     
     movies = Movie.objects.all()
     print(movies)
-
+    
     context = {
+        # 'otts': otts,
+        # 'movie_list': movies,
         'movies' : movies,
     }
+
+    # otts = Ott.objects.all()
+
+    # # 필터링
+    # ott_initial = None
+    # try:
+    #     ott = Ott.objects.get(pk=ott_pk)
+    #     ott_initial = ott.initial
+    # except Ott.DoesNotExist:
+    #     pass
+
+    # movie_list = []
+    # tmdb_ids = Tmdb.objects.filter(ott__initial=ott_initial).values_list('tmdb_id', flat=True)
+    # movies = movies.filter(tmdb__tmdb_id__in=tmdb_ids)
+
+    # context = {
+    #     'otts': otts,
+    #     'movie_list': movies,
+    #     'movies' : movies,
+    # }
     return render(request, 'movies/index.html', context)
 
 
     # sorted(movie_list, key=lambda movie: movie.ott)  # 일단 이름순으로 정렬
 
-# @require_safe
-# def ott(request):
-    
-#     otts = Ott.objects.all()
-#     movies = Movie.objects.all()
 
-#     context = {
-#         'otts' : otts,
-#         'movies' : movies,
-#     }
-#     return render(request, 'movies/index.html', context)
-    
+
+
+
 @require_safe
 def ott_filter(request, ott_pk):
     otts = Ott.objects.all()
     movies = Movie.objects.all()
-    movie_list = []
 
-    for movie in movies:
-        
-        m = movie.otts.values()
-        for i in m:
-            if i['id'] == ott_pk:
-                movie_list.append(movie)
+    ott_initial = None
+    try:
+        ott = Ott.objects.get(pk=ott_pk)
+        ott_initial = ott.initial
+    except Ott.DoesNotExist:
+        pass
+
+    movie_list = []
+    tmdb_ids = Tmdb.objects.filter(ott__initial=ott_initial).values_list('tmdb_id', flat=True)
+    movies = movies.filter(tmdb__tmdb_id__in=tmdb_ids)
 
     context = {
-        'otts' : otts,
-        'movie_list' : movie_list,
+        'otts': otts,
+        'movie_list': movies,
     }
     return render(request, 'movies/index.html', context)
-
-
 
 # api 요청 보내서 db에 영화 정보 저장
 # @api_view(['GET'])

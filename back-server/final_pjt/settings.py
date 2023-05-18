@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # apps
-    'ott',
     'movies',
     'accounts',
     'community',

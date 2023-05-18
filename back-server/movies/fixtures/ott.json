@@ -3,6 +3,7 @@
     "model": "movies.ott",
     "pk": 1,
     "fields": {
+      "initial": "nfx",
       "name": "Netflix"
     }
   },
@@ -10,6 +11,7 @@
     "model": "movies.ott",
     "pk": 2,
     "fields": {
+      "initial": "wac",
       "name": "Watcha"
     }
   },
@@ -17,21 +19,32 @@
     "model": "movies.ott",
     "pk": 3,
     "fields": {
+      "initial": "wav",
+      "name": "Wavve"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 4,
+    "fields": {
+      "initial": "ply",
+      "name": "GooglePlay"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 5,
+    "fields": {
+      "initial": "apt",
+      "name": "AppleTv"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 6,
+    "fields": {
+      "initial": "dnp",
       "name": "DisneyPlus"
     }
-  },
-  {
-    "model": "movies.ott",
-    "pk": 1,
-    "fields": {
-      "name": "Netflix"
-    }
-  },
-  {
-    "model": "movies.ott",
-    "pk": 1,
-    "fields": {
-      "name": "Netflix"
-    }
-  },
+  }
 ]
