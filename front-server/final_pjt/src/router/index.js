@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
 import MovieView from '@/views/MovieView'
+import RecommendView from '@/views/RecommendView'
 
 
 Vue.use(VueRouter)
@@ -25,6 +26,11 @@ const routes = [
     path: '/movie',
     name: 'MovieView',
     component: MovieView
+  },
+  {
+    path: '/recommend',
+    name: 'RecommendView',
+    component: RecommendView
   },
 
 

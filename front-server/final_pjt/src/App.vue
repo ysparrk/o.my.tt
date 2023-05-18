@@ -3,7 +3,8 @@
     <nav>
       <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link> | 
       <router-link :to="{ name: 'LogInView' }">LogInPage</router-link> |
-      <router-link :to="{ name: 'MovieView' }">movie list</router-link>
+      <router-link :to="{ name: 'MovieView' }">movie list</router-link> |
+      <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
     </nav>
     <router-view/>
   </div>
