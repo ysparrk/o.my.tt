@@ -6,22 +6,18 @@ import datetime
 # from rest_framework.decorators import api_view
 # from .serializers import MovieListSerializers
 
-from .models import Movie
-from ott.models import Netflix, Watcha
+from .models import Movie, Ott
 
 # Create your views here.
 # 영화 전체 리스트 인기순으로 나열
 def index(request):
-    netflix = Netflix.objects.all()
-    watcha = Watcha.objects.all()
-    
-    movie_list = list(netflix) + list(watcha)  # 전체 합치기
+    movie_list = Ott.objects.all()
     
     # Movie 모델에 데이터 넣기
     for movie in movie_list:
         tmdb_id = movie.tmdb_id  # tmdb_id 가져오기
         api_key = '5d5ba12807e444883a57039b0e2a1015'
-        url = f'https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={api_key}'
+        url = f'https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={api_key}&language=ko-KR'
         response = requests.get(url)
         if response.status_code == 200:  # 요청을 받으면
             movie_details = response.json()
@@ -39,7 +35,8 @@ def index(request):
         movie_obj.poster_path = poster_path
         movie_obj.release_date = release_date
         movie_obj.save()
-        print('save')
+
+        movie_obj.otts.add(movie)
     
     movies = Movie.objects.all()
     print(movies)

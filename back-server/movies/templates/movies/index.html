@@ -2,9 +2,17 @@
 
 {% block content %}
   <h1>INDEX</h1>
+
+  {% comment %} {% for ott in genres  %}
+    <button type="button" class="btn btn-warning mt-2">
+    <a href="{% url 'movies:genre_recommended' genre.pk %}" class="text-decoration-none text-dark">{{ genre.name }}</a>
+    </button>
+  {% endfor %} {% endcomment %}
+
+
   {% for movie in movies %}
-    {% comment %} </a><p>{{ movie.ott }}</p> {% endcomment %}
     <p>{{ movie.title }}</p>
+    <img src="https://image.tmdb.org/t/p/w300{{movie.poster_path}}">
     <p>{{ movie.overview }}</p>
     <p>{{ movie.release_date }}</p>
     <hr />

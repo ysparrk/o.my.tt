@@ -1,0 +1,46 @@
+[
+  {
+    "model": "movies.ott",
+    "pk": 1,
+    "fields": {
+      "tmdb_id": 238,
+      "ott": [
+        "nfx",
+        "wac",
+        "ply"
+      ]
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 2,
+    "fields": {
+      "tmdb_id": 635302,
+      "ott": [
+        "nfx",
+        "ply"
+      ]
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 3,
+    "fields": {
+      "tmdb_id": 751237,
+      "ott": [
+        "nfx",
+        "wac"
+      ]
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 4,
+    "fields": {
+      "tmdb_id": 965150,
+      "ott": [
+        "wac"
+      ]
+    }
+  }
+]
