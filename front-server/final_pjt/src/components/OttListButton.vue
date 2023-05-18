@@ -28,7 +28,7 @@ export default {
       const name = ott_initial
       axios({
         method: 'get',
-        url: `${API_URL}/movies/ott/${name}`,
+        url: `${API_URL}/movies/tmdb/${name}`,
       })
       .then((res) => {
         console.log('response!!')

@@ -8,10 +8,8 @@ class Ott(models.Model):
 
 class Tmdb(models.Model):
     tmdb_id = models.IntegerField()
-    ott_lst = models.CharField(max_length=20)
-
-    # def __str__(self):
-    #     return str(self.tmdb_id)
+    ott_lst = models.JSONField()
+    
     
 # DB에 저장
 class Movie(models.Model):

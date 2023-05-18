@@ -32,9 +32,11 @@ export default new Vuex.Store({
     // signup & login -> 완료하면 토큰 발급
     GET_MOVIES(state, movies) {
       state.movies = movies
+      console.log(this.movies)
+      console.log("요청 받음")
     },
     GET_OTTS(state, otts) {
-      this.otts = otts
+      state.otts = otts
       console.log(this.otts)
     },
     SAVE_TOKEN(state, token) {
@@ -46,7 +48,7 @@ export default new Vuex.Store({
     getMovies(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/movies/ott/initial/`,
+        url: `${API_URL}/movies/tmdb/initial/`,
       })
         .then((res) => {
           context.commit('GET_MOVIES', res.data)
@@ -61,7 +63,7 @@ export default new Vuex.Store({
         url: `${API_URL}/movies/ott/`,
       })
       .then((res) => {
-        // console.log(res)
+        console.log(res)
         context.commit('GET_OTTS', res.data)
       })
       .catch((err) => {
