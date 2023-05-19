@@ -6,10 +6,10 @@ class TmdbSerializer(serializers.ModelSerializer):
         model = Tmdb
         fields = '__all__'
 
-# class MovieSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Movie
-#         fields = ['tmdb_id', 'ott_lst']
+class MovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = '__all__'
 
 class OttSerializer(serializers.ModelSerializer):
     class Meta:

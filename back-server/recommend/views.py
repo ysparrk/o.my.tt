@@ -17,7 +17,7 @@ def random_tmdb(request):
     print(tmdb_data)
 
     # n개 랜덤으로 추출
-    random_data = random.sample(tmdb_data, 2)
+    random_data = random.sample(tmdb_data, 5)
     print(random_data)
     
     serializer = TmdbSerializer(random_data, many=True)

@@ -1,0 +1,112 @@
+[
+  {
+    "model": "movies.tmdb",
+    "pk": 1,
+    "fields": {
+      "tmdb_id": 238,
+      "ott_lst": [
+        "nfx",
+        "wac",
+        "ply"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 2,
+    "fields": {
+      "tmdb_id": 451,
+      "ott_lst": [
+        "nfx",
+        "ply"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 3,
+    "fields": {
+      "tmdb_id": 123,
+      "ott_lst": [
+        "nfx",
+        "wac"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 4,
+    "fields": {
+      "tmdb_id": 635302,
+      "ott_lst": [
+        "wac",
+        "wav"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 5,
+    "fields": {
+      "tmdb_id": 751237,
+      "ott_lst": [
+        "wac",
+        "apt"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 6,
+    "fields": {
+      "tmdb_id": 965150,
+      "ott_lst": [
+        "wac",
+        "dnp"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 7,
+    "fields": {
+      "tmdb_id": 591120,
+      "ott_lst": [
+        "wac",
+        "dnp"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 8,
+    "fields": {
+      "tmdb_id": 593643,
+      "ott_lst": [
+        "wac",
+        "apt"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 9,
+    "fields": {
+      "tmdb_id": 753325,
+      "ott_lst": [
+        "wav"
+      ]
+    }
+  },
+  {
+    "model": "movies.tmdb",
+    "pk": 10,
+    "fields": {
+      "tmdb_id": 758009,
+      "ott_lst": [
+        "nfx",
+        "ply"
+      ]
+    }
+  }
+]

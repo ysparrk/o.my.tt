@@ -2,7 +2,7 @@
   <div class="movie-list">
     <h3>Movie List</h3>
     <MovieListItem
-    v-for = "movie in movies"
+    v-for="movie in movies"
     :key="movie.id"
     :movie="movie"
     />
