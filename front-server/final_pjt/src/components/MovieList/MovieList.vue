@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import MovieListItem from '@/components/MovieListItem'
+import MovieListItem from '@/components/MovieList/MovieListItem'
 
 export default {
   name: 'MovieList',
