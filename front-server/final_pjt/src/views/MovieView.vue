@@ -16,7 +16,7 @@ export default {
     MovieList,
     OttListButton,
   },
-  created() {
+  update() {
     this.getMovies()
   },
   methods: {
