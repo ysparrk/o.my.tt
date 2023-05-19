@@ -4,8 +4,9 @@ from django.db import models
 
 class Ott(models.Model):
     initial = models.CharField(max_length=50)
-    name = models.CharField(max_length=50) 
-
+    name = models.CharField(max_length=50)
+    signup = models.CharField(max_length=50)
+    
 class Tmdb(models.Model):
     tmdb_id = models.IntegerField()
     ott_lst = models.JSONField()

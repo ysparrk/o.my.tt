@@ -14,6 +14,7 @@ from .models import Movie, Ott, Tmdb
 
 # Create your views here.
 
+# 1. ott filter button
 # ott 명단 보내기
 @api_view(['GET'])
 def ott_list(request):
@@ -30,7 +31,7 @@ def tmdb_list(request, initial):
     print(initial)
     tmdb_data = Tmdb.objects.all()
     
-    
+
     movie_list = []
 
     for movie in tmdb_data:
@@ -45,3 +46,6 @@ def tmdb_list(request, initial):
     print(movie_list)
     serializer = TmdbSerializer(movie_list, many=True)
     return Response(serializer.data)
+
+
+# 2. Detail

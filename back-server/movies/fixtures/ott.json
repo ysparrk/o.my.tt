@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
       "initial": "nfx",
-      "name": "Netflix"
+      "name": "Netflix",
+      "singup": "https://www.netflix.com/signup/planform"
     }
   },
   {
@@ -12,7 +13,8 @@
     "pk": 2,
     "fields": {
       "initial": "wac",
-      "name": "Watcha"
+      "name": "Watcha",
+      "singup": "https://watcha.com/sign_up"
     }
   },
   {
@@ -20,7 +22,8 @@
     "pk": 3,
     "fields": {
       "initial": "wav",
-      "name": "Wavve"
+      "name": "Wavve",
+      "singup": "https://member.wavve.com/signup"
     }
   },
   {
@@ -28,7 +31,8 @@
     "pk": 4,
     "fields": {
       "initial": "ply",
-      "name": "GooglePlay"
+      "name": "GooglePlay",
+      "singup": "https://play.google.com/store/movies"
     }
   },
   {
@@ -36,7 +40,8 @@
     "pk": 5,
     "fields": {
       "initial": "apt",
-      "name": "AppleTv"
+      "name": "AppleTv",
+      "singup": "https://tv.apple.com/kr/channel/tvs.sbd.4000"
     }
   },
   {
@@ -44,7 +49,8 @@
     "pk": 6,
     "fields": {
       "initial": "dnp",
-      "name": "DisneyPlus"
+      "name": "DisneyPlus",
+      "singup": "https://www.disneyplus.com/ko-kr/sign-up?type=standard"
     }
   }
 ]
