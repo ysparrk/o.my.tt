@@ -8,7 +8,7 @@ from rest_framework import status
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import TmdbSerializer, OttSerializer
+from .serializers import TmdbSerializer, OttSerializer, MovieSerializer
 
 from .models import Movie, Ott, Tmdb
 
@@ -24,24 +24,23 @@ def ott_list(request):
 
 # ott 버튼 누르면 해당 ott 영화 보내기
 @api_view(['GET'])
-def tmdb_list(request, initial):
+def tmdb_movie_list(request, initial):
 
     print("요청받음!!=============")
     print(initial)
     tmdb_data = Tmdb.objects.all()
-    
-    
+    movie_data = Movie.objects.all()
+    print(movie_data)
     movie_list = []
 
     for movie in tmdb_data:
         m = movie.ott_lst
-        print(m)
-        print(type(m))
-
-        for i in m:
-
-            if i == initial:
-                movie_list.append(movie)
+        
+        if initial in m:  # ott 값이 포함된 경우
+            rlt = movie_data.filter(pk=movie.tmdb_id).first()
+            print(rlt)
+            movie_list.append(rlt)
+    
     print(movie_list)
-    serializer = TmdbSerializer(movie_list, many=True)
+    serializer = MovieSerializer(movie_list, many=True)
     return Response(serializer.data)

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import MovieList from '@/components/MovieList.vue'
-import OttListButton from '@/components/OttListButton.vue'
+import MovieList from '@/components/MovieList/MovieList.vue'
+import OttListButton from '@/components/MovieList/OttListButton.vue'
 
 export default {
   name: 'MovieView',

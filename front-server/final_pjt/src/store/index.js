@@ -18,7 +18,7 @@ export default new Vuex.Store({
     articles: [],
     movies: [],
     otts: null,
-    prefers: null,
+    selects: null,
     token: null,
   },
   getters: {
@@ -40,9 +40,9 @@ export default new Vuex.Store({
       state.otts = otts
       console.log(this.otts)
     },
-    GET_PREFER(state, prefers) {
-      state.prefers = prefers
-      console.log(this.prefers)
+    GET_SELECT(state, selects) {
+      state.selects = selects
+      console.log(this.selects)
     },
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -75,14 +75,14 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getPrefer(context) {
+    getSelect(context) {
       axios({
         method: 'get',
         url: `${API_URL}/recommend/random/`
       })
       .then((res) => {
         console.log(res)
-        context.commit('GET_PREFER', res.data)
+        context.commit('GET_SELECT', res.data)
       })
       .catch((err) => {
         console.log(err)

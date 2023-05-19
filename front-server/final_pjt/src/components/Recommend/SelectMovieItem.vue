@@ -1,16 +1,16 @@
 <template>
   <div>
     <hr>
-    <h5>tmdb_id : {{ prefer.tmdb_id }}</h5>
+    <h5>tmdb_id : {{ select.tmdb_id }}</h5>
     
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PreferMovieItem',
+  name: 'SelectMovieItem',
   props: {
-    prefer: Object
+    select: Object
   }
 
 }
