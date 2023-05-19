@@ -20,6 +20,7 @@ export default new Vuex.Store({
     otts: null,
     selects: null,
     token: null,
+    // selectedId: [],
   },
   getters: {
     isLogin(state) {
@@ -44,6 +45,10 @@ export default new Vuex.Store({
       state.selects = selects
       console.log(this.selects)
     },
+    // GET_ID(state, selectedId) {
+    //   state.selectedId = selectedId
+    //   console.log(this.selectedId)
+    // },
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({name : 'MovieView'}) // store/index.js $router 접근 불가 -> import를 해야함
@@ -88,6 +93,15 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    // selectId(context, id) {
+    //   if (this.selectedId.includes(id)) {
+    //     this.selectedId = this.selectedId.filter(selectedId => selectedId !== id)
+    //     console.log('select!!!!!!')
+    //     console.log(this.selectedId)
+    //   } else {
+    //     this.selectedId.push(id)
+    //   }
+    // },
     signUp(context, payload) {
       const username = payload.username
       const password1 = payload.password1
