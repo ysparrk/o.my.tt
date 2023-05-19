@@ -7,6 +7,16 @@
         {{ id }}
       </span>
     </h2> -->
+
+    
+    <div v-if="finalRecommend">
+      <h2>추천하는 Ott는 : {{ finalRecommend.name }}</h2>
+      
+      <a v-bind:href="finalRecommend.signup">가입하기</a>
+      <!-- <ul>  리스트로..?
+        <li v-for="ott in receivedData" :key="ott.id">{{ name }}</li>
+      </ul> -->
+    </div>
     
     <SelectMovieItem 
     v-for="select in selects"
@@ -19,6 +29,7 @@
 
 <script>
 import SelectMovieItem from '@/components/Recommend/SelectMovieItem'
+
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -35,7 +46,8 @@ export default {
   },
   data() {
     return {
-      selectedId: []
+      selectedId: [],
+      finalRecommend: null,
     }
   },
   methods: {
@@ -53,9 +65,6 @@ export default {
       console.log(this.selectedId)
     },
     sendIds() {
-      // console.log(selectedId)
-      // const [id1, id2, id3] = this.selectedId
-      // const payload = { id1, id2, id3 }
       const payload = this.selectedId
       axios({
         method: 'post',
@@ -67,6 +76,7 @@ export default {
       .then((res) => {
         console.log('response!!')
         console.log(res)
+        this.finalRecommend = res.data  // 요청받은 ott 데이터 가져오기
       })
       .catch((err) => {
         console.log(err)

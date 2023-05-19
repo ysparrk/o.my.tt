@@ -24,43 +24,7 @@ def random_tmdb(request):
     return Response(serializer.data)
 
 
-# @api_view(['POST'])
-# def get_select_id(request):
-#     selectedId = request.data.get(selectedId)
-#     pass
-
-
-
-# 최적의 ott 추천하는 알고리즘
-# @api_view(['GET', 'POST'])
-# def optimize_ott(request):
-
-#     '''
-#     2. 선택한 영화를 for문으로 돌면서 initial 값 확인 -> pk 값에 따라 +1 증가시키기
-#     3. 최대 점수를 가진 것 출력
-#     '''
-#     ott_data = Ott.objects.all()
-#     print('응답 들어옴')
-#     # print(request.data)
-
-#     # print(request.data['payload'])
-#     # print(type(request.data['payload']))
-#     plus = [0] * 6
-#     lst = request.data['payload']
-    
-#     for i in lst:
-#         movie = Tmdb.objects.get(i)
-#         ott_lst = movie.ott_lst
-#         # print(m)
-        
-#         # 해당 영화의 ott_lst 가져오기 -> for 문 돌려서 해당하는 ott 찾기
-#         for j in ott_lst:
-            
-
-#     serializer = OttSerializer(recommended_ott)
-
-#     return Response(serializer.data)
-
+# 최적의 알고리즘 추천
 @api_view(['GET', 'POST'])
 def optimize_ott(request):
 
@@ -70,21 +34,35 @@ def optimize_ott(request):
     tmdb_ids = request.data['payload']  # 받은 tmdb_id 값
     ott_counts = [0] * 6  # 여기에 pk값으로 들어갈 것임
 
+    otts = {
+        "nfx" : 0,
+        "wac" : 1,
+        "wav" : 2,
+        "ply" : 3,
+        "apt" : 4,
+        "dnp" : 5,
+    }
+
     for tmdb_id in tmdb_ids:
         print(tmdb_id)
-        movie = Tmdb.objects.get(pk=tmdb_id)
+        movie = get_object_or_404(Tmdb, pk=tmdb_id)
+        print(f'선택된 영화 {movie}')
 
-        # movie = get_object_or_404(Tmdb, pk=tmdb_id)
         ott_lst = movie.ott_lst  # 그 영화의 ott_lst
-        print(ott_lst)
+
+        # 해당되는 ott의 pk값 찾기
         for ott_initial in ott_lst:
-            ott_counts[ott_initial] += 1
+            ott_counts[otts.get(ott_initial)] += 1
+            
 
-    most_common_ott_pk = ott_counts.index(max(ott_counts)) + 1
-    recommended_ott = get_object_or_404(Ott, pk=most_common_ott_pk)
-    print(recommended_ott)
+    print(f'count : {ott_counts}')
 
-    serializer = OttSerializer(recommended_ott)
+    rlt = ott_counts.index(max(ott_counts))  # 리스트에서 최댓값 인덱스 추출
+    print(f'rlt : {rlt}')
+    final_recommend = Ott.objects.get(pk=(rlt+1))
+    print(final_recommend)
+    
+    serializer = OttSerializer(final_recommend)
     
     return Response(serializer.data)
 

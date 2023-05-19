@@ -8,7 +8,7 @@ class Ott(models.Model):
     signup = models.CharField(max_length=200)
     
 class Tmdb(models.Model):
-    tmdb_id = models.IntegerField()
+    tmdb_id = models.IntegerField(primary_key=True)
     ott_lst = models.JSONField()
     
 
