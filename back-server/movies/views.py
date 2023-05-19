@@ -27,12 +27,16 @@ def ott_list(request):
 def tmdb_list(request, initial):
 
     print("요청받음!!=============")
+    print(initial)
     tmdb_data = Tmdb.objects.all()
+    
     
     movie_list = []
 
     for movie in tmdb_data:
         m = movie.ott_lst
+        print(m)
+        print(type(m))
 
         for i in m:
 
