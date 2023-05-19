@@ -30,13 +30,8 @@ def tmdb_movie_list(request, initial):
     print("요청받음!!=============")
     print(initial)
     tmdb_data = Tmdb.objects.all()
-<<<<<<< HEAD
-    
-
-=======
     movie_data = Movie.objects.all()
     print(movie_data)
->>>>>>> ott_button
     movie_list = []
 
     for movie in tmdb_data:
