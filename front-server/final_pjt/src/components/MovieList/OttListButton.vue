@@ -45,6 +45,9 @@ export default {
       axios({
         method: 'get',
         url: `${API_URL}/movies/tmdb/${name}`,
+        // headers: {
+        //   Authorization: `Token ${this.$store.state.token}`
+        // }
       })
       .then((res) => {
         console.log('response!!')

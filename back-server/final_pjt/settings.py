@@ -70,6 +70,8 @@ REST_AUTH = { # 회원가입시 토큰 발급
 SITE_ID = 1
 # 하나의 컨텐츠로 여러 개의 도메인에 등록하고 싶을 때 사용
 
+AUTH_USER_MODEL = 'accounts.User'
+
 REST_FRAMEWORK = {
     # Authentication
     'DEFAULT_AUTHENTICATION_CLASSES': [

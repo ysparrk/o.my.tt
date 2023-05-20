@@ -1,5 +1,6 @@
 <template>
   <div>
+  <p>{{ username }} 입니다</p>
   <h1>오늘 영화 어때요?</h1>
   <OttListButton />
   <MovieList/>
@@ -15,6 +16,11 @@ export default {
   components: {
     MovieList,
     OttListButton,
+  },
+  computed: {
+    username() {
+      return this.$store.state.username
+    }
   },
   update() {
     this.getMovies()

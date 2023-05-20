@@ -15,12 +15,12 @@ export default new Vuex.Store({
     createPersistedState(),
   ],
   state: {
+    username: null,
     articles: [],
     movies: [],
     otts: null,
     selects: null,
     token: null,
-    
   },
   getters: {
     isLogin(state) {
@@ -45,10 +45,15 @@ export default new Vuex.Store({
       state.selects = selects
       console.log(this.selects)
     },
-    // GET_ID(state, selectedId) {
-    //   state.selectedId = selectedId
-    //   console.log(this.selectedId)
-    // },
+    // likes 관련
+    
+
+
+    // login 관련
+    SAVE_USERNAME(state, username) {
+      state.username = username
+      console.log(this.username)
+    },
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({name : 'MovieView'}) // store/index.js $router 접근 불가 -> import를 해야함
@@ -83,7 +88,7 @@ export default new Vuex.Store({
     getSelect(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/recommend/random/`
+        url: `${API_URL}/recommend/random/`,
       })
       .then((res) => {
         console.log(res)
@@ -93,15 +98,9 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    // selectId(context, id) {
-    //   if (this.selectedId.includes(id)) {
-    //     this.selectedId = this.selectedId.filter(selectedId => selectedId !== id)
-    //     console.log('select!!!!!!')
-    //     console.log(this.selectedId)
-    //   } else {
-    //     this.selectedId.push(id)
-    //   }
-    // },
+    // likes 관련
+ 
+    // login 관련
     signUp(context, payload) {
       const username = payload.username
       const password1 = payload.password1
@@ -115,7 +114,7 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          // console.log(res)
+          console.log(res)
           // context.commit('SIGN_UP', res.data.key)
           context.commit('SAVE_TOKEN', res.data.key)
         })
@@ -136,6 +135,7 @@ export default new Vuex.Store({
       })
         .then((res) => {
         context.commit('SAVE_TOKEN', res.data.key)
+        context.commit('SAVE_USERNAME', username)
         })
       .catch((err) => console.log(err))
     }
