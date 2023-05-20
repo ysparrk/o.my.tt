@@ -5,4 +5,6 @@ app_name = 'movies'
 urlpatterns = [
     path('ott/', views.ott_list, name='ott_list'),
     path('tmdb/<str:initial>', views.tmdb_movie_list, name='tmdb_movie_list'),
+    # path('<int:movie_pk>/likes/', views.likes, name='likes'),
+    
 ]

@@ -30,15 +30,16 @@ def tmdb_movie_list(request, initial):
     print("요청받음!!=============")
     print(initial)
     tmdb_data = Tmdb.objects.all()
-    movie_data = Movie.objects.all()
-    print(movie_data)
+    # movie_data = Movie.objects.all()
+    # print(movie_data)
     movie_list = []
 
     for movie in tmdb_data:
         m = movie.ott_lst
         
         if initial in m:  # ott 값이 포함된 경우
-            rlt = movie_data.filter(pk=movie.tmdb_id).first()
+            rlt = movie.tmdb_id
+
             print(rlt)
             movie_list.append(rlt)
     
@@ -47,4 +48,19 @@ def tmdb_movie_list(request, initial):
     return Response(serializer.data)
 
 
-# 2. Detail
+# likes
+@api_view(['POST'])
+def likes(request, movie_pk):
+    pass
+    # if request.user.is_authenticated: # 로그인 한 사람만 가능
+    #     article = Article.objects.get(pk=article_pk)
+        
+    #     # 이 article의 모든 좋아요를 누른 user중에 request한 user가 있다면(이미 누른 상태)
+    #     if article.like_users.filter(pk=request.user.pk).exists():
+    #         article.like_users.remove(request.user)  # 좋아요 취소
+
+    #     else:
+    #         article.like_users.add(request.user)  # 좋아요 목록에 더해주기
+    #     return redirect('articles:index')  # 글 목록으로 돌아가기
+    
+    # return redirect('accounts:login')  # 로그인 하지 않았다면 로그인 창으로 가기

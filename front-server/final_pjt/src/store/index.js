@@ -20,7 +20,7 @@ export default new Vuex.Store({
     otts: null,
     selects: null,
     token: null,
-    // selectedId: [],
+    
   },
   getters: {
     isLogin(state) {

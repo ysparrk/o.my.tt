@@ -4,7 +4,7 @@ import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
 import MovieView from '@/views/MovieView'
 import RecommendView from '@/views/RecommendView'
-
+import MovieDetail from '@/components/MovieList/MovieDetail'
 
 Vue.use(VueRouter)
 
@@ -32,7 +32,12 @@ const routes = [
     name: 'RecommendView',
     component: RecommendView
   },
-
+  {
+    path: '/movie/:id',
+    name: 'MovieDetail',
+    component: MovieDetail,
+    props: true,
+  },
 
 ]
 
