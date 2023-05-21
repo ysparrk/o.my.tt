@@ -15,11 +15,10 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     id = models.IntegerField(primary_key=True)
-    adult = models.BooleanField()
     title = models.CharField(max_length=100)
     overview = models.TextField(null=True, blank=True)
     poster_path = models.TextField(null=True, blank=True)
-    release_date = models.DateField(null=True, blank=True)
+    released_date = models.DateField(null=True, blank=True)
     genres = models.ManyToManyField(Genre)
     backdrop_path = models.TextField(null=True, blank=True)
     popularity = models.FloatField()
