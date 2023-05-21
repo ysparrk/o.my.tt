@@ -8,15 +8,22 @@
       <button @click="userLikes(movie.id)">{{ likes ? '좋아요 취소' : '좋아요' }}</button>
     <p>{{ movie.likes_count }}</p>
     </div>
+
+    <MovieCommentCreate :movie="movie" v-if="movie"/>
   </div>
 </template>
 
 <script>
+import MovieCommentCreate from '@/components/MovieList/MovieCommentCreate'
+
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'MovieDetail',
+  components: {
+    MovieCommentCreate
+  },
   data() {
     return {
       likes: false,

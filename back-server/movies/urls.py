@@ -9,6 +9,5 @@ urlpatterns = [
     path('<int:movie_id>/likes/', views.likes, name='likes'), # 좋아요 기능
 
     # comment
-    path('comments/<int:comment_pk>/', views.comment_detail),
-    path('articles/<int:movie_pk>/comments/', views.comment_create),
+    path('comment/<int:movie_id>/', views.comment_create, name="comment_create"),
 ]

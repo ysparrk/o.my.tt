@@ -91,86 +91,27 @@ def likes(request, movie_id):
     return Response({'liked': liked, 'likes_count': likes_count})
 
 # comments
-@api_view(['GET'])
-def comment_list(request):
-    if request.method == 'GET':
-        # comments = Comment.objects.all()
-        comments = get_list_or_404(Comment)
+@api_view(['POST', 'GET'])
+@permission_classes([IsAuthenticated])
+def comment_create(request, movie_id):
+    print("댓글 받음")
+    print(request.data)
+    movie = get_object_or_404(Movie, pk=movie_id)
+
+    if request.method == 'POST':
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(movie=movie)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'GET':
+        print("댓글 조회 요청 들어옴")
+        comments = Comment.objects.filter(movie=movie)
         serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data)
-
-
-@api_view(['GET', 'DELETE', 'PUT'])
-def comment_detail(request, comment_pk):
-    # comment = Comment.objects.get(pk=comment_pk)
-    comment = get_object_or_404(Comment, pk=comment_pk)
-
-    if request.method == 'GET':
-        serializer = CommentSerializer(comment)
-        return Response(serializer.data)
-
-    elif request.method == 'DELETE':
-        comment.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    elif request.method == 'PUT':
-        serializer = CommentSerializer(comment, data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)
-
-
-@api_view(['POST'])
-def comment_create(request, article_pk):
-    # article = Article.objects.get(pk=article_pk)
-    article = get_object_or_404(Article, pk=article_pk)
-    serializer = CommentSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(article=article)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 
-# @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-# def comment_create(request, movie_id):
-#     # article = Article.objects.get(pk=article_pk)
-#     movie = get_object_or_404(Movie, id=movie_id)
-#     user = request.user
-    
-#     if movie.like_users.filter(id=user.id).exists():
-#         # 이미 좋아요를 누른 경우, 좋아요 취소
-#         movie.like_users.remove(user)
-#         liked = False
-#     else:
-#         # 좋아요를 누르지 않은 경우, 좋아요 추가
-#         movie.like_users.add(user)
-#         liked = True
-
-#     return Response({'liked': liked})
 
 
-    # movie = Movie.objects.get(pk=movie_id)
-    
-    # if movie.like_users.filter(pk=request.user.id).exists():
-    #     # 이미 좋아요한 경우에는 좋아요 취소
-    #     movie.like_users.remove(request.user)
-    #     return Response({'message': 'Unliked'})
-    
-    # else:
-    #     # 좋아요 추가
-    #     movie.like_users.add(request.user)
-    #     return Response({'message': 'Liked'})
-    
-    # if request.user.is_authenticated: # 로그인 한 사람만 가능
-    #     article = Article.objects.get(pk=article_pk)
-        
-    #     # 이 article의 모든 좋아요를 누른 user중에 request한 user가 있다면(이미 누른 상태)
-    #     if article.like_users.filter(pk=request.user.pk).exists():
-    #         article.like_users.remove(request.user)  # 좋아요 취소
-
-    #     else:
-    #         article.like_users.add(request.user)  # 좋아요 목록에 더해주기
-    #     return redirect('articles:index')  # 글 목록으로 돌아가기
-    
-    # return redirect('accounts:login')  # 로그인 하지 않았다면 로그인 창으로 가기
