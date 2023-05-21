@@ -4,7 +4,8 @@
     <img :src="'https://image.tmdb.org/t/p/w300' + movie.backdrop_path">
     <h2>{{ movie.title }}</h2>
     <p>{{ movie.overview }}</p>
-    <button @click="userLikes(movie.id)">좋아요</button>
+      <!-- <button @click="userLikes(movie.id)">좋아요</button> -->
+      <button @click="userLikes(movie.id)">{{ likes ? '좋아요 취소' : '좋아요' }}</button>
     <p>{{ movie.likes_count }}</p>
     </div>
   </div>
@@ -21,6 +22,14 @@ export default {
       likes: false,
       movie: null,
     }
+  },
+  computed: {
+    movieProp() {
+      return this.$route.params.movie || this.movie
+    }
+  },
+  created() {
+    this.likes = JSON.parse(localStorage.getItem('likes')) || false
   },
   mounted() {
     this.getDetails()
@@ -46,14 +55,17 @@ export default {
     },
     // 좋아요 누르기
     userLikes(movieId) {
-      const likes = this.likes
-      if (!likes) {
-        this.likes = true
-        console.log(likes)
-      } else {
-        this.likes = false
-        console.log(likes)
-      }
+      this.likes = !this.likes
+      localStorage.setItem('likes', JSON.stringify(this.likes))
+
+      // const likes = this.likes
+      // if (!likes) {
+      //   this.likes = true
+      //   console.log(likes)
+      // } else {
+      //   this.likes = false
+      //   console.log(likes)
+      // }
       axios({
         method: 'post',
         url: `${API_URL}/movies/${movieId}/likes/`,
