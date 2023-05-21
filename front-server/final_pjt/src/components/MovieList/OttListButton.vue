@@ -2,7 +2,7 @@
   <div>
     <button v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">{{ ott.name }}</button>
 
-    <MovieListItem v-for="movie in pagedMovies" :key="movie.id" :movie="movie" />
+    <MovieListItem v-for="movie in pagedMovies" :key="movie.id" :movie="movie"/>
 
     <div class="pagination">
       <button v-for="pageNumber in totalPages" :key="pageNumber" @click="goToPage(pageNumber)">

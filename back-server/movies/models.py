@@ -28,6 +28,7 @@ class Movie(models.Model):
 
     # 좋아요 기능
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
+    # likes_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -38,3 +39,12 @@ class Tmdb(models.Model):
     ott_lst = models.JSONField()
 
 
+# comment
+class Comment(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    content = models.TextField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.content

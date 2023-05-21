@@ -2,7 +2,7 @@
   <div>
     <router-link :to="{
       name: 'MovieDetail',
-      params: { id: movie.id, movie: movie}}">
+      params: { id: movie.id }}">
       <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path">
     </router-link>
     <hr>

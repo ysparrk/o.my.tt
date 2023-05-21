@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Movie, Tmdb, Ott
+from .models import Movie, Tmdb, Ott, Comment
 
 class TmdbSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,17 +9,34 @@ class TmdbSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = '__all__'
+        fields = ('id', 'poster_path')
+
 
 class OttSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ott
         fields = '__all__'
 
-class LikeSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='movie.like_users', read_only=True)
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+
+# MovieDetail 
+class MovieDetailSerializer(serializers.ModelSerializer):
+    likes_count = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
 
     class Meta:
         model = Movie
         fields = '__all__'
-        read_only_fields = ('like_users',)
+
+    def get_likes_count(self, instance):
+        return instance.like_users.count()
+
+    def get_comments(self, instance):
+        comments = Comment.objects.filter(movie=instance)
+        serializer = CommentSerializer(comments, many=True)
+        return serializer.data
+

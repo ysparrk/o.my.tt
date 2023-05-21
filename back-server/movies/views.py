@@ -12,9 +12,9 @@ from rest_framework.decorators import api_view
 # permission Decorators
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializers import TmdbSerializer, OttSerializer, MovieSerializer
+from .serializers import TmdbSerializer, OttSerializer, MovieSerializer, CommentSerializer, MovieDetailSerializer
 
-from .models import Movie, Ott, Tmdb
+from .models import Movie, Ott, Tmdb, Comment
 
 # Create your views here.
 
@@ -49,29 +49,105 @@ def tmdb_movie_list(request, initial):
     
     # print(movie_list)
     serializer = MovieSerializer(movie_list, many=True)
+
+    return Response(serializer.data)
+
+
+# movie_detail
+@api_view(['GET'])
+def movie_detail(request, movie_id):
+    movie = get_object_or_404(Movie, pk=movie_id)
+
+    print("detail 요청 받음")
+    serializer = MovieDetailSerializer(movie)
+    print(serializer.data)
     return Response(serializer.data)
 
 
 # likes
 @api_view(['POST'])
-def likes(request):
+@permission_classes([IsAuthenticated])
+def likes(request, movie_id):
+    print("좋아요 요청 받음")
+    movie = get_object_or_404(Movie, id=movie_id)
+    user = request.user
     
-    print('좋아요 요청 받음')
-    
-    
+    if movie.like_users.filter(id=user.id).exists():
+        # 이미 좋아요를 누른 경우, 좋아요 취소
+        movie.like_users.remove(user)
+        liked = False
+        print(liked)
+    else:
+        # 좋아요를 누르지 않은 경우, 좋아요 추가
+        movie.like_users.add(user)
+        liked = True
+        print(liked)
 
-    return Response('like~~~~~~~~~~~~`')
+    # 좋아요 개수 업데이트
+    likes_count = movie.like_users.count()
+    movie.likes_count = likes_count
+    movie.save()
+
+    return Response({'liked': liked, 'likes_count': likes_count})
+
+# comments
+@api_view(['GET'])
+def comment_list(request):
+    if request.method == 'GET':
+        # comments = Comment.objects.all()
+        comments = get_list_or_404(Comment)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET', 'DELETE', 'PUT'])
+def comment_detail(request, comment_pk):
+    # comment = Comment.objects.get(pk=comment_pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+
+    if request.method == 'GET':
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    elif request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def comment_create(request, movie_id):
+def comment_create(request, article_pk):
     # article = Article.objects.get(pk=article_pk)
-    like = get_object_or_404(Movie, pk=movie_id)
-    serializer = MovieSerializer(data=request.data)
+    article = get_object_or_404(Article, pk=article_pk)
+    serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(like=like)
-        # return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response("like get~~")
+        serializer.save(article=article)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def comment_create(request, movie_id):
+#     # article = Article.objects.get(pk=article_pk)
+#     movie = get_object_or_404(Movie, id=movie_id)
+#     user = request.user
+    
+#     if movie.like_users.filter(id=user.id).exists():
+#         # 이미 좋아요를 누른 경우, 좋아요 취소
+#         movie.like_users.remove(user)
+#         liked = False
+#     else:
+#         # 좋아요를 누르지 않은 경우, 좋아요 추가
+#         movie.like_users.add(user)
+#         liked = True
+
+#     return Response({'liked': liked})
 
 
     # movie = Movie.objects.get(pk=movie_id)
