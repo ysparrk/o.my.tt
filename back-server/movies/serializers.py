@@ -9,8 +9,17 @@ class TmdbSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ('id', 'poster_path')
+        fields = ('id', 'poster_path',)
 
+
+#######################################################
+###################### { 검색어 } ######################
+class SearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = ('id', 'title', 'poster_path',)
+#######################################################
+#######################################################
 
 class OttSerializer(serializers.ModelSerializer):
     class Meta:

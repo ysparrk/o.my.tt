@@ -57,7 +57,7 @@ export default new Vuex.Store({
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({name : 'MovieView'}) // store/index.js $router 접근 불가 -> import를 해야함
-    }
+    },
   },
   actions: {
     getMovies(context) {

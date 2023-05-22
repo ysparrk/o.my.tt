@@ -1,10 +1,11 @@
 <template>
   <div id="app">
+      <router-link :to="{ name: 'SignUpView' }">Sign-Up Page</router-link> |
+      <router-link :to="{ name: 'LogInView' }">Login Page</router-link>
     <nav>
-      <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link> | 
-      <router-link :to="{ name: 'LogInView' }">LogInPage</router-link> |
-      <router-link :to="{ name: 'MovieView' }">movie list</router-link> |
+      <router-link :to="{ name: 'MovieView' }">Movie List</router-link> |
       <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
+      <router-link :to="{ name: 'SearchMovie'}">Search Movie</router-link>
     </nav>
     <router-view/>
   </div>

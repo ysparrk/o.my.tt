@@ -11,4 +11,11 @@ urlpatterns = [
     # comment
     path('comments/<int:comment_pk>/', views.comment_detail),
     path('articles/<int:movie_pk>/comments/', views.comment_create),
+
+    ############################################
+    ############################################
+    path('search/<str:query>/', views.search_movies, name='search_movies'),
+    ############################################
+    ############################################
+
 ]

@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 # permission Decorators
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializers import TmdbSerializer, OttSerializer, MovieSerializer, CommentSerializer, MovieDetailSerializer
+from .serializers import TmdbSerializer, OttSerializer, MovieSerializer, CommentSerializer, MovieDetailSerializer, SearchSerializer
 
 from .models import Movie, Ott, Tmdb, Comment
 
@@ -129,6 +129,21 @@ def comment_create(request, article_pk):
         serializer.save(article=article)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+
+#######################################################
+###################### { 검색어 } ######################
+@api_view(['GET'])
+def search_movies(request, query):
+    movies = Movie.objects.filter(title__icontains=query)
+
+    movie_info = [{'id': movie.id, 'title': movie.title, 'poster_path': movie.poster_path} for movie in movies]
+    # print(movie_info)
+
+    serializer = SearchSerializer(movie_info, many=True)
+
+    return Response(serializer.data)
+#######################################################
+#######################################################
 
 
 # @api_view(['POST'])

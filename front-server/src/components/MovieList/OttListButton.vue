@@ -31,9 +31,9 @@ export default {
     },
     pagedMovies() {
       // 현재 페이지에 해당하는 데이터만 반환
-      const startIndex = (this.currentPage - 1) * 20;
-      const endIndex = startIndex + 20;
-      return this.movies.slice(startIndex, endIndex);
+      const startIndex = (this.currentPage - 1) * 20
+      const endIndex = startIndex + 20
+      return this.movies.slice(startIndex, endIndex)
     },
   },
   data() {
@@ -61,17 +61,17 @@ export default {
         this.movies = res.data
 
         // totalPages 계산
-        this.totalPages = Math.ceil(this.movies.length / 20);
+        this.totalPages = Math.ceil(this.movies.length / 20)
 
         // currentPage 초기화
-        this.currentPage = 1;
+        this.currentPage = 1
       })
       .catch((err) => {
         console.log(err)
       })
     },
     goToPage(pageNumber) {
-      this.currentPage = pageNumber;
+      this.currentPage = pageNumber
     },
   }
 }
