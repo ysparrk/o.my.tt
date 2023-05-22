@@ -35,7 +35,6 @@ class CommentSerializer(serializers.ModelSerializer):
 # MovieDetail 
 class MovieDetailSerializer(serializers.ModelSerializer):
     likes_count = serializers.SerializerMethodField()
-    comments = serializers.SerializerMethodField()
 
     class Meta:
         model = Movie
@@ -44,8 +43,4 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     def get_likes_count(self, instance):
         return instance.like_users.count()
 
-    def get_comments(self, instance):
-        comments = Comment.objects.filter(movie=instance)
-        serializer = CommentSerializer(comments, many=True)
-        return serializer.data
 

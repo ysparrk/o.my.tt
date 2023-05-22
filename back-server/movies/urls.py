@@ -9,6 +9,7 @@ urlpatterns = [
     path('<int:movie_id>/likes/', views.likes, name='likes'), # 좋아요 기능
 
     # comment
+<<<<<<< HEAD
     path('comments/<int:comment_pk>/', views.comment_detail),
     path('articles/<int:movie_pk>/comments/', views.comment_create),
 
@@ -18,4 +19,7 @@ urlpatterns = [
     ############################################
     ############################################
 
+=======
+    path('comment/<int:movie_id>/', views.comment_create, name="comment_create"),
+>>>>>>> 77d9bfa62d14d9264ce744c0e7c7d3eae0f465a6
 ]
