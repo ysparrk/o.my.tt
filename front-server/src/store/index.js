@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 import router from '../router'
+// import { compileToFunctions } from 'vue-template-compiler'
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -19,8 +20,10 @@ export default new Vuex.Store({
     articles: [],
     movies: [],
     otts: null,
-    selects: null,
+    selects: [],
     token: null,
+    selectedId: [], // 선택된 movie.id
+    finalRecommend: null,
   },
   getters: {
     isLogin(state) {
@@ -28,10 +31,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    // GET_ARTICLES(state, articles) {
-    //   state.articles = articles
-    // },
-    // signup & login -> 완료하면 토큰 발급
     GET_MOVIES(state, movies) {
       state.movies = movies
       console.log(this.movies)
@@ -41,13 +40,28 @@ export default new Vuex.Store({
       state.otts = otts
       console.log(this.otts)
     },
+    // recommend 관련
     GET_SELECT(state, selects) {
+      state.selects = []  // 초기화 후 다시 저장
       state.selects = selects
       console.log(this.selects)
     },
-    // likes 관련
-    
+    SAVE_SELECTED(state, selectId) {
+      const index = state.selectedId.indexOf(selectId)
+      console.log(index)
+      if (index !== -1) {  // 이미 선택된 이미지
+        state.selectedId.splice(index, 1)  
+      } else {
+        state.selectedId.push(selectId)
+        console.log(this.selectedId)
+      }
 
+      console.log(this.selectedId)
+    },
+    FINAL_RECOMMEND(state, finalRecommend) {
+      state.finalRecommend = finalRecommend
+      state.selectedId = [] // 원래 선택된 배열 초기화
+    },
 
     // login 관련
     SAVE_USERNAME(state, username) {
@@ -85,6 +99,8 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    // recommend
+    // 1) random 영화 가져오기
     getSelect(context) {
       axios({
         method: 'get',
@@ -98,8 +114,41 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    // likes 관련
- 
+    // 2) 선택한 영화 저장
+    saveSelect(context, selectId) {
+      console.log('함수 들어옴')
+      console.log(selectId)
+      context.commit('SAVE_SELECTED', selectId)
+    },
+    performSearch(context, searchQuery) {
+      const query = encodeURIComponent(searchQuery)
+      axios.get(`${API_URL}/movies/search/${query}/`)
+        .then((res) => {
+          context.commit('GET_SELECT', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    // 3) 선택한 영화 django로 보내기
+    sendIds(context, selectedId) {
+      const payload = selectedId
+      axios({
+        method: 'post',
+        url: `${API_URL}/recommend/optimize_ott/`,
+        data: {
+          payload
+        }
+      })
+      .then((res) => {
+        console.log('response!!')
+        console.log(res)
+        context.commit('FINAL_RECOMMEND', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     // login 관련
     signUp(context, payload) {
       const username = payload.username

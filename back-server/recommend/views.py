@@ -16,7 +16,7 @@ def random_tmdb(request):
     movie_data = list(Movie.objects.all())
 
     # n개 랜덤으로 추출
-    random_data = random.sample(movie_data, 5)
+    random_data = random.sample(movie_data, 10)
     print(random_data)
     
     serializer = MovieSerializer(random_data, many=True)
@@ -24,13 +24,13 @@ def random_tmdb(request):
     return Response(serializer.data)
 
 
-# 최적의 알고리즘 추천
+# 최적의 ott 추천
 @api_view(['GET', 'POST'])
 def optimize_ott(request):
 
     print('응답 받음!!')
     print(request.data['payload'])
-    ott_data = Ott.objects.all()
+    # ott_data = Ott.objects.all()
     tmdb_ids = request.data['payload']  # 받은 tmdb_id 값
     ott_counts = [0] * 6  # 여기에 pk값으로 들어갈 것임
 
@@ -53,12 +53,21 @@ def optimize_ott(request):
         # 해당되는 ott의 pk값 찾기
         for ott_initial in ott_lst:
             ott_counts[otts.get(ott_initial)] += 1
-            
 
-    print(f'count : {ott_counts}')
+    # max_count = max(ott_counts)  # 최대값
+    # max_indexes = [i for i, count in enumerate(ott_counts) if count == max_count]  # 최대값을 가진 인덱스들
+
+    # final_recommend = Ott.objects.filter(pk__in=[index+1 for index in max_indexes])
+    # print(final_recommend)
+
+    # serializer = OttSerializer(final_recommend, many=True)
+
+    # return Response(serializer.data)   
+
+    # # print(f'count : {ott_counts}')
 
     rlt = ott_counts.index(max(ott_counts))  # 리스트에서 최댓값 인덱스 추출
-    print(f'rlt : {rlt}')
+    # print(f'rlt : {rlt}')
     final_recommend = Ott.objects.get(pk=(rlt+1))
     print(final_recommend)
     

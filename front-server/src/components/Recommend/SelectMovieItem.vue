@@ -1,8 +1,7 @@
 <template>
   <div>
     <hr>
-    <h5>{{ select.title }}</h5>
-    <img :src="'https://image.tmdb.org/t/p/w300' + select.poster_path" @click="itemToList(select.id)">
+    <img :src="'https://image.tmdb.org/t/p/w300' + select.poster_path" @click="saveSelect(select.id)">
 
   </div>
 </template>
@@ -14,16 +13,16 @@ export default {
   props: {
     select: Object
   },
-  data() {
-    return {
-      selectedId: []
+
+  methods: {
+    saveSelect() {
+      const selectId = this.select.id
+      this.$store.dispatch('saveSelect', selectId)
     }
   },
-  methods: {
-    itemToList: function() {
-      console.log('함수 들어옴')
-      console.log(this.select.id)
-      this.$emit('item-to-list', this.select.id)
+  computed: {
+    selectedId() {
+      return this.$store.state.selectedId
     }
   }
 }

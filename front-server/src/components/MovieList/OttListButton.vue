@@ -1,6 +1,9 @@
 <template>
   <div>
+    
+    
     <button v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">{{ ott.name }}</button>
+    <SearchMovie />
 
     <MovieListItem v-for="movie in pagedMovies" :key="movie.id" :movie="movie"/>
 
@@ -15,6 +18,7 @@
 
 <script>
 import MovieListItem from '@/components/MovieList/MovieListItem'
+import SearchMovie from '@/components/MovieList/SearchMovie'
 
 import axios from 'axios'
 
@@ -24,6 +28,7 @@ export default {
   name: 'OttListButton',
   components: {
     MovieListItem,
+    SearchMovie
   },
   computed: {
     otts() {

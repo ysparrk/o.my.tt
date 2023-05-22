@@ -9,7 +9,7 @@ class TmdbSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ('id', 'poster_path',)
+        fields = ('id', 'poster_path', 'title')
 
 
 class SearchSerializer(serializers.ModelSerializer):
