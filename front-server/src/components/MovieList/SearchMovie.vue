@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import MovieListItem from '@/components/MovieList/MovieListItem';
+import axios from 'axios'
+import MovieListItem from '@/components/MovieList/MovieListItem'
 
 const API_URL = 'http://127.0.0.1:8000';
 

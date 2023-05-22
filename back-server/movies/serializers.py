@@ -12,14 +12,11 @@ class MovieSerializer(serializers.ModelSerializer):
         fields = ('id', 'poster_path',)
 
 
-#######################################################
-###################### { 검색어 } ######################
 class SearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = ('id', 'title', 'poster_path',)
-#######################################################
-#######################################################
+
 
 class OttSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,5 +39,3 @@ class MovieDetailSerializer(serializers.ModelSerializer):
 
     def get_likes_count(self, instance):
         return instance.like_users.count()
-
-

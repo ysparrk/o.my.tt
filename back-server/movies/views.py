@@ -7,10 +7,9 @@ from django.http import JsonResponse
 from rest_framework import status
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 
 # permission Decorators
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from .serializers import TmdbSerializer, OttSerializer, MovieSerializer, CommentSerializer, MovieDetailSerializer, SearchSerializer
 
@@ -68,27 +67,31 @@ def movie_detail(request, movie_id):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def likes(request, movie_id):
-    print("좋아요 요청 받음")
+
     movie = get_object_or_404(Movie, id=movie_id)
-    user = request.user
-    
-    if movie.like_users.filter(id=user.id).exists():
-        # 이미 좋아요를 누른 경우, 좋아요 취소
-        movie.like_users.remove(user)
-        liked = False
-        print(liked)
-    else:
-        # 좋아요를 누르지 않은 경우, 좋아요 추가
-        movie.like_users.add(user)
-        liked = True
-        print(liked)
 
-    # 좋아요 개수 업데이트
-    likes_count = movie.like_users.count()
-    movie.likes_count = likes_count
-    movie.save()
+    if request.method == 'POST':
+        print("좋아요 요청 받음")
+        user = request.user
+        
+        if movie.like_users.filter(id=user.id).exists():
+            # 이미 좋아요를 누른 경우, 좋아요 취소
+            movie.like_users.remove(user)
+            liked = False
+            print(liked)
+        else:
+            # 좋아요를 누르지 않은 경우, 좋아요 추가
+            movie.like_users.add(user)
+            liked = True
+            print(liked)
 
-    return Response({'liked': liked, 'likes_count': likes_count})
+        # 좋아요 개수 업데이트
+        likes_count = movie.like_users.count()
+        movie.likes_count = likes_count
+        movie.save()
+
+        return Response({'liked': liked, 'likes_count': likes_count}, status=status.HTTP_201_CREATED)
+
 
 # comments
 @api_view(['POST', 'GET'])
