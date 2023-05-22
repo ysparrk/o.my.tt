@@ -10,7 +10,7 @@
     <div v-for="movie in visibleMovies" :key="movie.id">
       <MovieListItem :movie="movie" />
     </div>
-
+  </div>
     <infinite-loading @infinite="infiniteHandler"></infinite-loading>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
   name: 'OttListButton',
   components: {
     MovieListItem,
-    SearchMovie
+    SearchMovie,
     InfiniteLoading,
   },
   computed: {
