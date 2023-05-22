@@ -26,7 +26,7 @@ export default {
     return {
       searchQuery: '',
       movies: [],
-    };
+    }
   },
   methods: {
     performSearch() {
@@ -37,8 +37,8 @@ export default {
         })
         .catch((err) => {
           console.log(err)
-        });
+        })
     },
   },
-};
+}
 </script>

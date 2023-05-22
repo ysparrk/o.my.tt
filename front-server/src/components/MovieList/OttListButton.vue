@@ -1,18 +1,17 @@
 <template>
   <div>
-    
-    
     <button v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">{{ ott.name }}</button>
     <SearchMovie />
+  <div class="container" ref="container">
+  <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">
+    <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
+  </button>
 
-    <MovieListItem v-for="movie in pagedMovies" :key="movie.id" :movie="movie"/>
-
-    <div class="pagination">
-      <button v-for="pageNumber in totalPages" :key="pageNumber" @click="goToPage(pageNumber)">
-        {{ pageNumber }}
-      </button>
+    <div v-for="movie in visibleMovies" :key="movie.id">
+      <MovieListItem :movie="movie" />
     </div>
 
+    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
   </div>
 </template>
 
@@ -20,6 +19,7 @@
 import MovieListItem from '@/components/MovieList/MovieListItem'
 import SearchMovie from '@/components/MovieList/SearchMovie'
 
+import InfiniteLoading from 'vue-infinite-loading'
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000'
@@ -29,16 +29,14 @@ export default {
   components: {
     MovieListItem,
     SearchMovie
+    InfiniteLoading,
   },
   computed: {
     otts() {
       return this.$store.state.otts
     },
-    pagedMovies() {
-      // 현재 페이지에 해당하는 데이터만 반환
-      const startIndex = (this.currentPage - 1) * 20
-      const endIndex = startIndex + 20
-      return this.movies.slice(startIndex, endIndex)
+    visibleMovies() {
+      return this.movies.slice(0, this.currentPage * 10)
     },
   },
   data() {
@@ -50,38 +48,86 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getOtts')
+    this.$refs.container.addEventListener('scroll', this.checkScroll)
+  },
+  beforeUnmount() {
+    this.$refs.container.removeEventListener('scroll', this.checkScroll)
   },
   methods: {
+    infiniteHandler($state) {
+      const name = 'ott_initial'
+      axios
+        .get(`${API_URL}/movies/tmdb/${name}`, {
+          params: {
+            page: this.currentPage,
+          },
+        })
+        .then(({ data }) => {
+          if (data.length) {
+            this.movies.push(...data)
+            this.currentPage += 1
+            $state.loaded()
+          } else {
+            $state.complete()
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+          $state.complete()
+        })
+    },
     buttonClick(ott_initial) {
-      console.log(ott_initial)
       const name = ott_initial
       axios({
         method: 'get',
         url: `${API_URL}/movies/tmdb/${name}`,
       })
-      .then((res) => {
-        console.log('response!!')
-        console.log(res)
-
-        this.movies = res.data
-
-        // totalPages 계산
-        this.totalPages = Math.ceil(this.movies.length / 20)
-
-        // currentPage 초기화
-        this.currentPage = 1
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+        .then((res) => {
+          this.movies = res.data
+          this.totalPages = Math.ceil(this.movies.length / 10)
+          this.currentPage = 1
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
-    goToPage(pageNumber) {
-      this.currentPage = pageNumber
+    checkScroll() {
+      const container = this.$refs.container
+      if (container) {
+        const scrollHeight = container.scrollHeight
+        const scrollTop = container.scrollTop
+        const clientHeight = container.clientHeight
+
+        if (scrollTop + clientHeight >= scrollHeight) {
+          this.loadMoreMovies()
+        }
+      }
     },
-  }
+    loadMoreMovies() {
+      const remainingMovies = this.movies.slice(this.visibleMovies.length, this.currentPage * 10)
+      this.visibleMovies.push(...remainingMovies)
+      this.currentPage++
+    },
+  },
 }
 </script>
 
 <style>
+.container {
+  max-height: 700px;
+  overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar {
+  width: 0.5em; /* 스크롤바 너비 */
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: #ffffff; /* 스크롤바 트랙 배경색 */
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #ffffff; /* 스크롤바 색상 */
+}
 
 </style>

@@ -6,7 +6,6 @@
       <img :src="getMoviePoster(movie)" alt="Movie Poster">
     </router-link>
     <p>{{ movie.title }}</p> <!-- 영화 제목 표시 -->
-    <hr>
   </div>
 </template>
 <script>

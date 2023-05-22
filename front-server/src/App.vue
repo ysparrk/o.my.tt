@@ -7,6 +7,9 @@
       <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
       <router-link :to="{ name: 'SearchMovie'}">Search Movie</router-link>
     </nav>
+    <div>
+      <img :src="require(`@/assets/logo.png`)" style="width:400px; height:auto" alt="MainLogo">
+    </div>
     <router-view/>
   </div>
 </template>
@@ -18,8 +21,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #66ff00;
 }
-
 nav {
   padding: 30px;
 }
