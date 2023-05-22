@@ -15,7 +15,7 @@
 import axios from 'axios'
 import MovieListItem from '@/components/MovieList/MovieListItem'
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'SearchMovie',
@@ -26,19 +26,19 @@ export default {
     return {
       searchQuery: '',
       movies: [],
-    };
+    }
   },
   methods: {
     performSearch() {
-      const query = encodeURIComponent(this.searchQuery);
+      const query = encodeURIComponent(this.searchQuery)
       axios.get(`${API_URL}/movies/search/${query}/`)
         .then((res) => {
-          this.movies = res.data;
+          this.movies = res.data
         })
         .catch((err) => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
   },
-};
+}
 </script>

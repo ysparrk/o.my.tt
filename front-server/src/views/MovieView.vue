@@ -1,7 +1,6 @@
 <template>
   <div>
-  <p>{{ username }} 입니다</p>
-  <h1>오늘 영화 어때요?</h1>
+  <p>Hi, {{ username }}. Enjoy your </p>
   <OttListButton />
   <!-- <MovieList/> -->
   </div>
@@ -34,5 +33,16 @@ export default {
 </script>
 
 <style>
+@import url('https://cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
 
+@font-face {
+    font-family: 'KBO-Dia-Gothic_bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+p {
+  font-family: 'KBO-Dia-Gothic_bold';
+}
 </style>
