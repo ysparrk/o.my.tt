@@ -3,17 +3,16 @@
       <router-link :to="{ name: 'SignUpView' }">Sign-Up Page</router-link> |
       <router-link :to="{ name: 'LogInView' }">Login Page</router-link>
 
-      <router-link v-if="!loggedIn" to="/login" class="button">
+      <!-- <router-link v-if="!loggedIn" to="/login" class="button">
         Login
-      </router-link>
-      <router-link v-else type="button" class="logoutButton" @click="logout">
+      </router-link> -->
+      <!-- <router-link v-else type="button" class="logoutButton" @click="logout">
         LogOut
-      </router-link>
+      </router-link> -->
 
     <nav>
       <router-link :to="{ name: 'MovieView' }">Movie List</router-link> |
       <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
-      <router-link :to="{ name: 'SearchMovie'}">Search Movie</router-link> |
       <router-link :to="{ name: 'AccountsView' }">MyPage</router-link>
     </nav>
     <div>

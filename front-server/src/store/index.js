@@ -32,6 +32,7 @@ export default new Vuex.Store({
   },
   mutations: {
     GET_MOVIES(state, movies) {
+      state.movies = []
       state.movies = movies
       console.log(this.movies)
       console.log("요청 받음")
@@ -86,6 +87,18 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    // 2) 검색
+    performSearch1(context, searchQuery) {
+      console.log("검색 버튼")
+      const query = encodeURIComponent(searchQuery)
+      axios.get(`${API_URL}/movies/search/${query}/`)
+        .then((res) => {
+          context.commit('GET_MOVIES', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     getOtts(context) {
       axios({
         method: 'get',
@@ -98,6 +111,22 @@ export default new Vuex.Store({
       .catch((err) => {
         console.log(err)
       })
+    },
+    // 3) ott 버튼 누르기
+    buttonClick(context, ott_initial) {
+      const name = ott_initial
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/tmdb/${name}`,
+      })
+        .then((res) => {
+          context.commit('GET_MOVIES', res.data)
+          // this.totalPages = Math.ceil(this.movies.length / 10)
+          // this.currentPage = 1
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     // recommend
     // 1) random 영화 가져오기

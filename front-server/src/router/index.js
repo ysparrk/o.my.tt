@@ -6,7 +6,6 @@ import MovieView from '@/views/MovieView'
 import RecommendView from '@/views/RecommendView'
 import AccountsView from '@/views/AccountsView'
 import MovieDetail from '@/components/MovieList/MovieDetail'
-import SearchMovie from '@/components/MovieList/SearchMovie'
 
 
 Vue.use(VueRouter)
@@ -46,11 +45,7 @@ const routes = [
     component: MovieDetail,
     props: true,
   },
-  {
-    path: '/search-movie',
-    name: 'SearchMovie',
-    component: SearchMovie,
-  },
+
 ]
 
 const router = new VueRouter({

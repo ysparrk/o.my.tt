@@ -38,10 +38,13 @@ export default {
     visibleMovies() {
       return this.movies.slice(0, this.currentPage * 10)
     },
+    movies() {
+      return this.$store.state.movies
+    },
   },
   data() {
     return {
-      movies: [],
+      // movies: [],
       totalPages: 0,
       currentPage: 1,
     }
@@ -76,21 +79,27 @@ export default {
           $state.complete()
         })
     },
-    buttonClick(ott_initial) {
-      const name = ott_initial
-      axios({
-        method: 'get',
-        url: `${API_URL}/movies/tmdb/${name}`,
-      })
-        .then((res) => {
-          this.movies = res.data
-          this.totalPages = Math.ceil(this.movies.length / 10)
-          this.currentPage = 1
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+    buttonClick(input) {
+      // const ott_initial = input
+      this.$store.dispatch('buttonClick', input)
+      this.totalPages = Math.ceil(this.movies.length / 10)
+      this.currentPage = 1
     },
+    // buttonClick(ott_initial) {
+    //   const name = ott_initial
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}/movies/tmdb/${name}`,
+    //   })
+    //     .then((res) => {
+    //       this.movies = res.data
+    //       this.totalPages = Math.ceil(this.movies.length / 10)
+    //       this.currentPage = 1
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    // },
     checkScroll() {
       const container = this.$refs.container
       if (container) {
