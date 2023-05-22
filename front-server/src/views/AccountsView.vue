@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3>this is {{ username }} page</h3>
     <MyPage />
   </div>
 </template>
@@ -11,7 +12,12 @@ export default {
   name: 'AccountsView',
   components: {
     MyPage
-  }
+  },
+  computed: {
+    username() {
+      return this.$store.state.username
+    }
+  },
 }
 </script>
 

@@ -12,7 +12,9 @@ urlpatterns = [
     path('comment/<int:movie_id>/', views.comment_create, name="comment_create"),
     path('search/<str:query>/', views.search_movies, name='search_movies'),
 
-
+    # mypage
+    path('user_likes/<str:username>/', views.user_likes, name="user_likes"),
+    path('user_offer/<str:username>/', views.user_offer, name="user_offer")
 
 
 ]

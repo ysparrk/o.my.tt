@@ -17,7 +17,7 @@ def random_tmdb(request):
 
     # n개 랜덤으로 추출
     random_data = random.sample(movie_data, 10)
-    print(random_data)
+    # print(random_data)
     
     serializer = MovieSerializer(random_data, many=True)
 

@@ -73,6 +73,13 @@ export default new Vuex.Store({
       state.token = token
       router.push({name : 'MovieView'}) // store/index.js $router 접근 불가 -> import를 해야함
     },
+    CLEAR_USERNAME(state) {
+      state.username = null
+    },
+    CLEAR_TOKEN(state) {
+      console.log(state.token)
+      state.token = null
+    }
   },
   actions: {
     getMovies(context) {
@@ -217,7 +224,10 @@ export default new Vuex.Store({
         })
       .catch((err) => console.log(err))
     },
-  //   logout()
+    logout(context) {
+      context.commit('CLEAR_TOKEN')
+      context.commit('CLEAR_USERNAME') 
+    }
   },
   modules: {
   }

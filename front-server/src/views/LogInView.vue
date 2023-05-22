@@ -10,6 +10,8 @@
 
       <input type="submit" value="logIn">
     </form>
+
+    <button @click="logout">logout</button>
   </div>
 </template>
 
@@ -30,9 +32,10 @@ export default {
       const payload = {
         username, password
       }
-
       this.$store.dispatch('login', payload)
-
+    },
+    logout() {
+      this.$store.dispatch('logout')
     }
   }
 }

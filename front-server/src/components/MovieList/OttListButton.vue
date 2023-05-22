@@ -8,7 +8,7 @@
   </button>
 
     <div v-for="movie in visibleMovies" :key="movie.id">
-      <MovieListItem :movie="movie" />
+      <MovieListItem :movie="movie"/>
     </div>
   </div>
     <infinite-loading @infinite="infiniteHandler"></infinite-loading>

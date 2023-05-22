@@ -3,10 +3,10 @@
       <router-link :to="{ name: 'SignUpView' }">Sign-Up Page</router-link> |
       <router-link :to="{ name: 'LogInView' }">Login Page</router-link>
 
-      <!-- <router-link v-if="!loggedIn" to="/login" class="button">
+      <!-- <router-link v-if="!loggedIn" :to="{ name: 'LogInView' }" class="button">
         Login
-      </router-link> -->
-      <!-- <router-link v-else type="button" class="logoutButton" @click="logout">
+      </router-link>
+      <router-link v-else type="button" class="logoutButton" @click="logout">
         LogOut
       </router-link> -->
 

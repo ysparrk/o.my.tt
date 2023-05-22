@@ -1,6 +1,5 @@
 from django.shortcuts import render
-import requests
-import datetime
+import requests, random
 from django.views.decorators.http import require_safe
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.http import JsonResponse
@@ -114,9 +113,7 @@ def comment_create(request, movie_id):
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
-#######################################################
-###################### { 검색어 } ######################
+# search
 @api_view(['GET'])
 def search_movies(request, query):
     movies = Movie.objects.filter(title__icontains=query)
@@ -127,9 +124,54 @@ def search_movies(request, query):
     serializer = SearchSerializer(movie_info, many=True)
 
     return Response(serializer.data)
-#######################################################
-#######################################################
 
 
+# user가 좋아요 한 영화 리스트 보내기
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_likes(request, username):
+    print("좋아하는 영화 목록 요청 받음")
+    user = request.user
+    # print(user)
+    liked_movies = user.like_movies.all()
+    # print(liked_movies)
 
+    serializer = MovieSerializer(liked_movies, many=True)
+    return Response(serializer.data)
 
+# user가 좋아요 한 영화랑 같은 영화 장르
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_offer(request, username):
+    print("좋아하는 영화 기반 추천")
+    user = request.user
+    # print(user)
+    liked_movies = user.like_movies.all()
+    # print(liked_movies)
+
+    # 장르가 같은 영화를 10개 가져옴
+    genre_movies = []
+    for movie in liked_movies:
+        genre_movies.extend(Movie.objects.filter(genres__in=movie.genres.all()).exclude(pk=movie.pk)[:10])
+    
+
+    # 그 중에서 15개 랜덤으로 생성
+    sorted_movies = sorted(genre_movies, key=lambda movie: movie.released_date, reverse=True)
+    recommended_movies = []
+    selected_ids = set()
+    for movie in sorted_movies:
+        if len(recommended_movies) == 15:
+            break
+        if movie.id not in selected_ids:
+            recommended_movies.append(movie)
+            selected_ids.add(movie.id)
+
+    # 만약 추천할 영화가 15개보다 적다면 나머지 영화를 랜덤으로 추가
+    remaining_count = 15 - len(recommended_movies)
+    if remaining_count > 0:
+        remaining_movies = list(set(sorted_movies) - selected_ids)
+        random_movies = random.sample(remaining_movies, remaining_count)
+        recommended_movies.extend(random_movies)
+
+    serializer = MovieSerializer(recommended_movies, many=True)
+    return Response(serializer.data)
