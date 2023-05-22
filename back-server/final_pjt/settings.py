@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     # apps
     'movies',
     'accounts',
-    'community',
+    'mypage',
     'recommend',
 
     # api

@@ -4,6 +4,7 @@ import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
 import MovieView from '@/views/MovieView'
 import RecommendView from '@/views/RecommendView'
+import AccountsView from '@/views/AccountsView'
 import MovieDetail from '@/components/MovieList/MovieDetail'
 import SearchMovie from '@/components/MovieList/SearchMovie'
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/recommend',
     name: 'RecommendView',
     component: RecommendView
+  },
+  {
+    path: '/accounts',
+    name: 'AccountsView',
+    component: AccountsView
   },
   {
     path: '/movie/:id',

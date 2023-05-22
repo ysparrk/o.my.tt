@@ -187,7 +187,8 @@ export default new Vuex.Store({
         context.commit('SAVE_USERNAME', username)
         })
       .catch((err) => console.log(err))
-    }
+    },
+  //   logout()
   },
   modules: {
   }

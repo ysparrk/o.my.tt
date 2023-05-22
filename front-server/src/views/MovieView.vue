@@ -2,18 +2,15 @@
   <div>
   <p>Hi, {{ username }}. Enjoy your </p>
   <OttListButton />
-  <!-- <MovieList/> -->
   </div>
 </template>
 
 <script>
-// import MovieList from '@/components/MovieList/MovieList.vue'
 import OttListButton from '@/components/MovieList/OttListButton.vue'
 
 export default {
   name: 'MovieView',
   components: {
-    // MovieList,
     OttListButton,
   },
   computed: {
