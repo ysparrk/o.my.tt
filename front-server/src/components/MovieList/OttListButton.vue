@@ -1,18 +1,15 @@
 <template>
   <div class="container" ref="container">
-
-    <SearchMovie />
-    
-    <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">
-      <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
-    </button>
+  <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">
+    <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
+  </button>
 
     <div v-for="movie in visibleMovies" :key="movie.id">
       <MovieListItem :movie="movie" />
     </div>
 
+    <SearchMovie />
     <infinite-loading @infinite="infiniteHandler"></infinite-loading>
-
   </div>
 </template>
 
@@ -27,8 +24,8 @@ const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'OttListButton',
   components: {
-    MovieListItem,
     SearchMovie,
+    MovieListItem,
     InfiniteLoading,
   },
   computed: {
@@ -123,10 +120,11 @@ export default {
 }
 
 .container::-webkit-scrollbar-track {
-  background-color: #ffffff; /* 스크롤바 트랙 배경색 */
+  background-color: red; /* 스크롤바 트랙 배경색 */
 }
 
 .container::-webkit-scrollbar-thumb {
   background-color: #ffffff; /* 스크롤바 색상 */
 }
+
 </style>
