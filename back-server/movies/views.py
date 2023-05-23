@@ -47,7 +47,8 @@ def tmdb_movie_list(request, initial):
             movie_list.append(rlt)
     
     # print(movie_list)
-    serializer = MovieSerializer(movie_list, many=True)
+    sorted_movies = sorted(movie_list, key=lambda movie: movie.popularity, reverse=True)
+    serializer = MovieSerializer(sorted_movies, many=True)
 
     return Response(serializer.data)
 
@@ -146,9 +147,7 @@ def user_likes(request, username):
 def user_offer(request, username):
     print("좋아하는 영화 기반 추천")
     user = request.user
-    # print(user)
     liked_movies = user.like_movies.all()
-    # print(liked_movies)
 
     # 장르가 같은 영화를 10개 가져옴
     genre_movies = []
@@ -157,7 +156,7 @@ def user_offer(request, username):
     
 
     # 그 중에서 15개 랜덤으로 생성
-    sorted_movies = sorted(genre_movies, key=lambda movie: movie.released_date, reverse=True)
+    sorted_movies = sorted(genre_movies, key=lambda movie: movie.popularity, reverse=True)
     recommended_movies = []
     selected_ids = set()
     for movie in sorted_movies:
@@ -177,7 +176,7 @@ def user_offer(request, username):
     serializer = MovieSerializer(recommended_movies, many=True)
     return Response(serializer.data)
 
-
+# user가 이미 가지고 있는 ott
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def user_ott(request, username):
@@ -193,7 +192,4 @@ def user_ott(request, username):
         ott = Ott.objects.get(id=ott_id)
         user.ott_user.add(*[ott])
     
-    # serializer = OttSerializer()
-
-    # return Response(serializer.data)
-    return Response("저장 완료")
+    return Response("ott 저장 완료")

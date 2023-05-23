@@ -16,15 +16,6 @@
           <td><input type="password" id="password2" v-model="password2"></td>
         </tr>       
       </table>
-      <!-- <div>
-        <h2>Select your OTT:</h2>
-        <ul>
-          <li v-for="ott in otts" :key="ott.id">
-            <input type="checkbox" :id="ott.id" v-model="selectMyOtt" :value="ott.id">
-            <label :for="ott.id">{{ ott.name }}</label>
-          </li>
-        </ul>
-      </div> -->
       <p>
       <input class="check" type="submit" value="SignUp">
       </p>
@@ -45,14 +36,6 @@ export default {
       // selectMyOtt: []
     }
   },
-  computed: {
-    otts() {
-      return this.$store.state.otts
-    },
-    // myOtts() {
-    //   return this.$store.state.myOtts
-    // }
-  },
   methods: {
     signUp() {
       // console.log('signup')
@@ -69,6 +52,8 @@ export default {
       }
       // console.log(payload)
       this.$store.dispatch('signUp', payload)
+      // this.$router.push({name : 'MyPage'})
+      
     },
     // selectMyOtt() {
       

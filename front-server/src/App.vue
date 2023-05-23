@@ -17,6 +17,9 @@
       <router-link :to="{ name: 'MovieView' }">Movie List</router-link> |
       <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
       <router-link :to="{ name: 'AccountsView' }">MyPage</router-link>
+      <!-- <router-link v-if="isLogin" :to="{ name: 'AccountsView' }">MyPage</router-link>
+      <span v-else>로그인이 필요합니다.</span> -->
+      
     </nav>
 
     <div>
@@ -38,7 +41,7 @@
   text-align: center;
   color: #F7F7F7;
   position: relative;
-  background: #20262E;
+  background: #20262e;
   width: 100vw;
 }
 
@@ -69,11 +72,22 @@ nav a.router-link-exact-active {
     font-weight: normal;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'HANAMDAUM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KCCChassam';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 .brand {
   font-size: 70px;
   text-align: center;
-  font-family: cursive;
+  font-family: 'KCCChassam';
   color: #fff;
   text-shadow: 0 0 50px #F8FFDB, 0 0 100px #F8FFDB, 0 0 20px #9CFF2E, 0 0 20px #9CFF2E, 0 0 20px #F0FF42, 0 0 20px #F0FF42, 0 0 20px #F0FF42;
   /* text-shadow: 0 0 50px #fff, 0 0 10px #fff, 0 0 15px #9CFF2E, 0 0 20px #9CFF2E, 0 0 25px #F0FF42, 0 0 30px #F0FF42, 0 0 35px #F0FF42; */

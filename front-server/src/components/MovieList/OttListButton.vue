@@ -28,6 +28,11 @@ export default {
     MovieListItem,
     InfiniteLoading,
   },
+  getters: {
+    isLogin(state) {
+      return state.token ? true : false
+    }
+  },
   computed: {
     otts() {
       return this.$store.state.otts

@@ -18,14 +18,14 @@ export default {
       return this.$store.state.username
     }
   },
-  update() {
-    this.getMovies()
-  },
-  methods: {
-    getMovies() {
-      this.$store.dispatch('getMovies')
-    }
-  }
+  // update() {
+  //   this.getMovies()
+  // },
+  // methods: {
+  //   getMovies() {
+  //     this.$store.dispatch('getMovies')
+  //   }
+  // }
 }
 </script>
 

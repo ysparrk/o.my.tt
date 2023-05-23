@@ -18,7 +18,6 @@ export default new Vuex.Store({
   state: {
     username: null,
     articles: [],
-    movies: [],
     otts: null, // db의 ott리스트
     selects: [], // 내가 선택한 영화
     token: null,
@@ -81,17 +80,20 @@ export default new Vuex.Store({
 
       console.log(state.myOtts)
     },
-    // SEND_MYOTT(state, myOtts) {
-    //   state.myOtts = myOtts
-    // },
     // login 관련
     SAVE_USERNAME(state, username) {
       state.username = username
       console.log(this.username)
     },
+    SIGN_UP_TOKEN(state, token) {
+      state.token = token
+      console.log("회원가입")
+      router.push({name : 'MyFirstOttView'}) // signup -> 초기설정
+    },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({name : 'MovieView'}) // store/index.js $router 접근 불가 -> import를 해야함
+      console.log("로그인 함!!!!!")
+      router.push({name : 'MovieView'}) // login -> movielist 페이지
     },
     CLEAR_USERNAME(state) {
       state.username = null
@@ -224,7 +226,7 @@ export default new Vuex.Store({
         .then((res) => {
           console.log(res)
           // context.commit('SIGN_UP', res.data.key)
-          context.commit('SAVE_TOKEN', res.data.key)
+          context.commit('SIGN_UP_TOKEN', res.data.key)
         })
         .catch((err) => {
         console.log(err)
@@ -250,7 +252,7 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
-        console.log('저장됨')
+        console.log('저장됨??')
         console.log(res)
         // context.commit('SEND_MYOTT', res.data)
       })
@@ -258,25 +260,6 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    // sendIds(context, selectedId) {
-    //   const payload = selectedId
-    //   axios({
-    //     method: 'post',
-    //     url: `${API_URL}/recommend/optimize_ott/`,
-    //     data: {
-    //       payload
-    //     }
-    //   })
-    //   .then((res) => {
-    //     console.log('response!!')
-    //     console.log(res)
-    //     context.commit('FINAL_RECOMMEND', res.data)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
-    // },
-
     // login
     login(context, payload) {
       const username = payload.username
@@ -289,10 +272,10 @@ export default new Vuex.Store({
           username, password
         }
       })
-        .then((res) => {
-        context.commit('SAVE_TOKEN', res.data.key)
-        context.commit('SAVE_USERNAME', username)
-        })
+      .then((res) => {
+      context.commit('SAVE_TOKEN', res.data.key)
+      context.commit('SAVE_USERNAME', username)
+      })
       .catch((err) => console.log(err))
     },
     logout(context) {

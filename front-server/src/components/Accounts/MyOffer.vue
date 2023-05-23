@@ -45,7 +45,9 @@ export default {
           this.movieOffer = res.data
         })
         .catch((err) => {
-        console.log(err)
+          alert("좋아하는 영화를 선택해주세요")
+          this.$router.push('movie')  // 좋아요를 누른 영화가 없다면, 좋아하는 영화 표시하기
+          console.log(err)
       })
     }
   }

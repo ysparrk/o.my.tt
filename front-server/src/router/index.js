@@ -5,6 +5,7 @@ import LogInView from '@/views/LogInView'
 import MovieView from '@/views/MovieView'
 import RecommendView from '@/views/RecommendView'
 import AccountsView from '@/views/AccountsView'
+import MyFirstOttView from '@/views/MyFirstOttView'
 import MovieDetail from '@/components/MovieList/MovieDetail'
 
 
@@ -39,6 +40,12 @@ const routes = [
     name: 'AccountsView',
     component: AccountsView
   },
+  {
+    path: '/ott',
+    name: 'MyFirstOttView',
+    component: MyFirstOttView
+  },
+  
   {
     path: '/movie/:id',
     name: 'MovieDetail',
