@@ -28,8 +28,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  background-color: #66ff00;
+  color: #F7F7F7;
+  background-color: #393E46;
 }
 nav {
   padding: 30px;
@@ -37,10 +37,10 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #9CFF2E;
 }
 </style>

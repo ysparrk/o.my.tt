@@ -1,7 +1,6 @@
 <template>
   <div>
-    <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요" />
-    <button @click="performSearch1">검색</button>
+    <input type="text" v-model="searchQuery" @input="performSearch1" placeholder="검색어를 입력하세요" />
 
     <div v-if="movies.length === 0">텅</div>
 
@@ -19,9 +18,6 @@
 
 export default {
   name: 'SearchMovie',
-  components: {
-    // MovieListItem,
-  },
   data() {
     return {
       searchQuery: '',
@@ -36,7 +32,7 @@ export default {
   methods: {
     performSearch1() {
       this.$store.dispatch('performSearch1', this.searchQuery)
-      this.searchQuery = ''
+      // this.searchQuery = ''
     }
   },
   // methods: {

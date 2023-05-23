@@ -1,24 +1,24 @@
 <template>
-  <div>
-    <button v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">{{ ott.name }}</button>
-    <SearchMovie />
   <div class="container" ref="container">
-  <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">
-    <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
-  </button>
+
+    <SearchMovie />
+    
+    <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">
+      <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
+    </button>
 
     <div v-for="movie in visibleMovies" :key="movie.id">
-      <MovieListItem :movie="movie"/>
+      <MovieListItem :movie="movie" />
     </div>
-  </div>
+
     <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+
   </div>
 </template>
 
 <script>
 import MovieListItem from '@/components/MovieList/MovieListItem'
 import SearchMovie from '@/components/MovieList/SearchMovie'
-
 import InfiniteLoading from 'vue-infinite-loading'
 import axios from 'axios'
 
@@ -38,13 +38,10 @@ export default {
     visibleMovies() {
       return this.movies.slice(0, this.currentPage * 10)
     },
-    movies() {
-      return this.$store.state.movies
-    },
   },
   data() {
     return {
-      // movies: [],
+      movies: [],
       totalPages: 0,
       currentPage: 1,
     }
@@ -79,27 +76,21 @@ export default {
           $state.complete()
         })
     },
-    buttonClick(input) {
-      // const ott_initial = input
-      this.$store.dispatch('buttonClick', input)
-      this.totalPages = Math.ceil(this.movies.length / 10)
-      this.currentPage = 1
+    buttonClick(ott_initial) {
+      const name = ott_initial
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/tmdb/${name}`,
+      })
+        .then((res) => {
+          this.movies = res.data
+          this.totalPages = Math.ceil(this.movies.length / 10)
+          this.currentPage = 1
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
-    // buttonClick(ott_initial) {
-    //   const name = ott_initial
-    //   axios({
-    //     method: 'get',
-    //     url: `${API_URL}/movies/tmdb/${name}`,
-    //   })
-    //     .then((res) => {
-    //       this.movies = res.data
-    //       this.totalPages = Math.ceil(this.movies.length / 10)
-    //       this.currentPage = 1
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // },
     checkScroll() {
       const container = this.$refs.container
       if (container) {
@@ -138,5 +129,4 @@ export default {
 .container::-webkit-scrollbar-thumb {
   background-color: #ffffff; /* 스크롤바 색상 */
 }
-
 </style>
