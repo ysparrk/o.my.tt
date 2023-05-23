@@ -1,10 +1,8 @@
 <template>
   <div>
-    <p>ott 추천 해드립니다</p>
-    <p>아래의 내용에 따라 움직여주세요</p>
-     
-    <SelectMovie />
 
+    <h3 class="m-3">당신을 위한 OTT를 찾아보세요</h3> 
+    <SelectMovie />
     
   </div>
 </template>

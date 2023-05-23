@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style>
-/* Import Poppins font: */
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 .main {
@@ -95,7 +95,7 @@ export default {
   box-shadow: 0px 0px 8px -5px #000000;
   padding-top: 3%;
   padding-bottom: 5%;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
 }
 
 h1 {
@@ -104,6 +104,7 @@ h1 {
 }
 
 input {
+  background: white;
   border-radius: 3rem;
   border: none;
   padding: 10px;
@@ -132,4 +133,5 @@ input:active {
 .check {
   background: #9CFF2E;
 }
+
 </style>
