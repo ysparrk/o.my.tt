@@ -2,7 +2,7 @@
   <div>
     <p>내가 좋아요 표시한 장르를 기반으로 추천하는 영화입니다</p>
 
-    <div v-for="offer in movieOffer" :key="offer.id">
+    <div v-for="(offer, idx) in movieOffer" :key="idx">
       <MyOfferItem :offer="offer"/>
     </div>
 

@@ -2,7 +2,7 @@
   <div>
     <p>내가 좋아요 한 작품들</p>
 
-    <div v-for="movie in movieLikes" :key="movie.id">
+    <div v-for="(movie, idx) in movieLikes" :key="idx">
       <MyMoviesItem :movie="movie"/>
     </div>
 
