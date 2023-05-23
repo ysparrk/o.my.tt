@@ -7,7 +7,7 @@ class Ott(models.Model):
     initial = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     signup = models.CharField(max_length=200)
-
+    ott_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='ott_user')
 
 class Genre(models.Model):
     name = models.CharField(max_length=50)

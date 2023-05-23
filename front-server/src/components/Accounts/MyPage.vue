@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>my page입니다</p>
+    <MyOtt />
     <MyMovies />
     <MyOffer />
   </div>
@@ -9,12 +10,14 @@
 <script>
 import MyMovies from '@/components/Accounts/MyMovies'
 import MyOffer from '@/components/Accounts/MyOffer'
+import MyOtt from '@/components/Accounts/MyOtt'
 
 export default {
   name: 'MyPage',
   components: {
     MyMovies,
-    MyOffer
+    MyOffer,
+    MyOtt
   }
 }
 </script>

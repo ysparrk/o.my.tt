@@ -40,9 +40,3 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     def get_likes_count(self, instance):
         return instance.like_users.count()
 
-# MovieLikes
-# class UserLikesSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Movie
-        

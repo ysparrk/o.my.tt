@@ -14,12 +14,23 @@
         <tr>
           <td><label for="password2"> password : </label></td>
           <td><input type="password" id="password2" v-model="password2"></td>
-        </tr>
+        </tr>       
       </table>
+      <!-- <div>
+        <h2>Select your OTT:</h2>
+        <ul>
+          <li v-for="ott in otts" :key="ott.id">
+            <input type="checkbox" :id="ott.id" v-model="selectMyOtt" :value="ott.id">
+            <label :for="ott.id">{{ ott.name }}</label>
+          </li>
+        </ul>
+      </div> -->
       <p>
       <input class="check" type="submit" value="SignUp">
       </p>
     </form>
+    
+
   </div>
 </template>
 
@@ -31,7 +42,16 @@ export default {
       username: null,
       password1: null,
       password2: null,
+      // selectMyOtt: []
     }
+  },
+  computed: {
+    otts() {
+      return this.$store.state.otts
+    },
+    // myOtts() {
+    //   return this.$store.state.myOtts
+    // }
   },
   methods: {
     signUp() {
@@ -39,14 +59,22 @@ export default {
       const username = this.username
       const password1 = this.password1
       const password2 = this.password2
-
+      // const selectMyOtt = this.selectMyOtt
+      // console.log(selectMyOtt)
       const payload = {
-        username, password1, password2
+        username: username,
+        password1: password1,
+        password2: password2,
+        // ott_user: selectMyOtt
       }
-
+      // console.log(payload)
       this.$store.dispatch('signUp', payload)
-
-    }
+    },
+    // selectMyOtt() {
+      
+    //   this.$store.dispatch('selectMyOtt', payload)
+    // }
+    
   }
 }
 </script>

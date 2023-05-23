@@ -19,11 +19,12 @@ export default new Vuex.Store({
     username: null,
     articles: [],
     movies: [],
-    otts: null,
-    selects: [],
+    otts: null, // db의 ott리스트
+    selects: [], // 내가 선택한 영화
     token: null,
     selectedId: [], // 선택된 movie.id
     finalRecommend: null,
+    myOtts: [],
   },
   getters: {
     isLogin(state) {
@@ -63,7 +64,26 @@ export default new Vuex.Store({
       state.finalRecommend = finalRecommend
       state.selectedId = [] // 원래 선택된 배열 초기화
     },
+    // myPage
+    // 내가 가지고 있는 ott 선택 후 저장
+    SAVE_MYOTT(state, myOtt) {
+      console.log("mutation")
+      const index = state.myOtts.indexOf(myOtt)
+      console.log(index)
+      if (index !== -1) {  // 이미 선택된 ott
+        // console.log("이미 선택")
+        state.myOtts.splice(index, 1)  
+      } else {
+        // console.log("선택안됨")
+        state.myOtts.push(myOtt)
+        // console.log(state.myOtts)
+      }
 
+      console.log(state.myOtts)
+    },
+    // SEND_MYOTT(state, myOtts) {
+    //   state.myOtts = myOtts
+    // },
     // login 관련
     SAVE_USERNAME(state, username) {
       state.username = username
@@ -79,7 +99,7 @@ export default new Vuex.Store({
     CLEAR_TOKEN(state) {
       console.log(state.token)
       state.token = null
-    }
+    },
   },
   actions: {
     getMovies(context) {
@@ -152,8 +172,8 @@ export default new Vuex.Store({
     },
     // 2) 선택한 영화 저장
     saveSelect(context, selectId) {
-      console.log('함수 들어옴')
-      console.log(selectId)
+      // console.log('함수 들어옴')
+      // console.log(selectId)
       context.commit('SAVE_SELECTED', selectId)
     },
     performSearch(context, searchQuery) {
@@ -168,10 +188,11 @@ export default new Vuex.Store({
     },
     // 3) 선택한 영화 django로 보내기
     sendIds(context, selectedId) {
+      const username = this.state.username
       const payload = selectedId
       axios({
         method: 'post',
-        url: `${API_URL}/recommend/optimize_ott/`,
+        url: `${API_URL}/recommend/optimize_ott/${username}/`,
         data: {
           payload
         }
@@ -185,12 +206,14 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    // login 관련
+    // signup
     signUp(context, payload) {
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
+      // const ott_user = payload.ott_user
 
+      // console.log(ott_user)
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
@@ -207,6 +230,54 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    // myPage, 내가 가지고 있는 ott 선택
+    saveMyOtt(context, myOtt) {
+      context.commit('SAVE_MYOTT', myOtt)
+    },
+    sendMyOtt(context, payload) {
+      // const payload = selectMyOtt
+      const username = this.state.username
+      const token = this.state.token
+      console.log(payload)
+      axios({
+        method: 'post',
+        url: `${API_URL}/movies/user_ott/${username}/`,
+        headers: {
+          Authorization: `Token ${token}`
+        },
+        data: {
+          payload
+        }
+      })
+      .then((res) => {
+        console.log('저장됨')
+        console.log(res)
+        // context.commit('SEND_MYOTT', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    // sendIds(context, selectedId) {
+    //   const payload = selectedId
+    //   axios({
+    //     method: 'post',
+    //     url: `${API_URL}/recommend/optimize_ott/`,
+    //     data: {
+    //       payload
+    //     }
+    //   })
+    //   .then((res) => {
+    //     console.log('response!!')
+    //     console.log(res)
+    //     context.commit('FINAL_RECOMMEND', res.data)
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
+    // },
+
+    // login
     login(context, payload) {
       const username = payload.username
       const password = payload.password

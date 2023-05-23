@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from collections import Counter
 from movies.models import Tmdb, Movie, Ott
+from accounts.models import User
 from .models import Info
 from movies.serializers import TmdbSerializer, MovieSerializer, OttSerializer
 from rest_framework.response import Response
@@ -25,28 +26,41 @@ def random_tmdb(request):
 
 
 # 최적의 ott 추천
+# 내가 가지고 있는 ott는 제거하기
 @api_view(['GET', 'POST'])
-def optimize_ott(request):
+def optimize_ott(request, username):
 
-    print('응답 받음!!')
-    print(request.data['payload'])
-    # ott_data = Ott.objects.all()
+    user = User.objects.get(username=username)  # username -> 이미 가지고 있는 ott는 제거
+    print(user)
+    # print('응답 받음!!')
+    # print(request.data['payload'])
+    print("user가 가지고 있는 ott")
+    user_otts = user.ott_user.all()
+    # print(user_otts.values())
+
+    myotts = [] # user가 가지고 있는 ott 리스트 -> 제거하기
+
+    for ott in user_otts.values():
+        myotts.append(ott['id'])
+    
+    print(myotts)
+    
     tmdb_ids = request.data['payload']  # 받은 tmdb_id 값
-    ott_counts = [0] * 6  # 여기에 pk값으로 들어갈 것임
+    ott_counts = [0] * 7  # 여기에 pk값으로 들어갈 것임
 
     otts = {
-        "nfx" : 0,
-        "wac" : 1,
-        "wav" : 2,
-        "ply" : 3,
-        "apt" : 4,
-        "dnp" : 5,
+        "nfx" : 1,
+        "wac" : 2,
+        "wav" : 3,
+        "ply" : 4,
+        "apt" : 5,
+        "dnp" : 6,
     }
 
     for tmdb_id in tmdb_ids:
-        print(tmdb_id)
+        # print(tmdb_id)
         movie = get_object_or_404(Tmdb, pk=tmdb_id)
-        print(f'선택된 영화 {movie}')
+        # print(f'선택된 영화 {movie}')
 
         ott_lst = movie.ott_lst  # 그 영화의 ott_lst
 
@@ -54,22 +68,17 @@ def optimize_ott(request):
         for ott_initial in ott_lst:
             ott_counts[otts.get(ott_initial)] += 1
 
-    # max_count = max(ott_counts)  # 최대값
-    # max_indexes = [i for i, count in enumerate(ott_counts) if count == max_count]  # 최대값을 가진 인덱스들
+    print(f'빼기 전 : {ott_counts}')
 
-    # final_recommend = Ott.objects.filter(pk__in=[index+1 for index in max_indexes])
-    # print(final_recommend)
+    # user가 가지고 있는 ott는 -1로 변경
+    for i in myotts:
+        ott_counts[i] = -1
 
-    # serializer = OttSerializer(final_recommend, many=True)
-
-    # return Response(serializer.data)   
-
-    # # print(f'count : {ott_counts}')
-
+    print(f'뺀 후 : {ott_counts}')
     rlt = ott_counts.index(max(ott_counts))  # 리스트에서 최댓값 인덱스 추출
     # print(f'rlt : {rlt}')
-    final_recommend = Ott.objects.get(pk=(rlt+1))
-    print(final_recommend)
+    final_recommend = Ott.objects.get(pk=(rlt))
+    # print(final_recommend)
     
     serializer = OttSerializer(final_recommend)
     

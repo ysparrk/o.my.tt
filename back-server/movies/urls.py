@@ -14,7 +14,7 @@ urlpatterns = [
 
     # mypage
     path('user_likes/<str:username>/', views.user_likes, name="user_likes"),
-    path('user_offer/<str:username>/', views.user_offer, name="user_offer")
-
+    path('user_offer/<str:username>/', views.user_offer, name="user_offer"),
+    path('user_ott/<str:username>/', views.user_ott, name="user_ott")
 
 ]
