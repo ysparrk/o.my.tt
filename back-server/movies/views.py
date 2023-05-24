@@ -176,20 +176,34 @@ def user_offer(request, username):
     serializer = MovieSerializer(recommended_movies, many=True)
     return Response(serializer.data)
 
+
 # user가 이미 가지고 있는 ott
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def user_ott(request, username):
     print("ott 저장 들어옴")
-    ott_data = request.data['payload']
-    user = User.objects.get(username=username)
+    if request.method == 'POST':
+        ott_data = request.data['payload']
+        user = User.objects.get(username=username)
 
-    # # 기존에 저장된 중개 테이블 레코드 모두 삭제
-    user.ott_user.clear()
+        # 기존에 저장된 중개 테이블 레코드 모두 삭제
+        user.ott_user.clear()
+        print(ott_data)
+        print(type(ott_data))
+        # 선택한 ott 데이터를 중개 테이블에 저장
+        for ott_id in ott_data:
+            ott = Ott.objects.get(id=ott_id)
+            user.ott_user.add(ott.id)
+        print("저장됨")
+        ott_list = user.ott_user.all()
+        serializer = OttSerializer(ott_list, many=True)
+        return Response(serializer.data)
 
-    # 선택한 ott 데이터를 중개 테이블에 저장
-    for ott_id in ott_data:
-        ott = Ott.objects.get(id=ott_id)
-        user.ott_user.add(*[ott])
     
-    return Response("ott 저장 완료")
+    elif request.method == 'GET':
+        print("내가 가진 ott 가져오기")
+        user = User.objects.get(username=username)
+        ott_list = user.ott_user.all()
+        serializer = OttSerializer(ott_list, many=True)
+        return Response(serializer.data)
+

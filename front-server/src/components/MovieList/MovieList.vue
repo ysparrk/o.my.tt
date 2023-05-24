@@ -1,6 +1,6 @@
 <template>
   <div class="container" ref="container">
-  <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="(ott, idx) in otts" :key="idx" @click="buttonClick(ott.initial)">
+  <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="(ott, index) in otts" :key="index" @click="buttonClick(ott.initial)">
     <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
   </button>
 
@@ -8,7 +8,7 @@
     <!-- <OttListButton /> -->
 
     <!--영화 정보-->
-    <div v-for="(movie, idx) in movies" :key="idx">
+    <div v-for="(movie, idx) in movies" :key="'m'+idx">
       <MovieListItem :movie="movie"/>
     </div>
 

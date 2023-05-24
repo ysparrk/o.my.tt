@@ -24,6 +24,7 @@ export default new Vuex.Store({
     selectedId: [], // 선택된 movie.id
     finalRecommend: null,
     myOtts: [],
+    myFirstOtts: [],
   },
   getters: {
     isLogin(state) {
@@ -77,8 +78,12 @@ export default new Vuex.Store({
         state.myOtts.push(myOtt)
         // console.log(state.myOtts)
       }
-
       console.log(state.myOtts)
+
+    },
+    GET_MY_OTTS(state, myFirstOtts) {
+      state.myFirstOtts = myFirstOtts
+      console.log(this.myFirstOtts)
     },
     // login 관련
     SAVE_USERNAME(state, username) {
@@ -235,6 +240,7 @@ export default new Vuex.Store({
     // myPage, 내가 가지고 있는 ott 선택
     saveMyOtt(context, myOtt) {
       context.commit('SAVE_MYOTT', myOtt)
+      console.log("이 버튼 저장")
     },
     sendMyOtt(context, payload) {
       // const payload = selectMyOtt
@@ -252,9 +258,30 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
-        console.log('저장됨??')
+        console.log('db에 저장')
         console.log(res)
-        // context.commit('SEND_MYOTT', res.data)
+        context.dispatch('getMyOtt')
+        // context.commit('GET_MY_OTTS', res.data.id)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    getMyOtt(context) {
+      console.log("getmyott 함수 실행")
+      const username = this.state.username
+      const token = this.state.token
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/user_ott/${username}/`,
+        headers: {
+          Authorization: `Token ${token}`
+        },
+      })
+      .then((res) => {
+        console.log('get axios 요청 받음')
+        console.log(res)
+        context.commit('GET_MY_OTTS', res.data)
       })
       .catch((err) => {
         console.log(err)
