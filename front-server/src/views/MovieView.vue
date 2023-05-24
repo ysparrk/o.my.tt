@@ -1,31 +1,31 @@
 <template>
   <div>
   <p>Hi, {{ username }}. Enjoy your Flight.</p>
-  <OttListButton />
+  <MovieList />
   </div>
 </template>
 
 <script>
-import OttListButton from '@/components/MovieList/OttListButton.vue'
+import MovieList from '@/components/MovieList/MovieList'
 
 export default {
   name: 'MovieView',
   components: {
-    OttListButton,
+    MovieList,
   },
   computed: {
     username() {
       return this.$store.state.username
     }
   },
-  // update() {
-  //   this.getMovies()
-  // },
-  // methods: {
-  //   getMovies() {
-  //     this.$store.dispatch('getMovies')
-  //   }
-  // }
+  update() {
+    this.getMovies()
+  },
+  methods: {
+    getMovies() {
+      this.$store.dispatch('getMovies')
+    }
+  }
 }
 </script>
 
