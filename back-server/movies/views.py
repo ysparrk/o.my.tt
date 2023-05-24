@@ -108,8 +108,8 @@ def likes(request, movie_id):
 @api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
 def comment_create(request, movie_id):
-    # print("댓글 받음")
-    # print(request.data)
+    print("댓글 받음")
+    print(request.data)
     movie = get_object_or_404(Movie, pk=movie_id)
 
     if request.method == 'POST':
@@ -120,7 +120,7 @@ def comment_create(request, movie_id):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     elif request.method == 'GET':
-        # print("댓글 조회 요청 들어옴")
+        print("댓글 조회 요청 들어옴")
         comments = Comment.objects.filter(movie=movie)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

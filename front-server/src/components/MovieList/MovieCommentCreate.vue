@@ -28,7 +28,7 @@ export default {
     return {
       content: null, 
       user: null,
-      comments: []
+      comments: [],
     }
   },
   props:{
@@ -36,7 +36,7 @@ export default {
   },
   created() {
     // 사용자 정보 가져오기
-    this.user = this.$store.state.username 
+    this.user = this.$store.state.username
     this.getComments()
   },
   methods: {

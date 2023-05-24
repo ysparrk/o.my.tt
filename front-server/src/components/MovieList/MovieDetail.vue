@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="backdropcontainer"
-    :style="{ backgroundImage: `linear-gradient( rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.8) ), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}">
+    :style="{ backgroundImage: `linear-gradient( rgba(255, 255, 255, 0.3), rgba(0, 0, .0, 1) ), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}">
 
 
       <div v-if="movie">
@@ -25,10 +25,12 @@
           </div>
         </div>
 
-        <div v-if="ott_lst" class="ott-btn" style="margin-bottom:20px;">
+        <div v-if="ott_lst" class="ott" style="margin-bottom:20px; vertical-aling:middle;">
+          <span>"{{ movie.title }}"는 </span>
           <span v-for="(ott, idx) in ott_lst" :key="idx" style="margin:5px;">
-            <img :src="require(`@/assets/${ott}.png`)" style="width:70px; height:70px;">
+            <img :src="require(`@/assets/${ott}_long.png`)" style="height:20px;">
           </span>
+          <span>에서 즐기실 수 있습니다</span>
         </div>
 
         <!-- <button @click="userLikes(movie.id)">
@@ -177,13 +179,12 @@ export default {
   font-style: normal;
 }
 p.title {
-  padding-top: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
   font-family: MBC1961M;
   font-size: 50px;
   text-shadow: 10px;
-}
-.ott-btn img {
-  border-radius: 10px;
+  color: rgb(36, 36, 36);
 }
 .card {
   background: transparent;
@@ -194,12 +195,12 @@ p.title {
   font-weight: normal;
   font-style: normal;
 }
-@font-face {
+/* @font-face {
   font-family: 'ChosunCentennial';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ChosunCentennial.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-}
+} */
 /* @font-face {
   font-family: 'Dokrip';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
@@ -212,7 +213,11 @@ p.title {
 .card-text {
   color: white;
   font-size: 20px;
-  font-family: ChosunCentennial;
+  font-family: Arita-buri-SemiBold;
+}
+.ott {
+  justify-content: center;
+  vertical-align: middle;
 }
 .like:focus{ 	
   border: none;

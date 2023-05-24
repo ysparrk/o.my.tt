@@ -17,7 +17,7 @@
     <router-link v-if="!isLogin" to="/login" class="logbutton" style="margin-right: 30px;">Login</router-link>
     <button v-if="isLogin" class="logbutton" style="margin-right: 30px;" @click="logout">Logout</button>
 
-    <nav>
+    <nav style="background-color: purple;">
       <router-link :to="{ name: 'MovieView' }">Movie List</router-link> |
       <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
       <router-link :to="{ name: 'AccountsView' }">MyPage</router-link>
