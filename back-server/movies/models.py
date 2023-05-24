@@ -9,6 +9,7 @@ class Ott(models.Model):
     signup = models.CharField(max_length=200)
     ott_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='ott_user')
 
+
 class Genre(models.Model):
     name = models.CharField(max_length=50)
 
@@ -25,6 +26,7 @@ class Movie(models.Model):
     tagline = models.CharField(max_length=255)
     vote_average = models.FloatField()
     vote_count = models.IntegerField()
+    video_key = models.CharField(max_length=255)
 
     # 좋아요 기능
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')

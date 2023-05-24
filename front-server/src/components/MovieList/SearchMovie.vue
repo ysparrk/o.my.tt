@@ -43,21 +43,4 @@ export default {
 
 <style>
 
-.ripple-btn {
-  width: 100px;
-  height: 50px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  position: relative;
-  padding: 1em 1.5em;
-  color: #fff;
-  font-size: 1.15rem;
-  border-radius: 100vmax;
-  background-color: transparent;
-  border: 2px solid #fff;
-  text-transform: uppercase;
-  overflow: hidden;
-  cursor: pointer;
-}
 </style>
