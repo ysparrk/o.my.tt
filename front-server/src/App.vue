@@ -21,14 +21,7 @@
       <router-link :to="{ name: 'MovieView' }">Movie List</router-link> |
       <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
       <router-link :to="{ name: 'AccountsView' }">MyPage</router-link>
-      <!-- <router-link v-if="isLogin" :to="{ name: 'AccountsView' }">MyPage</router-link>
-      <span v-else>로그인이 필요합니다.</span> --> 
     </nav>
-
-    <div>
-      <!-- <img :src="require(`@/assets/logo.png`)" style="width:400px; height:auto" alt="MainLogo"> -->
-      <h1 class="brand">o . my . tt</h1>
-    </div>
 
     <router-view/>
   </div>
@@ -53,7 +46,6 @@ export default {
 
 
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -61,10 +53,9 @@ export default {
   text-align: center;
   color: #F7F7F7;
   position: relative;
-  background: #20262e;
+  /* background: #20262e; */
   width: 100vw;
 }
-
 button.login {
   position: absolute;
   top: 0;
@@ -72,20 +63,16 @@ button.login {
   /* margin-left: 100%; */
   /* margin-inline-end: 0%; */
 }
-
 nav {
   padding: 30px;
 }
-
 nav a {
   font-weight: bold;
-  color: white;
+  color: red;
 }
-
 nav a.router-link-exact-active {
   color: #9CFF2E;
 }
-
 @font-face {
     font-family: 'Tenada';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');

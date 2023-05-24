@@ -1,5 +1,10 @@
 <template>
   <div>
+
+    <div>
+      <h1 class="brand">o . my . tt</h1>
+    </div>
+
     <h2>{{ username }}님 안녕하세요.</h2>
     <h3>회원가입이 완료되었습니다.</h3>
     <p>당신이 이미 가입한 ott를 선택해주세요.</p>

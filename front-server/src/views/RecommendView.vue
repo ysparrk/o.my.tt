@@ -1,5 +1,9 @@
 <template>
   <div>
+    
+    <div>
+      <h1 class="brand">o . my . tt</h1>
+    </div>
 
     <h3 class="m-3">당신을 위한 OTT를 찾아보세요</h3> 
     <SelectMovie />
