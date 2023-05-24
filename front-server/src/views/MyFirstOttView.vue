@@ -36,11 +36,19 @@ export default {
       return this.$store.state.myOtts
     }
   },
+  created() {
+    this.getMyOtt()
+  },
   methods: {
+    getMyOtt() {
+      this.$store.dispatch('getMyOtt')
+      console.log("get 함수")
+    },
     sendMyOtt() {
       this.$store.dispatch('sendMyOtt', this.myOtts)
       this.$router.push({name : 'MovieView'})
     }
+    
   }
 }
 </script>
