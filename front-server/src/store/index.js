@@ -16,6 +16,7 @@ export default new Vuex.Store({
     createPersistedState(),
   ],
   state: {
+    movies: [],
     username: null,
     articles: [],
     otts: null, // db의 ott리스트
@@ -86,14 +87,14 @@ export default new Vuex.Store({
       console.log(this.myFirstOtts)
     },
     // login 관련
-    SAVE_USERNAME(state, username) {
-      state.username = username
-      console.log(this.username)
-    },
     SIGN_UP_TOKEN(state, token) {
       state.token = token
       console.log("회원가입")
       router.push({name : 'MyFirstOttView'}) // signup -> 초기설정
+    },
+    SAVE_USERNAME(state, username) {
+      state.username = username
+      console.log(this.username)
     },
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -300,14 +301,32 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
-      context.commit('SAVE_TOKEN', res.data.key)
-      context.commit('SAVE_USERNAME', username)
+        console.log(1111)
+        context.commit('SAVE_USERNAME', username)
+        context.commit('SAVE_TOKEN', res.data.key)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(2222222)
+        console.log(err)
+      })
     },
     logout(context) {
       context.commit('CLEAR_TOKEN')
       context.commit('CLEAR_USERNAME') 
+    },
+    checkLogin() {
+      if(this.token){
+        console.log("입장")
+        // this.$store.dispatch('getArticles')
+        return true
+      }
+      else{
+        alert('로그인이 필요한 서비스 입니다.')
+
+        router.push({name : 'LogInView'})
+      }
+      // 로그인 되어있으면 실행
+      // 로그인 X : login 페이지로 이동
     }
   },
   modules: {

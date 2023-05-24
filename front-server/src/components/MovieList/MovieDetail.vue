@@ -3,7 +3,7 @@
     <div v-if="movie">
       <p class="title">{{ movie.title }}</p>
       
-      <div v-if="ott_lst" class="ott-btn" style="margin-bottom:20px;">
+      <div v-if="ott_lst" class="ott-btn">
         <span v-for="(ott, idx) in ott_lst" :key="idx" style="margin:5px;">
           <img :src="require(`@/assets/${ott}.png`)" style="width:70px; height:70px;">
         </span>
@@ -17,7 +17,7 @@
       </div>
 
       <div v-else>
-        <img :src="'https://image.tmdb.org/t/p/w300'+ movie.backdrop_path" style="width:640px; height:auto;">
+        <img :src="'https://image.tmdb.org/t/p/original'+ movie.backdrop_path" style="width:640px; height:auto;">
       </div>
 
       <p>{{ movie.overview }}</p>
@@ -154,8 +154,6 @@ p.title {
   font-size: 40px;
   text-shadow: 10px;
 }
-.ott-btn img {
-  /* border: solid white; */
-  border-radius: 10px;
-}
+/* .ott-btn img {
+} */
 </style>

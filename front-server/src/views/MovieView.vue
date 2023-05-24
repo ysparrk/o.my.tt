@@ -16,12 +16,27 @@ export default {
   computed: {
     username() {
       return this.$store.state.username
+    },
+    isLogin(){
+      return this.$store.getters.isLogin // 로그인 여부 -> true 또는 false
     }
+  },
+  created() {
+    this.checkLogin()
   },
   update() {
     this.getMovies()
   },
   methods: {
+    checkLogin() {
+      if(this.isLogin){
+        console.log(11333333)
+      }
+      else{
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({name:'LogInView'})
+      }
+    },
     getMovies() {
       this.$store.dispatch('getMovies')
     }

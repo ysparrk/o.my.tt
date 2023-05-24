@@ -2,9 +2,9 @@
   <div id="app">
 
     <!-- <router-link :to="{ name: 'SignUpView' }">Sign-Up Page</router-link> | -->
-    <div>
+    <!-- <div>
       <button class="login"><router-link :to="{ name: 'LogInView' }">Login Page</router-link></button>
-    </div>
+    </div> -->
 
     <!-- <router-link v-if="!loggedIn" :to="{ name: 'LogInView' }" class="button">
       Login
@@ -12,14 +12,17 @@
     <router-link v-else type="button" class="logoutButton" @click="logout">
       LogOut
     </router-link> -->
+    <router-link v-if="isLogin" :to="{ name: 'MovieView', params: { id: $store.state.user } }" class="logbutton"></router-link> 
+    <router-link v-else to="/signup" class="logbutton">Sign Up</router-link>
+    <router-link v-if="!isLogin" to="/login" class="logbutton" style="margin-right: 30px;">Login</router-link>
+    <button v-if="isLogin" class="logbutton" style="margin-right: 30px;" @click="logout">Logout</button>
 
     <nav>
       <router-link :to="{ name: 'MovieView' }">Movie List</router-link> |
       <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
       <router-link :to="{ name: 'AccountsView' }">MyPage</router-link>
       <!-- <router-link v-if="isLogin" :to="{ name: 'AccountsView' }">MyPage</router-link>
-      <span v-else>로그인이 필요합니다.</span> -->
-      
+      <span v-else>로그인이 필요합니다.</span> --> 
     </nav>
 
     <div>
@@ -31,6 +34,23 @@
   </div>
 
 </template>
+
+<script>
+export default {
+  name: 'App',
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    }
+  }
+}
+</script>
+
 
 <style>
 

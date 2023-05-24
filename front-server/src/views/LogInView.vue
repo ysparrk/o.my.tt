@@ -12,9 +12,6 @@
       <input class="check" type="submit" value="logIn">
     </form>
 
-    <button @click="logout">logout</button>
-    <router-link :to="{ name: 'SignUpView' }">Sign-Up Page</router-link>
-
   </div>
 </template>
 
@@ -38,9 +35,6 @@ export default {
       
       this.$store.dispatch('login', payload)
     },
-    logout() {
-      this.$store.dispatch('logout')
-    }
   }
 }
 </script>
