@@ -10,7 +10,7 @@ from rest_framework.response import Response
 # permission Decorators
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializers import TmdbSerializer, OttSerializer, MovieSerializer, CommentSerializer, MovieDetailSerializer, SearchSerializer
+from .serializers import TmdbSerializer, OttSerializer, MovieSerializer, CommentSerializer, MovieDetailSerializer, SearchSerializer, MovieOttSerializer
 
 from .models import Movie, Ott, Tmdb, Comment
 from accounts.models import User
@@ -26,14 +26,14 @@ def ott_list(request):
     # print('요청 보냄================')
     return Response(serializer.data)
 
+
 # ott 버튼 누르면 해당 ott 영화 보내기
 @api_view(['GET'])
 def tmdb_movie_list(request, initial):
 
-    # print("요청받음!!=============")
+    # print("요청 받음================")
     # print(initial)
     tmdb_data = Tmdb.objects.all()
-    # movie_data = Movie.objects.all()
     # print(movie_data)
     movie_list = []
 
@@ -58,8 +58,18 @@ def tmdb_movie_list(request, initial):
 def movie_detail(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
 
-    print("detail 요청 받음")
+    # print("detail 요청 받음")
     serializer = MovieDetailSerializer(movie)
+    # print(serializer.data)
+    return Response(serializer.data)
+
+
+# ott offered
+@api_view(['GET'])
+def movie_ott(request, movie_id):
+    tmdb_ott = get_object_or_404(Tmdb, pk=movie_id)
+    serializer = MovieOttSerializer(tmdb_ott).data
+    serializer = MovieOttSerializer(tmdb_ott)
     print(serializer.data)
     return Response(serializer.data)
 
@@ -72,19 +82,19 @@ def likes(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
 
     if request.method == 'POST':
-        print("좋아요 요청 받음")
+        # print("좋아요 요청 받음")
         user = request.user
         
         if movie.like_users.filter(id=user.id).exists():
             # 이미 좋아요를 누른 경우, 좋아요 취소
             movie.like_users.remove(user)
             liked = False
-            print(liked)
+            # print(liked)
         else:
             # 좋아요를 누르지 않은 경우, 좋아요 추가
             movie.like_users.add(user)
             liked = True
-            print(liked)
+            # print(liked)
 
         # 좋아요 개수 업데이트
         likes_count = movie.like_users.count()
@@ -98,8 +108,8 @@ def likes(request, movie_id):
 @api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
 def comment_create(request, movie_id):
-    print("댓글 받음")
-    print(request.data)
+    # print("댓글 받음")
+    # print(request.data)
     movie = get_object_or_404(Movie, pk=movie_id)
 
     if request.method == 'POST':
@@ -110,7 +120,7 @@ def comment_create(request, movie_id):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     elif request.method == 'GET':
-        print("댓글 조회 요청 들어옴")
+        # print("댓글 조회 요청 들어옴")
         comments = Comment.objects.filter(movie=movie)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
