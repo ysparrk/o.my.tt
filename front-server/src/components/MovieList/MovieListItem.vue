@@ -40,7 +40,6 @@ export default {
   margin: 10px;
   float: left;
   position: relative;
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
   width: 13rem;
   overflow: hidden;
   box-shadow: 15px 15px 25px black;
@@ -52,11 +51,9 @@ export default {
   height: 300px;
   overflow: hidden;
   object-fit: cover;
-  transform: scale(1);
   transition: all 0.2s linear;
 }
 .card:hover img {
-  opacity: 0.5;
   transform: scale(1.05);
   animation: flip-vertical-right 1s ease;
   animation-iteration-count: 2;
@@ -91,10 +88,6 @@ export default {
 .card:hover .title-box {
   transform: translatey(0);
 }
-
-/* img {
-  animation: flip-vertical-right 0.2s ease-in-out infinite;
-} */
 
 @keyframes flip-vertical-right {
   0% {

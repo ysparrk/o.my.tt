@@ -36,11 +36,9 @@ export default {
     }
   }
 }
-
 </script>
 
-<style>
-
+<style scoped>
 /* 고령딸기체 */
 @font-face {
     font-family: 'GoryeongStrawberry';
@@ -48,7 +46,6 @@ export default {
     font-weight: normal;
     font-style: normal;
 }
-
 .card {
   margin: 10px;
   float: left;
@@ -59,7 +56,6 @@ export default {
   box-shadow: 15px 15px 25px black;
   cursor: pointer;
 }
-
 .card img {
   display: inline-block;
   width: auto;
@@ -69,17 +65,14 @@ export default {
   transform: scale(1);
   transition: all 0.2s linear;
 }
-
 .card:hover img {
   opacity: 0.5;
   transform: scale(1.05);
 }
-
 .card_selected  {
   opacity: 0.5;
   transform: scale(1.05);
 }
-
 .card .title-box {
   content: "";
   height: 100px;
@@ -92,7 +85,6 @@ export default {
   width: 100%;
   z-index: 1;
 }
-
 /* 고령딸기체 제목 */
 .card .name {
   font-size: 15px;
@@ -107,10 +99,8 @@ export default {
   transition: .3s ease;
   cursor: default;
 }
-
 .card:hover .name,
 .card:hover .title-box {
   transform: translatey(0);
 }
-
 </style>
