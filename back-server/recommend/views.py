@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from collections import Counter
 from movies.models import Tmdb, Movie, Ott
 from accounts.models import User
-from .models import Info
 from movies.serializers import TmdbSerializer, MovieSerializer, OttSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
