@@ -20,12 +20,11 @@
       <!-- <router-link v-if="isLogin" :to="{ name: 'AccountsView' }">MyPage</router-link>
       <span v-else>로그인이 필요합니다.</span> -->
       
-    </nav>
-
-    <div>
-      <!-- <img :src="require(`@/assets/logo.png`)" style="width:400px; height:auto" alt="MainLogo"> -->
+    <!-- <div>
       <h1 class="brand">o . my . tt</h1>
-    </div>
+    </div> -->
+
+    </nav>
 
     <router-view/>
   </div>
@@ -41,7 +40,7 @@
   text-align: center;
   color: #F7F7F7;
   position: relative;
-  background: #20262e;
+  /* background: #20262e; */
   width: 100vw;
 }
 
@@ -59,7 +58,7 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: white;
+  color: red;
 }
 
 nav a.router-link-exact-active {

@@ -1,5 +1,11 @@
 <template>
   <div>
+
+    <div>
+      <!-- <img :src="require(`@/assets/logo.png`)" style="width:400px; height:auto" alt="MainLogo"> -->
+      <h1 class="brand">o . my . tt</h1>
+    </div>
+
   <p>Hi, {{ username }}. Enjoy your Flight.</p>
   <MovieList />
   </div>

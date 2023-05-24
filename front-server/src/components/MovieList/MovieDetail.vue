@@ -1,35 +1,49 @@
 <template>
   <div>
-    <div v-if="movie">
-      <p class="title">{{ movie.title }}</p>
-      
-      <div v-if="ott_lst" class="ott-btn" style="margin-bottom:20px;">
-        <span v-for="(ott, idx) in ott_lst" :key="idx" style="margin:5px;">
-          <img :src="require(`@/assets/${ott}.png`)" style="width:70px; height:70px;">
-        </span>
+
+
+
+    <div class="backdropcontainer"
+    :style="{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9) ), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}">
+
+
+      <div v-if="movie" class="inner">
+        <p class="title">{{ movie.title }}</p>
+
+        <div v-if="ott_lst" class="ott-btn" style="margin-bottom:20px;">
+          <span v-for="(ott, idx) in ott_lst" :key="idx" style="margin:5px;">
+            <img :src="require(`@/assets/${ott}.png`)" style="width:70px; height:70px;">
+          </span>
+        </div>
+
+
+        <div class="card">
+        <div v-if="movie.video_key" class="card-img-top">
+          <iframe id="player" width="640" height="360"
+          :src="`https://www.youtube.com/embed/${movie.video_key}`"
+          frameborder="0">
+          </iframe>
+        </div>
+
+        <div class="card-img-top" v-else>
+          <img :src="'https://image.tmdb.org/t/p/original'+ movie.backdrop_path" style="width:640px; height:auto;">
+        </div>
+
+        <div class="card-body">
+          <p class="card-text">{{ movie.overview }}</p>
+        </div>
+        </div>
+
+
+        <button @click="userLikes(movie.id)">{{ likes ? '좋아요' : '좋아요  취소' }}</button>
+        <p>{{ movie.likes_count }}</p>
+        <MovieCommentCreate :movie="movie" v-if="movie"/>
       </div>
-
-      <div v-if="movie.video_key">
-        <iframe id="player" width="640" height="360"
-        :src="`https://www.youtube.com/embed/${movie.video_key}`"
-        frameborder="0">
-        </iframe>
-      </div>
-
-      <div v-else>
-        <img :src="'https://image.tmdb.org/t/p/w300'+ movie.backdrop_path" style="width:640px; height:auto;">
-      </div>
-
-      <p>{{ movie.overview }}</p>
-
-
-      <button @click="userLikes(movie.id)">{{ likes ? '좋아요' : '좋아요  취소' }}</button>
-      <p>{{ movie.likes_count }}</p>
-      <MovieCommentCreate :movie="movie" v-if="movie"/>
-
     </div>
-  </div>
 
+
+
+  </div>
 </template>
 
 <script>
@@ -141,21 +155,29 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @font-face {
-    font-family: 'MBC1961M';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'MBC1961M';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+.backdropcontainer {
+  background-repeat: no-repeat;
+  background-position: center top;
 }
 p.title {
-  margin-top: 30px;
+  padding-top: 20px;
   font-family: MBC1961M;
-  font-size: 40px;
+  font-size: 50px;
   text-shadow: 10px;
 }
 .ott-btn img {
-  /* border: solid white; */
   border-radius: 10px;
+}
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
