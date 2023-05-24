@@ -1,6 +1,6 @@
 <template>
   <div class="container" ref="container">
-  <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="ott in otts" :key="ott.id" @click="buttonClick(ott.initial)">
+  <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="(ott, idx) in otts" :key="idx" @click="buttonClick(ott.initial)">
     <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
   </button>
 

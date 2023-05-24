@@ -4,28 +4,19 @@
     <!-- <button @click="performSearch">검색</button> -->
     <div v-if="movies.length === 0 && searchQuery !== ''">검색결과가 없습니다</div>
 
-    <div v-else>
+    <!-- <div v-else>
       <MovieListItem v-for="(movie, idx) in movies" :key="idx" :movie="movie"/>
-    </div>
+    </div> -->
 
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
-import MovieListItem from '@/components/MovieList/MovieListItem'
-
-// const API_URL = 'http://127.0.0.1:8000'
-
 export default {
   name: 'SearchMovie',
-  components: {
-    MovieListItem,
-  },
   data() {
     return {
       searchQuery: '',
-      // movies: [],
     }
   },
   computed: {

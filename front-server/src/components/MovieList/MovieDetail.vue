@@ -25,7 +25,7 @@ import MovieCommentCreate from '@/components/MovieList/MovieCommentCreate'
 
 const API_URL = 'http://127.0.0.1:8000'
 
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: 'MovieDetail',
