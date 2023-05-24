@@ -66,7 +66,7 @@ export default {
   transition: all 0.2s linear;
 }
 .card:hover img {
-  opacity: 0.5;
+  opacity: 0.9;
   transform: scale(1.05);
 }
 .card_selected  {

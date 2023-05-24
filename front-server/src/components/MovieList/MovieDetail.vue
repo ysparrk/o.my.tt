@@ -1,23 +1,35 @@
 <template>
   <div>
-
     <div v-if="movie">
-    <img :src="'https://image.tmdb.org/t/p/w300' + movie.backdrop_path">
-    <h2>{{ movie.title }}</h2>
-    <p>{{ movie.overview }}</p>
+      <p class="title">{{ movie.title }}</p>
+      
+      <div v-if="ott_lst" class="ott-btn">
+        <span v-for="(ott, idx) in ott_lst" :key="idx" style="margin:5px;">
+          <img :src="require(`@/assets/${ott}.png`)" style="width:70px; height:70px;">
+        </span>
+      </div>
 
-    <iframe id="player" width="640" height="360"
-    :src="`https://www.youtube.com/embed/${movie.video_key}`"
-    frameborder="0">
-    </iframe>
+      <div v-if="movie.video_key">
+        <iframe id="player" width="640" height="360"
+        :src="`https://www.youtube.com/embed/${movie.video_key}`"
+        frameborder="0">
+        </iframe>
+      </div>
 
-    <button @click="userLikes(movie.id)">{{ likes ? '좋아요' : '좋아요  취소' }}</button>
-    <p>{{ movie.likes_count }}</p>
+      <div v-else>
+        <img :src="'https://image.tmdb.org/t/p/w300'+ movie.backdrop_path" style="width:640px; height:auto;">
+      </div>
+
+      <p>{{ movie.overview }}</p>
+
+
+      <button @click="userLikes(movie.id)">{{ likes ? '좋아요' : '좋아요  취소' }}</button>
+      <p>{{ movie.likes_count }}</p>
+      <MovieCommentCreate :movie="movie" v-if="movie"/>
+
     </div>
-
-    <MovieCommentCreate :movie="movie" v-if="movie"/>
-
   </div>
+
 </template>
 
 <script>
@@ -34,22 +46,43 @@ export default {
   },
   data() {
     return {
-      likes: false,
       movie: null,
+      likes: null,
+      ott_lst: [],
     }
   },
   computed: {
     movieProp() {
       return this.$route.params.movie || this.movie
-    }
+    },
   },
   created() {
     this.likes = JSON.parse(localStorage.getItem('likes')) || false
-  },
+    },
   mounted() {
     this.getDetails()
+    this.getOfferOtt()
   },
   methods: {
+    getOfferOtt() {
+      const movieId = this.$route.params.id
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/detail/${movieId}/ott/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then((res) => {
+        console.log(res)
+        this.otts = res.data
+        this.ott_lst = this.otts.ott_lst
+        console.log(this.ott_lst)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     getDetails() {
       const movieId = this.$route.params.id
       axios({
@@ -76,7 +109,6 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
         .then((res) => {
-          console.log('response!!')
           console.log(res)
           this.movie.likes_count = res.data.likes_count
         })
@@ -98,7 +130,6 @@ export default {
         }
       })
       .then((res) => {
-        console.log('response!!')
         console.log(res)
         this.movie.likes_count = res.data.likes_count
       })
@@ -111,5 +142,18 @@ export default {
 </script>
 
 <style>
-
+@font-face {
+    font-family: 'MBC1961M';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+p.title {
+  margin-top: 30px;
+  font-family: MBC1961M;
+  font-size: 40px;
+  text-shadow: 10px;
+}
+/* .ott-btn img {
+} */
 </style>

@@ -40,3 +40,8 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     def get_likes_count(self, instance):
         return instance.like_users.count()
 
+
+class MovieOttSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tmdb
+        fields = '__all__'
