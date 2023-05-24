@@ -3,7 +3,7 @@
 
     <input type="text" v-model="searchQuery" @input="performSearch" placeholder="검색어를 입력하세요" />
     <!-- <button @click="performSearch">검색</button> -->
-    <div v-if="movies.length === 0">텅</div>
+    <div v-if="movies.length === 0 && searchQuery !== ''">검색결과가 없습니다</div>
 
     <div v-else>
       <MovieListItem v-for="movie in movies" :key="movie.id" :movie="movie"/>
@@ -46,21 +46,4 @@ export default {
 
 <style>
 
-.ripple-btn {
-  width: 100px;
-  height: 50px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  position: relative;
-  padding: 1em 1.5em;
-  color: #fff;
-  font-size: 1.15rem;
-  border-radius: 100vmax;
-  background-color: transparent;
-  border: 2px solid #fff;
-  text-transform: uppercase;
-  overflow: hidden;
-  cursor: pointer;
-}
 </style>
