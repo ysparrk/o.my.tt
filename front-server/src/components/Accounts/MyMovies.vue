@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>내가 좋아요 한 작품들</p>
+    <p>내가 <img :src="require(`@/assets/heart_after.png`)" style="height:20px;"> 한 작품들</p>
 
     <div v-for="(movie, idx) in movieLikes" :key="idx">
       <MyMoviesItem :movie="movie"/>

@@ -31,24 +31,22 @@ export default {
 <style scoped>
 /* 고령딸기체 */
 @font-face {
-    font-family: 'GoryeongStrawberry';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/GoryeongStrawberry.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'GoryeongStrawberry';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/GoryeongStrawberry.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 .card {
-  margin: 10px;
-  float: left;
-  position: relative;
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
+  display: inline-block;
+  margin: 20px;
+  background: linear-gradient(180deg, #212A3E 0%, #212A3E 100%);
   width: 13rem;
   overflow: hidden;
   box-shadow: 15px 15px 25px black;
   cursor: pointer;
 }
 .card img {
-  display: inline-block;
-  width: auto;
+  width: 13rem;
   height: 300px;
   overflow: hidden;
   object-fit: cover;

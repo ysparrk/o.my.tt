@@ -1,14 +1,15 @@
 <template>
-  <div>
+  <div class="container" ref="container">
 
     <div v-if="finalRecommend">
       <h2>추천하는 OTT는 {{ finalRecommend.name }}</h2>
       <a v-bind:href="finalRecommend.signup">가입하기</a>
     </div>
 
+    <div style="margin-bottom:10px">
     <button class="custom-btn btn-css" @click="getSelect"><div class="dot"></div>RANDOM</button>
     <button class="custom-btn btn-css" @click="sendIds"><span>제출하기</span></button>
-
+    </div>
     <SearchMovie2 />
     <SelectMovieItem 
     v-for="select in selects"
@@ -52,12 +53,6 @@ export default {
 </script>
 
 <style>
-
-.frame {
-  width: 90%;
-  margin: 40px auto;
-  text-align: center;
-}
 button {
   margin: 20px;
 }

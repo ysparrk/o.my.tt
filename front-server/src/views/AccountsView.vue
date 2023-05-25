@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div>
+    <div class="p-4">
       <h1 class="brand">o . my . tt</h1>
     </div>
 

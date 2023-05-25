@@ -1,10 +1,10 @@
 <template>
   <div>
-    <p>내가 가지고 있는 ott</p>
+    <p>이미 구독 중인 OTT</p>
 
-    <div v-for="(ott, idx) in otts" :key="idx" >
-      <MyOttItem :ott="ott"/>
-    </div>
+    <span v-for="(ott, idx) in otts" :key="idx">
+      <MyOttItem :ott="ott" />
+    </span>
     <button @click="sendMyOtt">저장</button>
     <!-- <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="ott in otts" :key="ott.id" @click="saveMyOtt(ott.id)">
       <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">

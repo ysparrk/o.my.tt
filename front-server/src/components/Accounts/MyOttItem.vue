@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div :class="{card_selected : is_selected}">
-      <button type="button" variant="primary" class="m-2 btn btnEvent" @click="saveMyOtt(ott.id)">
-        <!-- <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages"> -->
-        <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
+    <div :class="{btn_selected: is_selected}">
+      <button type="button" class="btn btnEvent" @click="saveMyOtt(ott.id)">
+        <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px">
       </button>
     </div>
   </div>
@@ -57,7 +56,17 @@ export default {
 </script>
 
 <style scoped>
-.card_selected {
+div {
+  display: inline;
+}
+.btn {
+  border: none;
+}
+.btn:focus {
+	border: none;
+	outline: none;
+}
+.btn_selected {
   opacity: 0.5;
   transform: scale(1.05);
 }

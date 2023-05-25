@@ -44,9 +44,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #F7F7F7;
+  color: #000000;
   /* position: relative; */
-  /* background: #20262e; */
+  background: #F9F5EB;
   /* width: 100vw; */
 }
 button.login {
@@ -82,7 +82,7 @@ nav .nav-link.router-link-exact-active {
   /* text-align: center; */
   font-family: 'KCCChassam';
   color: #fff;
-  text-shadow: 0 0 50px #F8FFDB, 0 0 100px #F8FFDB, 0 0 20px #9CFF2E, 0 0 20px #9CFF2E, 0 0 20px #F0FF42, 0 0 20px #F0FF42, 0 0 20px #F0FF42;
+  text-shadow: 0 0 50px #ffff00, 0 0 100px #ffff00, 0 0 20px #ffff00, 0 0 20px #ccff00, 0 0 20px #ccff00, 0 0 20px #ccff00, 0 0 20px #ccff00;
   /* text-shadow: 0 0 50px #fff, 0 0 10px #fff, 0 0 15px #9CFF2E, 0 0 20px #9CFF2E, 0 0 25px #F0FF42, 0 0 30px #F0FF42, 0 0 35px #F0FF42; */
 }
 </style>

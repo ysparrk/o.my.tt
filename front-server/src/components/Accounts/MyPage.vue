@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>my page입니다</p>
     <MyOtt />
     <MyMovies />
     <MyOffer />

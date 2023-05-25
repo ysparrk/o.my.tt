@@ -1,19 +1,8 @@
 <template>
   <div>
 
-    <input type="text" v-model="searchQuery" @input="performSearch" placeholder="그 영화 뭐였지?" />
-    <!-- <button @click="performSearch">검색</button> -->
-
-    <!---->
-      <!-- <div class="search-wrapper">
-        <div class="input-holder">
-          <input type="text" class="search-input" v-model="searchQuery"
-          @input="performSearch" placeholder="그 영화 뭐였지?" />
-          <button class="search-icon" @click="searchToggle"><span></span></button>
-        </div>
-        <span class="close" @click="searchToggle"></span>
-      </div> -->
-    <!---->
+    <input class="m-3" type="text" v-model="searchQuery"
+    @input="performSearch" placeholder="그 영화 뭐였지?" />
 
     <div v-if="selects.length === 0">텅</div>
 
