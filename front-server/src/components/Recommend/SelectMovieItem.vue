@@ -86,7 +86,7 @@ export default {
 /* 고령딸기체 제목 */
 .card .name {
   font-size: 15px;
-  font-family: GoryeongStrawberry;
+  font-family: 'NanumSquareNeo-Variable';
   position: absolute;
   width: 100%;
   bottom: 10px;
