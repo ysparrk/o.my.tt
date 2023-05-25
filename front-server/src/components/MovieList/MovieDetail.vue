@@ -25,25 +25,25 @@
           </div>
         </div>
 
-        <div v-if="ott_lst" class="ott" style="margin-bottom:20px; vertical-aling:middle;">
-          <span>{{ movie.title }} => </span>
-          <span v-for="(ott, idx) in ott_lst" :key="idx" style="margin:5px;">
+        <div v-if="ott_lst" class="ott" style="margin-bottom: 20px; color: white;">
+          <span style="margin:px; font-size: 15px;"><strong>{{ movie.title }}, </strong></span>
+          <span v-for="(ott, idx) in ott_lst" :key="idx" style="margin:5px; font-size: 20px;">
             <img :src="require(`@/assets/${ott}_long.png`)" style="height:20px;">
           </span>
-          <span>에서 즐기실 수 있습니다</span>
+          <span style="margin:px; font-size: 15px;">에서 즐기실 수 있습니다</span>
         </div>
 
-        <button type="button" class="like btn btnEvent" @click="userLikes(movie.id)">
-          <img v-if="likes" :src="require('@/assets/heart_after.png')" style="width: 35px; height: 35px;">
-          <img v-else :src="require('@/assets/heart_before.png')" style="width: 35px; height: 35px;">
-        </button>
-        
-        <p>{{ movie.likes_count }}</p>
+        <span>
+          <button type="button" class="like btn btnEvent" @click="userLikes(movie.id)">
+            <img v-if="likes" :src="require('@/assets/heart_after.png')" style="width: 35px; height: 35px;">
+            <img v-else :src="require('@/assets/heart_before.png')" style="width: 35px; height: 35px;">
+          </button>
+          <span style="color: white;">{{ movie.likes_count }}</span>
+        </span>
+
         <MovieCommentCreate :movie="movie" v-if="movie"/>
       </div>
     </div>
-
-
 
   </div>
 </template>
@@ -219,10 +219,6 @@ p.title {
   color: white;
   font-size: 20px;
   font-family: Arita-buri-SemiBold;
-}
-.ott {
-  justify-content: center;
-  vertical-align: middle;
 }
 .like:focus{ 	
   border: none;
