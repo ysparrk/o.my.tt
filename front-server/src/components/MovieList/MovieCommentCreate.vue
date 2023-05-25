@@ -1,15 +1,19 @@
 <template>
   <div>
-    <h1>댓글 작성</h1>
+    <span class="commentTag">Comment</span>
     <form @submit.prevent="createComment">
-      <textarea id="content" cols="30" rows="2" v-model="content"></textarea><br>
-      <input type="submit" id="submit" value="작성">
+      <textarea id="content" cols="50" rows="1.5" v-model="content" placeholder="댓글을 작성해주세요"></textarea><br>
+      <input type="submit" id="submit" value="작성"
+      class="button btnPush btnBlueGreen">
     </form>
+    <a href="" title="Button push blue/green" class="button btnPush btnBlueGreen">Push</a>
 
-    <MovieCommentItem
-    v-for="comment in comments" 
-    :key="comment.id"
-    :comment="comment"/>
+    <div class="comments">
+      <MovieCommentItem
+      v-for="comment in comments" 
+      :key="comment.id"
+      :comment="comment"/>
+    </div>
   </div>
 </template>
 
@@ -95,5 +99,59 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+.commentTag {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  text-align: left;
+}
 
+.commentInput {
+  font-family: 'SUITE-Regular';
+}
+
+.comments {
+  padding: 5px 5px 0px 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
+}
+
+.btnBlueGreen.btnPush {
+  box-shadow: 0px 5px 0px 0px #007144;
+}
+.btnPush:hover {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.btnBlueGreen.btnPush:hover {
+  box-shadow: 0px 0px 0px 0px #007144;
+}
+
+a.button {
+  display: block;
+  position: relative;
+  float: left;
+  width: 120px;
+  padding: 0;
+  margin: 10px 20px 10px 0;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btnBlueGreen {
+  background: #00AE68;
+}
 </style>

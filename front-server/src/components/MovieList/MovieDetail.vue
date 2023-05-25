@@ -26,16 +26,12 @@
         </div>
 
         <div v-if="ott_lst" class="ott" style="margin-bottom:20px; vertical-aling:middle;">
-          <span>"{{ movie.title }}"는 </span>
+          <span>{{ movie.title }} => </span>
           <span v-for="(ott, idx) in ott_lst" :key="idx" style="margin:5px;">
             <img :src="require(`@/assets/${ott}_long.png`)" style="height:20px;">
           </span>
           <span>에서 즐기실 수 있습니다</span>
         </div>
-
-        <!-- <button @click="userLikes(movie.id)">
-          {{ likes ? '좋아요' : '좋아요  취소' }}
-        </button> -->
 
         <button type="button" class="like btn btnEvent" @click="userLikes(movie.id)">
           <img v-if="likes" :src="require('@/assets/heart_after.png')" style="width: 35px; height: 35px;">
