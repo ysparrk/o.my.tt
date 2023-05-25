@@ -11,7 +11,7 @@
     
     <form @submit.prevent="createComment">
       <input class="text-input" type="text" id="content" cols="50" rows="1.5" v-model="content" placeholder="댓글을 작성해주세요">
-      '  '<input type="submit" id="submit" value="확인" class="button btnPush btnBlueGreen">
+      '  '<input type="submit" id="submit" value="확인" class="button btnPush btnBlueGreen btn-3d red">
     </form>
 
   </div>
@@ -120,17 +120,7 @@ export default {
   margin-right: auto;
   border-radius: 6px;
 }
-.btnBlueGreen.btnPush {
-  box-shadow: 0px 5px 0px 0px #007144;
-}
-.btnPush:hover {
-  margin-top: 15px;
-  margin-bottom: 5px;
-}
-.btnBlueGreen.btnPush:hover {
-  box-shadow: 0px 0px 0px 0px #007144;
-}
-a.button {
+/* a.button {
   width: 10px;
   display: block;
   position: relative;
@@ -144,8 +134,106 @@ a.button {
   color: #FFF;
   border-radius: 5px;
   transition: all 0.2s ease-in-out;
+} */
+.btn-3d {
+  width: 80px;
+  height: 40px;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+  transition: top .01s linear;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
 }
-.btnBlueGreen {
-  background: #00AE68;
+.btn-3d.red:hover    {background-color: #e74c3c;}
+.btn-3d.blue:hover   {background-color: #699DD1;}
+.btn-3d.green:hover  {background-color: #80C49D;}
+.btn-3d.purple:hover {background-color: #D19ECB;}
+.btn-3d.yellow:hover {background-color: #F0D264;}
+.btn-3d.cyan:hover   {background-color: #82D1E3;}
+
+.btn-3d:active {
+  top: 9px;
+}
+/* 3D button colors */
+.btn-3d.red {
+  background-color: #e74c3c;
+  box-shadow: 0 0 0 1px #c63702 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 #C24032,
+        0 8px 0 1px rgba(0,0,0,0.4),
+        0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.red:active {
+  box-shadow: 0 0 0 1px #c63702 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
+}
+.btn-3d.blue {
+  background-color: #6DA2D9;
+  box-shadow: 0 0 0 1px #6698cb inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 rgba(110, 164, 219, .7),
+        0 8px 0 1px rgba(0,0,0,.4),
+        0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.blue:active {
+  box-shadow: 0 0 0 1px #6191C2 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
+}
+.btn-3d.green {
+  background-color: #82c8a0;
+  box-shadow: 0 0 0 1px #82c8a0 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 rgba(126, 194, 155, .7),
+        0 8px 0 1px rgba(0,0,0,.4),
+        0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.green:active {
+  box-shadow: 0 0 0 1px #82c8a0 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
+}
+.btn-3d.purple {
+  background-color: #cb99c5;
+  box-shadow: 0 0 0 1px #cb99c5 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 rgba(189, 142, 183, .7),
+        0 8px 0 1px rgba(0,0,0,.4),
+        0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.purple:active {
+  box-shadow: 0 0 0 1px #cb99c5 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
+}
+.btn-3d.cyan {
+  background-color: #7fccde;
+  box-shadow: 0 0 0 1px #7fccde inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 rgba(102, 164, 178, .6),
+        0 8px 0 1px rgba(0,0,0,.4),
+        0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.cyan:active {
+  box-shadow: 0 0 0 1px #7fccde inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
+}
+.btn-3d.yellow {
+  background-color: #F0D264;
+  box-shadow: 0 0 0 1px #F0D264 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 rgba(196, 172, 83, .7),
+        0 8px 0 1px rgba(0,0,0,.4),
+        0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.yellow:active {
+  box-shadow: 0 0 0 1px #F0D264 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
 }
 </style>
