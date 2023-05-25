@@ -1,124 +1,19 @@
-<!------------------------------------------------------>
-
-<!-- 수정 후 -->
 <template>
   <div>
-    <!-- <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div> -->
-
     <form @submit.prevent="login">
       <h3>Login Here</h3>
 
-      <label for="username">Username : </label>
+      <label for="username">Username</label>
       <input type="text" id="username" v-model="username"><br>
 
-      <label for="password"> password : </label>
+      <label for="password">Password</label>
       <input type="password" id="password" v-model="password">
 
-      <input class="check btn-3d red" type="submit" value="login">
+      <input class="check btn-3d red" type="submit" value="Login">
     </form>
   </div>
 </template>
-<!------------------------------------------------------>
 
-<!-- 수정 전 -->
-<!--<template>
-  <div>
-    <form @submit.prevent="login">
-      <label for="username">Username : </label>
-      <input type="text" id="username" v-model="username"><br>
-
-      <label for="password"> password : </label>
-      <input type="password" id="password" v-model="password"><br>
-
-      <input class="check" type="submit" value="logIn">
-    </form>
-
-  </div>
-</template>-->
-
-<!-- 수정 전
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-.main {
-  background: rgba(255, 255, 255, 0.4);
-  position: absolute;
-  top: 20%;
-  left: 30%;
-  width: 40%;
-  text-align: center;
-  padding: 5px;
-  border-radius: 3rem;
-  box-shadow: 0px 0px 8px -5px #000000;
-  padding-top: 3%;
-  padding-bottom: 5%;
-  /* font-family: "Poppins", sans-serif; */
-}
-h1 {
-  cursor: default;
-  user-select: none;
-}
-input {
-  background: white;
-  border-radius: 3rem;
-  border: none;
-  padding: 10px;
-  text-align: center;
-  outline: none;
-  margin: 10px;
-  width: 30%;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-}
-input:hover {
-  box-shadow: 0px 0px 8px -5px #000000;
-}
-input:active {
-  box-shadow: 0px 0px 8px -5px #000000;
-}
-.button {
-  cursor: pointer;
-  user-select: none;
-}
-.check {
-  background: #9CFF2E;
-}
-.background {
-    width: 430px;
-    height: 520px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
-}
-.background .shape {
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-}
-.shape:first-child {
-    background: linear-gradient(
-        /* #1845ad,
-        #23a2f6 */
-        #ff512f,
-        #f09819
-    );
-    left: -70px;
-    top: -90px;
-}
-.shape:last-child {
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
-    right: -70px;
-    bottom: -100px;
-}
--->
 
 <script>
 export default {
@@ -145,6 +40,12 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 *,
 *:before,
 *:after{
@@ -153,6 +54,7 @@ export default {
 body {
   background-color: #080710;
 }
+
 form {
   height: 520px;
   width: 400px;
@@ -168,14 +70,14 @@ form {
   padding: 50px 35px;
 }
 form * {
-  font-family: 'Poppins',sans-serif;
+  font-family: 'NanumSquareNeo-Variable';
   color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
   border: none;
 }
 form h3 {
-  font-size: 32px;
+  font-size: 33px;
   font-weight: 500;
   line-height: 42px;
   text-align: center;
@@ -183,7 +85,7 @@ form h3 {
 label {
   display: block;
   margin-top: 30px;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 500;
 }
 input {

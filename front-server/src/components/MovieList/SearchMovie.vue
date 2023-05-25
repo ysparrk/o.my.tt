@@ -31,6 +31,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+input {
+  font-family: 'NanumSquareNeo-Variable';
+}
 
 </style>

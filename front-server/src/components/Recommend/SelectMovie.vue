@@ -1,5 +1,5 @@
 <template>
-  <div class="container" ref="container">
+  <div class="container select_main" ref="container">
 
     <div v-if="finalRecommend">
       <h2>추천하는 OTT는 {{ finalRecommend.name }}</h2>
@@ -52,7 +52,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 button {
   margin: 20px;
 }
@@ -106,10 +106,15 @@ button {
   inset -4px -4px 6px 0 rgba(255,255,255,.2),
   inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
-@keyframes shiny-btn {
+
+.select_main {
+  font-family: 'NanumSquareNeo-Variable';
+  color: white;
+}
+/* @keyframes shiny-btn {
   0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
   80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
   81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
   100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
-}
+} */
 </style>

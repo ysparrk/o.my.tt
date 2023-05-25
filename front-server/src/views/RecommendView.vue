@@ -74,8 +74,9 @@ export default {
   }
 }
 .select {
-  font-family: Arita-buri-SemiBold;
+  font-family: 'NanumSquareNeo-Variable';
   font-size: 30px;
   animation: text-focus-in 1.5s;
+  color: #fdd750;
 }
 </style>

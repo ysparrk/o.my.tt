@@ -51,7 +51,7 @@ body {
   /* position: relative; */
   background: #121212;
   /* width: 100vw; */
-  height: 200vh;
+  height: 100vh;
 }
 
 
@@ -80,6 +80,12 @@ nav .nav-link.router-link-exact-active {
 @font-face {
     font-family: 'KCCChassam';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
