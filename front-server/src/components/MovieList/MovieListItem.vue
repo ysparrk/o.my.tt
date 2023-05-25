@@ -42,7 +42,7 @@ export default {
   background: linear-gradient(180deg, #212A3E 0%, #212A3E 100%);
   width: 13rem;
   overflow: hidden;
-  box-shadow: 15px 15px 25px black;
+  box-shadow: 5px 5px 20px rgb(230, 230, 230, 0.3);
   cursor: pointer;
 }
 .card img {

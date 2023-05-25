@@ -193,6 +193,6 @@ export default {
   }
 }
 .brand {
-  animation: text-flicker-in-glow 5s;
+  animation: text-flicker-in-glow 2.5s;
 }
 </style>

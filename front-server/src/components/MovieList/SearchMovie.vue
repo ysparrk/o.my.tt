@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <input class="search m-3" type="text" v-model="searchQuery"
+    <input class="m-3" type="text" v-model="searchQuery"
     @input="performSearch1" placeholder="검색어를 입력하세요" />
     <div v-if="movies.length === 0 && searchQuery !== ''">
       검색결과가 없습니다
