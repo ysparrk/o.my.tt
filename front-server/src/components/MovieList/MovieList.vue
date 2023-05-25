@@ -2,14 +2,18 @@
   <div class="container" ref="container">
 
     <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="(ott, idx) in otts" :key="idx" @click="buttonClick(ott.initial)">
-      <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
+      <img :src="require(`@/assets/${ott.initial}.png`)" style="width:70px; height:70px">
     </button>
 
+    <p>
     <SearchMovie />
+    <p>
 
     <!--영화 정보-->
+    <div style="margin:auto;">
     <div v-for="(movie, idx) in movies" :key="'m'+idx">
-      <MovieListItem :movie="movie"/>
+      <MovieListItem :movie="movie" />
+    </div>
     </div>
 
     <infinite-loading @infinite="infiniteHandler"></infinite-loading>
@@ -119,18 +123,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container {
-  max-height: 700px;
-  overflow-y: scroll;
+  display: inline;
+  /* max-height: 700px; */
+  /* overflow-y: scroll; */
 }
-.container::-webkit-scrollbar {
-  width: 0.5em; /* 스크롤바 너비 */
+.btn {
+  border: none;
 }
-.container::-webkit-scrollbar-track {
-  background-color: red; /* 스크롤바 트랙 배경색 */
-}
-.container::-webkit-scrollbar-thumb {
-  background-color: #ffffff; /* 스크롤바 색상 */
+.btn:focus {
+	border: none;
+	outline: none;
 }
 </style>

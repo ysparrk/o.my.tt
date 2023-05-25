@@ -1,31 +1,24 @@
 <template>
   <div id="app">
 
-    <!-- <router-link :to="{ name: 'SignUpView' }">Sign-Up Page</router-link> | -->
-    <!-- <div>
-      <button class="login"><router-link :to="{ name: 'LogInView' }">Login Page</router-link></button>
-    </div> -->
-
-    <!-- <router-link v-if="!loggedIn" :to="{ name: 'LogInView' }" class="button">
-      Login
-    </router-link>
-    <router-link v-else type="button" class="logoutButton" @click="logout">
-      LogOut
-    </router-link> -->
     <router-link v-if="isLogin" :to="{ name: 'MovieView', params: { id: $store.state.user } }" class="logbutton"></router-link> 
     <router-link v-else to="/signup" class="logbutton">Sign Up</router-link>
     <router-link v-if="!isLogin" to="/login" class="logbutton" style="margin-right: 30px;">Login</router-link>
-    <button v-if="isLogin" class="logbutton" style="margin-right: 30px;" @click="logout">Logout</button>
+    <button v-if="isLogin" class="logbutton" style="margin: 0 auto;" @click="logout">Logout</button>
 
-    <nav style="background-color: purple;">
-      <router-link :to="{ name: 'MovieView' }">Movie List</router-link> |
-      <router-link :to="{ name: 'RecommendView'}">Recommend</router-link> |
-      <router-link :to="{ name: 'AccountsView' }">MyPage</router-link>
+    <nav class="navbar navbar-expand bg-dark" data-bs-theme="dark">
+      <div class="m-auto">
+        <div class="navbar-nav">
+          <router-link :to="{ name: 'RecommendView'}" class="nav-link px-5">Recommend</router-link>
+          <router-link :to="{ name: 'MovieView' }" class="nav-link px-5">Movie List</router-link>
+          <router-link :to="{ name: 'AccountsView' }" class="nav-link px-5">My Page</router-link>
+        </div>
+      </div>
     </nav>
 
     <router-view/>
-  </div>
 
+  </div>
 </template>
 
 <script>
@@ -52,9 +45,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #F7F7F7;
-  position: relative;
+  /* position: relative; */
   /* background: #20262e; */
-  width: 100vw;
+  /* width: 100vw; */
 }
 button.login {
   position: absolute;
@@ -63,15 +56,8 @@ button.login {
   /* margin-left: 100%; */
   /* margin-inline-end: 0%; */
 }
-nav {
-  padding: 30px;
-}
-nav a {
-  font-weight: bold;
-  color: red;
-}
-nav a.router-link-exact-active {
-  color: #9CFF2E;
+nav .nav-link.router-link-exact-active {
+  color: #ffffff;
 }
 @font-face {
     font-family: 'Tenada';
@@ -93,7 +79,7 @@ nav a.router-link-exact-active {
 }
 .brand {
   font-size: 70px;
-  text-align: center;
+  /* text-align: center; */
   font-family: 'KCCChassam';
   color: #fff;
   text-shadow: 0 0 50px #F8FFDB, 0 0 100px #F8FFDB, 0 0 20px #9CFF2E, 0 0 20px #9CFF2E, 0 0 20px #F0FF42, 0 0 20px #F0FF42, 0 0 20px #F0FF42;
