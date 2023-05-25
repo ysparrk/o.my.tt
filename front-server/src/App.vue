@@ -1,6 +1,5 @@
 <template>
-  <div id="app">
-
+  <div id="app" class="spectrum-background">
     <router-link v-if="isLogin" :to="{ name: 'MovieView', params: { id: $store.state.user } }" class="login-button"></router-link> 
     <!-- <router-link v-else to="/signup" class="login-button">Sign Up</router-link>
     <router-link v-if="!isLogin" to="/login" class="login-button" style="margin-right: 30px;">Login</router-link> -->
@@ -55,6 +54,14 @@ body {
   /* width: 100vw; */
   height: 100vh;
 }
+/* .spectrum-background {
+  background:
+    linear-gradient(red, transparent),
+    linear-gradient(to top left, lime, transparent),
+    linear-gradient(to top right, blue, transparent);
+  background-blend-mode: screen;
+} */
+
 /* button.login {
   position: absolute;
   top: 0;
@@ -65,12 +72,6 @@ body {
 nav .nav-link.router-link-exact-active {
   color: #ffffff;
 }
-/* .logbutton {
-  position: relative;
-  top: 90%;
-  display: flex;
-  justify-content: center;
-} */
 @font-face {
     font-family: 'Tenada';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');

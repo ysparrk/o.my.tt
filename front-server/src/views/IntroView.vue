@@ -1,6 +1,7 @@
 <template>
   <div class="p-4">
       <h1 class="title brand-full-width">o . my . tt</h1>
+      <router-link to="/login" class="login-button">로그인 가보자고</router-link>
   </div>
 </template>
 

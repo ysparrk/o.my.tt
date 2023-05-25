@@ -1,11 +1,11 @@
 <template>
   <div>
 
-    <div class="p-4">
+    <!-- <div class="p-4">
       <h1 class="brand">o . my . tt</h1>
-    </div>
+    </div> -->
 
-    <h3>this is {{ username }} page</h3>
+    <h3 style="margin-top:50px; color: white; font-family: NanumSquareNeo-Variable;">{{ username }}님의 마이페이지</h3>
     <MyPage />
   </div>
 </template>

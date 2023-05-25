@@ -44,18 +44,18 @@ export default {
 <style scoped>
 /* 배경 색 시도 */
 .spectrum-background {
-    background:
-        linear-gradient(red, transparent),
-        linear-gradient(to top left, lime, transparent),
-        linear-gradient(to top right, blue, transparent);
-    background-blend-mode: screen;
+  background:
+    linear-gradient(red, transparent),
+    linear-gradient(to top left, lime, transparent),
+    linear-gradient(to top right, blue, transparent);
+  background-blend-mode: screen;
 }
 
 @font-face {
-    font-family: 'omyu_pretty';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'omyu_pretty';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 *,
 *:before,
@@ -67,9 +67,11 @@ body {
 }
 .login-button {
   position: absolute;
-  top: 50%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-decoration: none; /* 밑줄 제거 */
+  color: white;
 }
 form {
   height: 500px;
@@ -120,7 +122,7 @@ input {
 /* 3D Button */
 .btn-3d {
   width: 150px;
-  margin-top: 60px;
+  margin-top: 90px;
   position: relative;
   display: inline-block;
   font-size: 18px;
