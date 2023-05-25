@@ -1,12 +1,8 @@
 <template>
   <div>
-    <input class="search" type="text" v-model="searchQuery" @input="performSearch1" placeholder="검색어를 입력하세요" />
-    <!-- <button @click="performSearch">검색</button> -->
-    <div v-if="movies.length === 0 && searchQuery !== ''">검색결과가 없습니다</div>
 
-    <!-- <div v-else>
-      <MovieListItem v-for="(movie, idx) in movies" :key="idx" :movie="movie"/>
-    </div> -->
+    <input class="search" type="text" v-model="searchQuery" @input="performSearch1" placeholder="검색어를 입력하세요" />
+    <div v-if="movies.length === 0 && searchQuery !== ''">검색결과가 없습니다</div>
 
   </div>
 </template>
