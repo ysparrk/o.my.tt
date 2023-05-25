@@ -1,12 +1,8 @@
 <template>
   <div>
-
-    <!-- <div class="p-4">
-      <h1 class="brand">o . my . tt</h1>
-    </div> -->
-
-    <h3 style="margin-top:50px; color: white; font-family: NanumSquareNeo-Variable;">{{ username }}님의 마이페이지</h3>
+    <div class="text">{{ username }}님의 마이페이지</div>
     <MyPage />
+    <div class="m-5"></div>
   </div>
 </template>
 
@@ -46,6 +42,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.text {
+  font-size: 50px;
+  font-family: NanumSquareNeo-Variable;
+  color: white;
+  margin-top: 50px;
+}
 </style>

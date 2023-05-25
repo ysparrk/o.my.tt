@@ -309,7 +309,7 @@ export default new Vuex.Store({
         context.commit('SAVE_TOKEN', res.data.key)
       })
       .catch((err) => {
-        console.log(2222222)
+        console.log('로그인 에러')
         console.log(err)
       })
     },

@@ -1,13 +1,12 @@
 <template>
   <div>
 
-    <div>
+    <div class="p-4">
       <h1 class="brand">o . my . tt</h1>
     </div>
 
-    <h2>{{ username }}님 안녕하세요.</h2>
-    <h3>회원가입이 완료되었습니다.</h3>
-    <p>당신이 이미 가입한 ott를 선택해주세요.</p>
+    <div class="hi">{{ username }}님 안녕하세요. 회원가입이 완료되었습니다</div>
+    <div class="hi-ott">가입하신 OTT를 선택해주세요</div>
     <!-- <button type="button" variant="primary" class="m-2 btn btnEvent" v-for="ott in otts" :key="ott.id" @click="saveMyOtt(ott.id)">
       <img :src="require(`@/assets/${ott.initial}.png`)" style="width:50px; height:50px" alt="btnImages" class="btnImages">
     </button> -->
@@ -58,6 +57,20 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.brand {
+  animation: text-flicker-in-glow 2.5s;
+}
+.hi {
+  font-family: NanumSquareNeo-Variable;
+  font-size: 20px;
+  color: white;
+  margin-bottom: 20px;
+}
+.hi-ott {
+  font-family: NanumSquareNeo-Variable;
+  font-size: 30px;
+  color: white;
+  margin-bottom: 20px;
+}
 </style>

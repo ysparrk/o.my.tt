@@ -21,7 +21,7 @@ export default {
   methods: {
     getMoviePoster(movie) {
       if (movie.poster_path) {
-        return 'https://image.tmdb.org/t/p/w300' + movie.poster_path
+        return 'https://image.tmdb.org/t/p/original' + movie.poster_path
       }
     }
   }
@@ -29,20 +29,13 @@ export default {
 </script>
 
 <style scoped>
-/* 고령딸기체 */
-@font-face {
-  font-family: 'GoryeongStrawberry';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/GoryeongStrawberry.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
 .card {
   display: inline-block;
   margin: 20px;
   background: linear-gradient(180deg, #212A3E 0%, #212A3E 100%);
   width: 13rem;
   overflow: hidden;
-  box-shadow: 5px 5px 20px rgb(230, 230, 230, 0.3);
+  box-shadow: 15px 15px 25px black;
   cursor: pointer;
 }
 .card img {

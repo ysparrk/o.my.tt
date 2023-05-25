@@ -1,7 +1,7 @@
 <template>
 
   <div class="card">
-    <img :src="'https://image.tmdb.org/t/p/w300' + select.poster_path" 
+    <img :src="'https://image.tmdb.org/t/p/original' + select.poster_path" 
       @click="saveSelect(select.id)"
       :class="{card_selected : is_selected}"
       >
@@ -39,13 +39,6 @@ export default {
 </script>
 
 <style scoped>
-/* 고령딸기체 */
-@font-face {
-  font-family: 'GoryeongStrawberry';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/GoryeongStrawberry.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
 .card {
   display: inline-block;
   margin: 20px;

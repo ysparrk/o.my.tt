@@ -43,13 +43,43 @@ export default {
 </script>
 
 <style scoped>
-
 body {
    background: #262433;
 }
-
+.main {
+  background: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3rem;
+  box-shadow: 0px 0px 8px -5px #000000;
+  padding-top: 3%;
+  padding-bottom: 5%;
+  font-family: "Poppins", sans-serif;
+}
+h1 {
+  cursor: default;
+  user-select: none;
+}
 input {
   font-family: 'NanumSquareNeo-Variable';
+  border-radius: 3rem;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  outline: none;
+  margin: 10px;
+  width: 400px;
+  box-sizing: border-box;
+  font-weight: 400;
 }
-
+input:hover {
+  box-shadow: 0px 0px 8px -5px #000000;
+}
+input:active {
+  box-shadow: 0px 0px 8px -5px #000000;
+}
 </style>

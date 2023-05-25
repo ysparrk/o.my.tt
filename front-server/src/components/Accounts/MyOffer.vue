@@ -1,10 +1,11 @@
 <template>
   <div>
-    <p>내가 좋아요 표시한 장르를 기반으로 추천하는 영화입니다</p>
 
-    <div v-for="(offer, idx) in movieOffer" :key="idx">
+    <div class="text">👇 내가 좋아요 표시한 장르를 기반으로 추천하는 영화입니다 👇</div>
+
+    <span v-for="(offer, idx) in movieOffer" :key="idx">
       <MyOfferItem :offer="offer"/>
-    </div>
+    </span>
 
   </div>
 </template>
@@ -55,6 +56,19 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.text {
+  font-family: NanumSquareNeo-Variable;
+  color: white;
+  font-size: 20px;
+  margin: 20px;
+}
+@keyframes motion {
+	0% {
+    margin-top: 0px;
+  }
+	100% {
+    margin-top: 10px;
+  }
+}
 </style>

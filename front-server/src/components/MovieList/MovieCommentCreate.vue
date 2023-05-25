@@ -7,11 +7,11 @@
       :key="comment.id"
       :comment="comment"/>
     </div>
-
     
-    <form @submit.prevent="createComment">
-      <input class="text-input" type="text" id="content" cols="50" rows="1.5" v-model="content" placeholder="댓글을 작성해주세요">
-      '  '<input type="submit" id="submit" value="확인" class="button btnPush btnBlueGreen btn-3d red">
+    <form class="m-3" @submit.prevent="createComment">
+      <input class="text-input" type="text" id="content" cols="50" rows="1.5"
+      v-model="content" placeholder="댓글을 작성해주세요">
+      <input type="submit" id="submit" value="확인" class="btn-3d red mx-3">
     </form>
 
   </div>
@@ -99,11 +99,44 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: 'SUITE-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+input {
+  font-family: 'NanumSquareNeo-Variable';
+}
+.main {
+  background: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3rem;
+  box-shadow: 0px 0px 8px -5px #000000;
+  padding-top: 3%;
+  padding-bottom: 5%;
+  font-family: "Poppins", sans-serif;
+}
+h1 {
+  cursor: default;
+  user-select: none;
+}
+input {
+  font-family: 'NanumSquareNeo-Variable';
+  border-radius: 3rem;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  outline: none;
+  margin: 10px;
+  width: 400px;
+  box-sizing: border-box;
   font-weight: 400;
-  font-style: normal;
+}
+input:hover {
+  box-shadow: 0px 0px 8px -5px #000000;
+}
+input:active {
+  box-shadow: 0px 0px 8px -5px #000000;
 }
 .commentTag {
   font-family: 'Courier New', Courier, monospace;
@@ -120,25 +153,10 @@ export default {
   margin-right: auto;
   border-radius: 6px;
 }
-/* a.button {
-  width: 10px;
-  display: block;
-  position: relative;
-  float: left;
-  width: 120px;
-  padding: 0;
-  margin: 10px 20px 10px 0;
-  font-weight: 600;
-  text-align: center;
-  line-height: 50px;
-  color: #FFF;
-  border-radius: 5px;
-  transition: all 0.2s ease-in-out;
-} */
 .btn-3d {
   width: 80px;
   height: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   position: relative;
   display: inline-block;
   color: white;
@@ -146,6 +164,7 @@ export default {
   text-align: center;
   transition: top .01s linear;
   text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  border: none;
 }
 .btn-3d.red:hover    {background-color: #e74c3c;}
 .btn-3d.blue:hover   {background-color: #699DD1;}
@@ -162,7 +181,7 @@ export default {
   background-color: #e74c3c;
   box-shadow: 0 0 0 1px #c63702 inset,
         0 0 0 2px rgba(255,255,255,0.15) inset,
-        0 8px 0 0 #C24032,
+        0 4px 0 0 #C24032,
         0 8px 0 1px rgba(0,0,0,0.4),
         0 8px 8px 1px rgba(0,0,0,0.5);
 }

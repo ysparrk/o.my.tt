@@ -27,7 +27,7 @@ export default {
   methods: {
     checkLogin() {
       if(this.isLogin){
-        console.log(11333333)
+        console.log('로그인 완료')
       }
       else{
         alert('로그인이 필요한 서비스 입니다.')
@@ -41,8 +41,8 @@ export default {
 }
 </script>
 
-<style>
-@font-face {
+<style scoped>
+/* @font-face {
   font-family: 'MBC1961M';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');
   font-weight: normal;
@@ -59,7 +59,7 @@ export default {
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-}
+} */
 /* 천천히 나타나는 글자 효과 */
 @keyframes text-focus-in {
   0% {

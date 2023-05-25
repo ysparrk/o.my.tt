@@ -1,11 +1,12 @@
 <template>
   <div>
-    <p>내가 <img :src="require(`@/assets/heart_after.png`)" style="height:20px;"> 한 작품들</p>
-
-    <div v-for="(movie, idx) in movieLikes" :key="idx">
-      <MyMoviesItem :movie="movie"/>
+    <div class="text">
+      내가 <img :src="require(`@/assets/heart_after.png`)" class="pulsate-bck" style="height:50px;"> 하는
     </div>
 
+    <span v-for="(movie, idx) in movieLikes" :key="idx">
+      <MyMoviesItem :movie="movie"/>
+    </span>
 
   </div>
 </template>
@@ -19,7 +20,7 @@ const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'MyMovies',
   components: {
-    MyMoviesItem
+    MyMoviesItem,
   },
   data() {
     return {
@@ -50,10 +51,32 @@ export default {
       })
     }
   }
-
 }
 </script>
 
-<style>
-
+<style scoped>
+.text {
+  font-family: NanumSquareNeo-Variable;
+  color: white;
+  font-size: 20px;
+  margin: 20px;
+}
+.pulsate-bck {
+  -webkit-animation: pulsate-bck 0.5s ease-in-out infinite both;
+  animation: pulsate-bck 0.5s ease-in-out infinite both;
+}
+@keyframes pulsate-bck {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
 </style>
