@@ -1,11 +1,13 @@
 <template>
   <div id="app">
 
-    <router-link v-if="isLogin" :to="{ name: 'MovieView', params: { id: $store.state.user } }" class="logbutton"></router-link> 
-    <router-link v-else to="/signup" class="logbutton">Sign Up</router-link>
-    <router-link v-if="!isLogin" to="/login" class="logbutton" style="margin-right: 30px;">Login</router-link>
-    <button v-if="isLogin" class="logbutton" style="margin: 0 auto;" @click="logout">Logout</button>
+    <router-link v-if="isLogin" :to="{ name: 'MovieView', params: { id: $store.state.user } }" class="login-button"></router-link> 
+    <!-- <router-link v-else to="/signup" class="login-button">Sign Up</router-link>
+    <router-link v-if="!isLogin" to="/login" class="login-button" style="margin-right: 30px;">Login</router-link> -->
+    <button v-if="isLogin" class="login-button" style="margin: 0 auto;" @click="logout">Logout</button>
+    <!--
 
+    -->
     <nav class="navbar navbar-expand bg-dark p-0" data-bs-theme="dark">
       <div class="m-auto">
         <div class="navbar-nav">
@@ -53,16 +55,22 @@ body {
   /* width: 100vw; */
   height: 100vh;
 }
-button.login {
+/* button.login {
   position: absolute;
   top: 0;
   right: 0;
-  /* margin-left: 100%; */
-  /* margin-inline-end: 0%; */
-}
+  margin-left: 100%;
+  margin-inline-end: 0%;
+} */
 nav .nav-link.router-link-exact-active {
   color: #ffffff;
 }
+/* .logbutton {
+  position: relative;
+  top: 90%;
+  display: flex;
+  justify-content: center;
+} */
 @font-face {
     font-family: 'Tenada';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');

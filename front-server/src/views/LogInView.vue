@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="spectrum-background">
+
     <form @submit.prevent="login">
       <h3>Login Here</h3>
 
@@ -9,8 +10,11 @@
       <label for="password">Password</label>
       <input type="password" id="password" v-model="password">
 
-      <input class="check btn-3d red" type="submit" value="Login">
+      <input class="check btn-3d red" type="submit" value="submit">
     </form>
+    
+    <router-link to="/signup" class="login-button">아직 회원이 아니신가요?</router-link>
+
   </div>
 </template>
 
@@ -31,7 +35,6 @@ export default {
       const payload = {
         username, password
       }
-      
       this.$store.dispatch('login', payload)
     },
   }
@@ -39,6 +42,15 @@ export default {
 </script>
 
 <style scoped>
+/* 배경 색 시도 */
+.spectrum-background {
+    background:
+        linear-gradient(red, transparent),
+        linear-gradient(to top left, lime, transparent),
+        linear-gradient(to top right, blue, transparent);
+    background-blend-mode: screen;
+}
+
 @font-face {
     font-family: 'omyu_pretty';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
@@ -53,14 +65,19 @@ export default {
 body {
   background-color: #080710;
 }
-
+.login-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 form {
-  height: 520px;
+  height: 500px;
   width: 400px;
   background-color: rgba(255,255,255,0.13);
   position: absolute;
   transform: translate(-50%,-50%);
-  top: 50%;
+  top: 40%;
   left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);
@@ -80,32 +97,33 @@ form h3 {
   font-weight: 500;
   line-height: 42px;
   text-align: center;
+  color: white;
 }
 label {
   display: block;
   margin-top: 30px;
-  font-size: 21px;
+  margin-bottom: 10px;
+  font-size: 15px;
   font-weight: 500;
 }
 input {
-  display: block;
-  height: 50px;
-  width: 100%;
+  display: inline-block;
+  height: 40px;
+  width: 80%;
   background-color: rgba(254, 253, 253, 0.92);
   color: black;
   border-radius: 3px;
   padding: 0 10px;
   margin-top: 8px;
-  font-size: 14px;
   font-weight: 300;
 }
 /* 3D Button */
 .btn-3d {
   width: 150px;
-  margin-top: 50px;
+  margin-top: 60px;
   position: relative;
   display: inline-block;
-  font-size: 22px;
+  font-size: 18px;
   color: white;
   border-radius: 6px;
   text-align: center;
