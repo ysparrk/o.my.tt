@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="backdropcontainer"
-    :style="{ backgroundImage: `linear-gradient( rgba(255, 255, 255, 0.3), rgba(0, 0, .0, 1) ), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}">
+    :style="{ backgroundImage: `linear-gradient( rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 1) ), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}">
 
 
       <div v-if="movie">
@@ -41,10 +41,9 @@
           <span style="color: white;">{{ movie.likes_count }}</span>
         </span>
 
-        <MovieCommentCreate :movie="movie" v-if="movie"/>
+        <MovieCommentCreate :movie="movie" v-if="movie" />
       </div>
     </div>
-
   </div>
 </template>
 
@@ -231,34 +230,4 @@ p.title {
 .like:not(:hover) {
   transition: 0.2s ease-out;
 }
-/* @keyframes jello-horizontal {
-0% {
-  -webkit-transform: scale3d(1, 1, 1);
-          transform: scale3d(1, 1, 1);
-}
-30% {
-  -webkit-transform: scale3d(1.25, 0.75, 1);
-          transform: scale3d(1.25, 0.75, 1);
-}
-40% {
-  -webkit-transform: scale3d(0.75, 1.25, 1);
-          transform: scale3d(0.75, 1.25, 1);
-}
-50% {
-  -webkit-transform: scale3d(1.15, 0.85, 1);
-          transform: scale3d(1.15, 0.85, 1);
-}
-65% {
-  -webkit-transform: scale3d(0.95, 1.05, 1);
-          transform: scale3d(0.95, 1.05, 1);
-}
-75% {
-  -webkit-transform: scale3d(1.05, 0.95, 1);
-          transform: scale3d(1.05, 0.95, 1);
-}
-100% {
-  -webkit-transform: scale3d(1, 1, 1);
-          transform: scale3d(1, 1, 1);
-}
-} */
 </style>
