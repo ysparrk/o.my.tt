@@ -26,6 +26,7 @@ export default new Vuex.Store({
     finalRecommend: null,
     myOtts: [],
     myFirstOtts: [],
+    // likes: false, // 좋아요
   },
   getters: {
     isLogin(state) {
@@ -232,6 +233,8 @@ export default new Vuex.Store({
         .then((res) => {
           console.log(res)
           // context.commit('SIGN_UP', res.data.key)
+          this.state.myFirstOtts = [] // 사용자가 가진 ott 초기화
+          context.commit('SAVE_USERNAME', username)
           context.commit('SIGN_UP_TOKEN', res.data.key)
         })
         .catch((err) => {

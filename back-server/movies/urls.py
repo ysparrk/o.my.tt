@@ -5,9 +5,9 @@ app_name = 'movies'
 urlpatterns = [
     path('ott/', views.ott_list, name='ott_list'),  # ott 리스트 보내기
     path('tmdb/<str:initial>', views.tmdb_movie_list, name='tmdb_movie_list'), # initial 받아서, 해당하는 ott리스트 보내주기
-    path('detail/<int:movie_id>', views.movie_detail, name='movie_detail'), 
+    path('detail/<int:movie_id>/', views.movie_detail, name='movie_detail'), 
     path('detail/<int:movie_id>/ott/', views.movie_ott, name='movie_ott'),
-    path('<int:movie_id>/likes/', views.likes, name='likes'), # 좋아요 기능
+    path('likes/<int:movie_id>/', views.likes, name='likes'), # 좋아요 기능
 
     # comment
     path('comment/<int:movie_id>/', views.comment_create, name="comment_create"),

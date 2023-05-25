@@ -75,25 +75,25 @@ def movie_ott(request, movie_id):
 
 
 # likes
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def likes(request, movie_id):
-
+    print("get 요청 받음")
     movie = get_object_or_404(Movie, id=movie_id)
+    user = request.user
 
     if request.method == 'POST':
-        # print("좋아요 요청 받음")
-        user = request.user
+        print("좋아요 요청 받음")
         
         if movie.like_users.filter(id=user.id).exists():
             # 이미 좋아요를 누른 경우, 좋아요 취소
             movie.like_users.remove(user)
-            liked = False
+            likes = False
             # print(liked)
         else:
             # 좋아요를 누르지 않은 경우, 좋아요 추가
             movie.like_users.add(user)
-            liked = True
+            likes = True
             # print(liked)
 
         # 좋아요 개수 업데이트
@@ -101,15 +101,25 @@ def likes(request, movie_id):
         movie.likes_count = likes_count
         movie.save()
 
-        return Response({'liked': liked, 'likes_count': likes_count}, status=status.HTTP_201_CREATED)
+        return Response({'likes': likes, 'likes_count': likes_count}, status=status.HTTP_201_CREATED)
+
+    elif request.method == 'GET':
+        print("좋아요 정보 들어옴")
+        # likes = movie.like_users.filter(id=user.id).values()
+        likes = movie.like_users.filter(id=user.id).exists()
+        print(likes)
+        likes_count = movie.like_users.count()
+        print(likes_count)
+        return Response({'likes': likes, 'likes_count': likes_count}, status=status.HTTP_201_CREATED)
+
 
 
 # comments
 @api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
 def comment_create(request, movie_id):
-    print("댓글 받음")
-    print(request.data)
+    # print("댓글 받음")
+    # print(request.data)
     movie = get_object_or_404(Movie, pk=movie_id)
 
     if request.method == 'POST':
@@ -120,7 +130,7 @@ def comment_create(request, movie_id):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     elif request.method == 'GET':
-        print("댓글 조회 요청 들어옴")
+        # print("댓글 조회 요청 들어옴")
         comments = Comment.objects.filter(movie=movie)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

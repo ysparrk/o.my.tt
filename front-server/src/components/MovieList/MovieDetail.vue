@@ -67,21 +67,23 @@ export default {
   data() {
     return {
       movie: null,
-      likes: null,
       ott_lst: [],
+      likes: false,
+      // is_liked: false
     }
   },
   computed: {
     movieProp() {
       return this.$route.params.movie || this.movie
     },
+    // likes() {
+    //   return this.$store.state.likes
+    // }
   },
-  created() {
-    this.likes = JSON.parse(localStorage.getItem('likes')) || false
-    },
   mounted() {
     this.getDetails()
     this.getOfferOtt()
+    this.getLikes()
   },
   methods: {
     getOfferOtt() {
@@ -107,7 +109,7 @@ export default {
       const movieId = this.$route.params.id
       axios({
         method: 'get',
-        url: `${API_URL}/movies/detail/${movieId}`,
+        url: `${API_URL}/movies/detail/${movieId}/`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }
@@ -121,37 +123,44 @@ export default {
         console.log(err)
       })
     },
-    getLikes(movieId) {
+    getLikes() {
+      console.log("좋아요 정보 가져오기")
+      const movieId = this.$route.params.id
+      console.log(movieId)
       axios({
         method: 'get',
-        url: `${API_URL}/movies/${movieId}/likes/`,
+        url: `${API_URL}/movies/likes/${movieId}/`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }
+      })
         .then((res) => {
           console.log(res)
+          this.likes = res.data.likes
           this.movie.likes_count = res.data.likes_count
+          console.log("좋아요 요청 들어옴")
+          console.log(this.movie.likes)
+          console.log(this.movie.likes_count)
         })
         .catch((err) => {
           console.log(err)
         })
-      })
     },
-    // 좋아요 누르기
+    // 좋아요 버튼 누르기
     userLikes(movieId) {
       this.likes = !this.likes
-      localStorage.setItem('likes', JSON.stringify(this.likes))
+      // localStorage.setItem('likes', JSON.stringify(this.likes))
 
       axios({
         method: 'post',
-        url: `${API_URL}/movies/${movieId}/likes/`,
+        url: `${API_URL}/movies/likes/${movieId}/`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
       .then((res) => {
         console.log(res)
-        this.movie.likes_count = res.data.likes_count
+        this.movie.likes_count = res.data.likes_count // 좋아요 누른 후 count 바로 변경
       })
       .catch((err) => {
         console.log(err)
