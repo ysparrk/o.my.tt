@@ -53,8 +53,6 @@ body {
   /* width: 100vw; */
   height: 100vh;
 }
-
-
 button.login {
   position: absolute;
   top: 0;
@@ -89,7 +87,6 @@ nav .nav-link.router-link-exact-active {
     font-weight: normal;
     font-style: normal;
 }
-
 .brand {
   font-size: 80px;
   /* text-align: center; */

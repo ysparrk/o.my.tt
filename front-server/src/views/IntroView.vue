@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @keyframes text-pop-up-top {
   0% {
     -webkit-transform: translateY(0);
