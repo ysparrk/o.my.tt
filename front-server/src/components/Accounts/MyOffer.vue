@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="bottom-space">
 
-    <div class="text">👇 내가 좋아요 표시한 장르를 기반으로 추천하는 영화입니다 👇</div>
+    <div class="text">👇 이런 영화를 좋아하시는군요 👇</div>
 
     <span v-for="(offer, idx) in movieOffer" :key="idx">
       <MyOfferItem :offer="offer"/>
@@ -62,13 +62,9 @@ export default {
   color: white;
   font-size: 20px;
   margin: 20px;
+  margin-bottom: 30px;
 }
-@keyframes motion {
-	0% {
-    margin-top: 0px;
-  }
-	100% {
-    margin-top: 10px;
-  }
+.bottom-space {
+  margin-bottom: 100px;
 }
 </style>

@@ -61,7 +61,7 @@ export default {
   transform: scale(1.05);
 }
 .card_selected  {
-  opacity: 0.5;
+  opacity: 0.3;
   transform: scale(1.05);
 }
 .card .title-box {
@@ -76,7 +76,6 @@ export default {
   width: 100%;
   z-index: 1;
 }
-/* 고령딸기체 제목 */
 .card .name {
   font-size: 15px;
   font-family: 'NanumSquareNeo-Variable';

@@ -40,7 +40,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
+  margin-top: -100px;
   animation: text-pop-up-top 1s;
 }
 .login-button {

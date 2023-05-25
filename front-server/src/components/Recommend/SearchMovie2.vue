@@ -4,7 +4,9 @@
     <input class="m-3" type="text" v-model="searchQuery"
     @input="performSearch" placeholder="그 영화 뭐였지?" />
 
-    <div v-if="selects.length === 0">텅</div>
+    <div v-if="selects.length === 0 && searchQuery !== ''">
+      <img :src="require(`@/assets/empty.png`)" style="height:200px;">
+    </div>
 
   </div>
 </template>

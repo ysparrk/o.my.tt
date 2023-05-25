@@ -42,6 +42,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  background: #121212;
+}
 /* @font-face {
   font-family: 'MBC1961M';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');

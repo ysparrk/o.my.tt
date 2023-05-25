@@ -49,7 +49,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+* {
+  background: #121212;
+}
+.brand {
+  animation: text-flicker-in-glow 2.5s;
+}
 /* 깜빡거리는 글씨 효과 */
 @keyframes text-flicker-in-glow {
   0% {
@@ -175,8 +181,5 @@ export default {
     opacity: 1;
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
   }
-}
-.brand {
-  animation: text-flicker-in-glow 2.5s;
 }
 </style>

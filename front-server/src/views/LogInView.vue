@@ -1,5 +1,5 @@
 <template>
-  <div class="spectrum-background">
+  <div>
 
     <form @submit.prevent="login">
       <h3>Login Here</h3>
@@ -60,7 +60,7 @@ body {
 }
 .login-button {
   position: absolute;
-  top: 52%;
+  top: 64%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-decoration: none; /* 밑줄 제거 */
@@ -72,7 +72,7 @@ form {
   background-color: rgba(255,255,255,0.13);
   position: absolute;
   transform: translate(-50%,-50%);
-  top: 40%;
+  top: 50%;
   left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);

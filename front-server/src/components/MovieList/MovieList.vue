@@ -13,7 +13,11 @@
       <MovieListItem :movie="movie" />
     </span>
 
-    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+    <infinite-loading @infinite="infiniteHandler">
+      <span slot="no-results">
+        <span class="your-customize-class"></span>
+      </span>
+    </infinite-loading>
   
   </div>
 </template>
@@ -112,6 +116,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  background: #121212;
+}
 .btn {
   border: none;
 }

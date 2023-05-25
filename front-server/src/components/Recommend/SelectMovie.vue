@@ -1,5 +1,17 @@
 <template>
-  <div>
+  <div class="container">
+
+    <div style="margin-bottom:10px">
+    <button class="btn-3d red text" @click="getSelect">RANDOM</button>
+    <button class="btn-3d blue text" @click="sendIds">제출하기</button>
+    </div>
+
+    <SearchMovie2 />
+    <SelectMovieItem 
+    v-for="select in selects"
+    :key="select.id"
+    :select="select"
+    />
 
     <div class="modal" v-if="showModal">
       <div class="modal-dialog modal-dialog-centered">
@@ -7,7 +19,7 @@
 
           <div class="modal-header">
             <h5 class="modal-title">추천할 OTT는</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" @click="closeModal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
           <div class="modal-body">
@@ -15,25 +27,13 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><a v-bind:href="finalRecommend.signup" class="link-no-underline">가입하러 가기</a></button>
-            <button type="button" @click="closeModal" class="btn btn-primary">닫기</button>
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal"><a v-bind:href="finalRecommend.signup" class="link-no-underline">가입하러 가기</a></button>
           </div>
           
         </div>
       </div>
-
-  </div>
-
-    <div style="margin-bottom:10px">
-    <button class="btn-3d yellow" @click="getSelect"><div class="dot"></div>RANDOM</button>
-    <button class="btn-3d blue" @click="sendIds"><span>제출하기</span></button>
     </div>
-    <SearchMovie2 />
-    <SelectMovieItem 
-    v-for="select in selects"
-    :key="select.id"
-    :select="select"
-    />
+
 
   </div>
 </template>
@@ -84,33 +84,43 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background-color: #121212;
+}
 button {
   margin: 20px;
 }
 img {
   width: 150px;
 }
+.text {
+  font-family: NanumSquareNeo-Variable;
+  color: white;
+  font-size: 20px;
+  margin: 20px;
+}
 .modal {
-  /* 모달 스타일 설정 */
-  /* position: fixed;
-  top: 0;
-  left: 0; */
-  z-index: 9999;
-  width: 50%;
-  height: 100%;
   margin-left: auto;
   margin-right: auto;
   display: inline;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(0, 0, 0, 0.5); */
+}
+.modal-header {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .modal-content {
-  /* 모달 내용 스타일 설정 */
-  background-color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #fffffff9;
   padding: 20px;
-  border-radius: 5px;
   text-align: center;
+}
+.modal-footer {
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-self: center;
 }
 .link-no-underline {
   text-decoration: none; /* 밑줄 제거 */
@@ -130,14 +140,14 @@ h2 {
   position: relative;
   display: inline-block;
   font-size: 15px;
-  color: black;
+  /* color: black; */
   border-radius: 6px;
   text-align: center;
   transition: top .01s linear;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  /* text-shadow: 0 1px 0 rgba(0,0,0,0.15); */
   border: none
 }
-.btn-3d.red:hover    {background-color: #e74c3c;}
+.btn-3d.red:hover    {background-color: #f87dbe;}
 .btn-3d.blue:hover   {background-color: #699DD1;}
 .btn-3d.green:hover  {background-color: #80C49D;}
 .btn-3d.purple:hover {background-color: #D19ECB;}
@@ -149,10 +159,10 @@ h2 {
 }
 /* 3D button colors */
 .btn-3d.red {
-  background-color: #e74c3c;
-  box-shadow: 0 0 0 1px #c63702 inset,
+  background-color: #f87dbe;
+  box-shadow: 0 0 0 1px #ae2c7a inset,
         0 0 0 2px rgba(255,255,255,0.15) inset,
-        0 8px 0 0 #C24032,
+        0 8px 0 0 #c2327c,
         0 8px 0 1px rgba(0,0,0,0.4),
         0 8px 8px 1px rgba(0,0,0,0.5);
 }
