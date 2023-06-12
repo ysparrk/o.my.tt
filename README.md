@@ -18,7 +18,7 @@
 
 ## 1. 개발 기간
 
-📆 2023. 05. 15. ~ 2023. 05. 25.
+📆 2023. 05. 15. ~ 2023. 05. 26.
 
 ## 2. DB
 
@@ -41,44 +41,21 @@
 
 ### 1) main project
 
-| HTTP method | URL 패턴 | 설정 및 연결 urls/함수 |
-| --- | --- | --- |
-|  | movies/ | include(’movies.urls’) |
-|  | recommend/ | include('recommend.urls') |
-|  | accounts/ | include('dj_rest_auth.urls') |
-|  | accounts/signup | include('dj_rest_auth.registration.urls') |
+![Untitled](src/Untitled%201.png)
 
 ### 2) movies app
 
 > movies/
 > 
 
-| HTTP method | URL 패턴 | 설정 |
-| --- | --- | --- |
-| GET | ott/ | DB에 저장되어 있는 ott 목록 보내기 |
-| GET | tmdb/<str:initial>/ | 요청을 받으면 해당 ott_initial를 가지고 있는 영화 리스트 보내기 |
-| GET | detail/<int:movie_id>/ | 해당 영화의 detail을 MovieDetailSerializer에 담아 전송 |
-| GET | detail/<int:movie_id>/ott/ | 해당 영화를 가지고 있는 ott 리스트 전송 |
-| GET, POST | likes/<int:movie_id>/ | - GET : user의 좋아요 여부, 해당 영화의 좋아요 개수 전송
-- POST : 좋아요 정보가 들어오면, movie_user_likes에 정보 저장  |
-| GET, POST | comment/<int:movie_id>/ | - GET : 해당 영화의 댓글 목록 전송
-- POST : 댓글 정보 movies_comment에 저장 |
-| GET | search/<str:query>/ | 요청받은 query에 따라 검색한 영화 정보 전송 |
-| GET | user_likes/<str:username>/ | user가 좋아요 한 영화 리스트 전송 |
-| GET | user_offer/<str:username>/ | user가 좋아요 한 영화와 같은 장르인 영화 중 popularity 순서대로 |
-| GET, POST | user_ott/<str:username>/ | - GET : user가 이미 가지고 있는 ott 리스트 가져오기
-- POST : user가 변경하는 ott 리스트 저장 |
+![Untitled](src/Untitled%202.png)
 
 ### 3) recommend app
 
 > recommend/
 > 
 
-| HTTP verb | URL 패턴 | 설정 |
-| --- | --- | --- |
-| GET | random/ | DB의 전체 영화 중 10개 랜덤으로 전송 |
-| POST | optimize_ott/<str:username>/ | user가 선택한 영화 리스트를 받아 영화들이 어느 ott에 가장 많이 상영되는지 판단 후 전송
-* 단, user가 이미 가진 ott는 제외 |
+![Untitled](src/Untitled%203.png)
 
 ## 5. 파일 구조
 
@@ -202,11 +179,11 @@ front-server
 
 # B. 개발 도구
 
-![Untitled](src/Untitled%201.png)
+![Untitled](src/Untitled%204.png)
 
-![Untitled](src/Untitled%202.png)
+![Untitled](src/Untitled%205.png)
 
-![Untitled](src/Untitled%203.png)
+![Untitled](src/Untitled%206.png)
 
 - BE: Django
 - DB: Sqlite3
@@ -283,7 +260,7 @@ front-server
 
 # D. **Cooperation**
 
-![Untitled](src/Untitled%204.png)
+![Untitled](src/Untitled%207.png)
 
 ---
 
