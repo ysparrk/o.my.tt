@@ -188,6 +188,7 @@ front-server
 - BE: Django
 - DB: Sqlite3
 - FE: Vue, Vuex
+- Server: 
 
 ---
 
